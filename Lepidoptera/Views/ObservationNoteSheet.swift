@@ -17,9 +17,18 @@ struct ObservationNoteSheet: View {
         
         NavigationView {
             
+            VStack {
+                Text("Hello, World!")
+                
+                .navigationBarTitle(Text("Observation Note"))
+                .navigationBarItems(trailing:
+                    
+                    Button(action: {self.isPresented.toggle() }) {
+                        Text("Save")
+                    }
+                )
+            }
         }
-        
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 

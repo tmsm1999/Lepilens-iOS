@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E3405FE24F5690A00BE3AA3 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */; };
 		7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3624E6C41E00D9715A /* AppDelegate.swift */; };
 		7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */; };
 		7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3A24E6C41E00D9715A /* AppView.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		7EACEF3324E6C41E00D9715A /* Lepidoptera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepidoptera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EACEF3624E6C41E00D9715A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				7EACEF4E24E6D02800D9715A /* ClassificationView.swift */,
 				7EACEF6924E94F4500D9715A /* MapView.swift */,
 				7EACEF6F24E9A4DE00D9715A /* DetailField.swift */,
+				7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */,
 			);
 			path = "Auxiliary Views";
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				7EACEF6424E88EAF00D9715A /* ConfidenceCircleResults.swift in Sources */,
 				7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */,
 				7EACEF6C24E956FA00D9715A /* DetailsSheet.swift in Sources */,
+				7E3405FE24F5690A00BE3AA3 /* MultilineTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
