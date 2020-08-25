@@ -21,7 +21,7 @@ struct DetailsSheet: View {
                 DetailField(field: "Species Name: ", value: "Aglais io")
                 DetailField(field: "Confidence: ", value: "70%")
                 DetailField(field: "Date: ", value: "02/02/2020")
-                DetailField(field: "Time: ", value: "02/02/2020")
+                DetailField(field: "Time: ", value: "17:30")
                 DetailField(field: "Latitude: ", value: "-12.38482925")
                 DetailField(field: "Longitude: ", value: "9.29251192")
                 DetailField(field: "Place: ", value: "Porto")
