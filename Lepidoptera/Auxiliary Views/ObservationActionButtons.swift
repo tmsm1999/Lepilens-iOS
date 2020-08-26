@@ -14,6 +14,7 @@ struct ObservationActionButtons: View {
     @State private var presentAddNoteSheet: Bool = false
 
     var observation: Observation
+    @EnvironmentObject var records: ObservationRecords
     
     var body: some View {
         
@@ -40,7 +41,8 @@ struct ObservationActionButtons: View {
                     }
                 }
                 .sheet(isPresented: $presentAddNoteSheet) {
-                    ObservationNoteSheet(isPresented: self.$presentAddNoteSheet, observation: self.observation)
+                    ObservationNoteSheet(isPresented: self.$presentAddNoteSheet, userNote: "", observation: self.observation)
+                        .environmentObject(self.records)
                 }
                 
                 Divider()

@@ -10,7 +10,8 @@ import SwiftUI
 
 struct MultilineTextField: UIViewRepresentable {
     
-    var noteText: String
+    @Binding var userNote: String
+    var observation: Observation
     
     func makeUIView(context: UIViewRepresentableContext<MultilineTextField>) -> UITextView {
         
@@ -18,10 +19,17 @@ struct MultilineTextField: UIViewRepresentable {
         textView.isEditable = true
         textView.isUserInteractionEnabled = true
         textView.isScrollEnabled = true
-        textView.text = "Start here..."
-        textView.textColor = .gray
         textView.font = .systemFont(ofSize: 16)
         textView.delegate = context.coordinator
+        
+        if(observation.userNote == "") {
+            textView.text = "Start here..."
+            textView.textColor = .gray
+        }
+        else {
+            textView.text = observation.userNote
+        }
+        
         return textView
     }
     
@@ -29,24 +37,27 @@ struct MultilineTextField: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        return MultilineTextField.Coordinator(parent: self)
+        return MultilineTextField.Coordinator(parent: self, observation: observation)
     }
     
     class Coordinator: NSObject, UITextViewDelegate {
         
         var parent: MultilineTextField
+        var observation: Observation
         
-        init(parent: MultilineTextField) {
+        init(parent: MultilineTextField, observation: Observation) {
             self.parent = parent
+            self.observation = observation
         }
         
         func textViewDidChange(_ textView: UITextView) {
-            self.parent.noteText = textView.text
+            self.parent.userNote = textView.text
         }
         
         func textViewDidBeginEditing(_ textView: UITextView) {
+            self.parent.userNote = observation.userNote
             
-            textView.text = ""
+            textView.text = self.parent.userNote
             textView.textColor = .label
         }
     }
@@ -54,6 +65,6 @@ struct MultilineTextField: UIViewRepresentable {
 
 struct MultilineTextField_Previews: PreviewProvider {
     static var previews: some View {
-        MultilineTextField(noteText: "")
+        MultilineTextField(userNote: .constant(""), observation: mockRecord[0])
     }
 }

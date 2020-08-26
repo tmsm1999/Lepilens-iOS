@@ -54,7 +54,8 @@ struct ObservationDetails: View {
                             .frame(width: geometry.size.width)
                         
                         ObservationActionButtons(observation: self.observation)
-                        .offset(x: 0, y: 30)
+                            .offset(x: 0, y: 30)
+                            .environmentObject(self.records)
                         
                     }
                 }

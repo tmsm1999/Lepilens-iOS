@@ -20,10 +20,10 @@ struct RecordsListView: View {
                     
                     Image(record.imageName)
                         .resizable()
-                        //.cornerRadius(8)
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 60, height: 60, alignment: .center)
                         .clipped()
+                        .cornerRadius(8)
                     
                     VStack(alignment: .leading) {
                         Text(record.speciesName)
@@ -34,6 +34,7 @@ struct RecordsListView: View {
                     }
                     .padding(.leading, 10)
                 }
+                .environmentObject(self.records)
             }
             .navigationBarTitle(Text("Observations"))
         }

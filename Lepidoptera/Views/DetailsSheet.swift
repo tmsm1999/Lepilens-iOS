@@ -18,7 +18,7 @@ struct DetailsSheet: View {
         NavigationView {
             
             VStack {
-                DetailField(field: "Species Name: ", value: "Aglais io")
+                DetailField(field: "Species Name: ", value: observation.speciesName)
                 DetailField(field: "Confidence: ", value: "70%")
                 DetailField(field: "Date: ", value: "02/02/2020")
                 DetailField(field: "Time: ", value: "17:30")
