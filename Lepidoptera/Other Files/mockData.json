@@ -6,7 +6,8 @@
         "latitude": 34.011286,
         "imageName": "aglais_io",
         "id": 1001,
-        "userNote": ""
+        "userNote": "",
+        "date": "02/02/2020"
     },
     {
         "speciesName": "Vanessa Atalanta",
@@ -15,7 +16,8 @@
         "latitude": 59.560551,
         "imageName": "vanessa_atalanta",
         "id": 1002,
-        "userNote": ""
+        "userNote": "",
+        "date": "07/05/2020"
     },
     {
         "speciesName": "Pieris Napi",
@@ -24,7 +26,8 @@
         "latitude": 48.69423,
         "imageName": "pieris_napi",
         "id": 1003,
-        "userNote": ""
+        "userNote": "",
+        "date": "29/08/2020"
     }
 ]
 

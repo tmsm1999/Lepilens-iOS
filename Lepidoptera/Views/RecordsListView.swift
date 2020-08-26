@@ -10,7 +10,7 @@ import SwiftUI
 
 struct RecordsListView: View {
     
-    @ObservedObject var records = ObservationRecords()
+    @EnvironmentObject var records: ObservationRecords
     
     var body: some View {
         
@@ -20,15 +20,21 @@ struct RecordsListView: View {
                     
                     Image(record.imageName)
                         .resizable()
-                        .scaledToFit()
-                        .cornerRadius(8)
+                        //.cornerRadius(8)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 60, height: 60, alignment: .center)
+                        .clipped()
                     
                     VStack(alignment: .leading) {
-                        Text("Aqui")
+                        Text(record.speciesName)
+                            .font(.system(size: 20))
+                            .bold()
+                        Text("02/02/2020")
+                            .font(.system(size: 15))
                     }
+                    .padding(.leading, 10)
                 }
             }
-            
             .navigationBarTitle(Text("Observations"))
         }
     }

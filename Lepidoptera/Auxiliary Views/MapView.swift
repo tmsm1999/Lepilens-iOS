@@ -26,7 +26,6 @@ struct MapView: UIViewRepresentable {
         let annotation =  MKPointAnnotation()
         annotation.coordinate = observationCoordinates
         
-        
         uiView.setRegion(region, animated: true)
         uiView.addAnnotation(annotation)
     }

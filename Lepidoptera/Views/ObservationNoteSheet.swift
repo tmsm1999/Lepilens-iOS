@@ -11,7 +11,7 @@ import SwiftUI
 struct ObservationNoteSheet: View {
     
     @Binding var isPresented: Bool
-    @Binding var observation: Observation
+    var observation: Observation
     
     //@State var noteText: String = observation.userNote
     
@@ -21,12 +21,12 @@ struct ObservationNoteSheet: View {
             
             VStack {
                 
-                MultilineTextField(noteText: $observation.userNote)
+                MultilineTextField(noteText: observation.userNote)
                 
                 .navigationBarTitle(Text("Observation Note"))
                 .navigationBarItems(trailing:
                     
-                    Button(action: { self.isPresented.toggle(); print(self.$observation.userNote) }) {
+                    Button(action: { self.isPresented.toggle(); print(self.observation.userNote) }) {
                         Text("Save")
                         //print($observation.userNote)
                     }
@@ -39,6 +39,6 @@ struct ObservationNoteSheet: View {
 
 struct ObservationNoteSheet_Previews: PreviewProvider {
     static var previews: some View {
-        ObservationNoteSheet(isPresented: .constant(true), observation: .constant(mockRecord[0]))
+        ObservationNoteSheet(isPresented: .constant(true), observation: mockRecord[0])
     }
 }

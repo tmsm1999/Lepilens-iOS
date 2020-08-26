@@ -16,10 +16,10 @@ struct ObservationImage: View {
         
         Image(imageName)
             .resizable()
-            .aspectRatio(contentMode: .fit)
+            .frame(width: 180, height: 180, alignment: .center)
+            .aspectRatio(contentMode: .fill)
             .clipShape(Circle())
             .overlay(Circle().stroke(Color.black, lineWidth: 2))
-            .offset(x: 0, y: -140)
     }
 }
 

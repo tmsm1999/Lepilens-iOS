@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MultilineTextField: UIViewRepresentable {
     
-    @Binding var noteText: String
+    var noteText: String
     
     func makeUIView(context: UIViewRepresentableContext<MultilineTextField>) -> UITextView {
         
@@ -54,6 +54,6 @@ struct MultilineTextField: UIViewRepresentable {
 
 struct MultilineTextField_Previews: PreviewProvider {
     static var previews: some View {
-        MultilineTextField(noteText: .constant(""))
+        MultilineTextField(noteText: "")
     }
 }

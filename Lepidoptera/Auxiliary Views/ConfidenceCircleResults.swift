@@ -31,6 +31,7 @@ struct ConfidenceCircleResults: View {
                 .fontWeight(.semibold)
                 .font(.system(size: 15))
         }
+            .padding(10)
     }
 }
 

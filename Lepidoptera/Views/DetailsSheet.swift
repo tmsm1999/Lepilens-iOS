@@ -11,7 +11,7 @@ import SwiftUI
 struct DetailsSheet: View {
     
     @Binding var isPresented: Bool
-    @Binding var observation: Observation
+    var observation: Observation
     
     var body: some View {
         
@@ -53,6 +53,6 @@ struct DetailsSheet_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        DetailsSheet(isPresented: .constant(true), observation: .constant(mockRecord[0]))
+        DetailsSheet(isPresented: .constant(true), observation: mockRecord[0])
     }
 }

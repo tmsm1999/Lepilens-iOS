@@ -12,7 +12,8 @@ struct ObservationActionButtons: View {
     
     @State private var presentObservationDetailsSheet: Bool = false
     @State private var presentAddNoteSheet: Bool = false
-    @Binding var observation: Observation
+
+    var observation: Observation
     
     var body: some View {
         
@@ -28,7 +29,7 @@ struct ObservationActionButtons: View {
                     }
                 }
                 .sheet(isPresented: $presentObservationDetailsSheet) {
-                    DetailsSheet(isPresented: self.$presentObservationDetailsSheet, observation: self.$observation)
+                    DetailsSheet(isPresented: self.$presentObservationDetailsSheet, observation: self.observation)
                 }
                 
                 Divider()
@@ -39,13 +40,13 @@ struct ObservationActionButtons: View {
                     }
                 }
                 .sheet(isPresented: $presentAddNoteSheet) {
-                    ObservationNoteSheet(isPresented: self.$presentAddNoteSheet, observation: self.$observation)
+                    ObservationNoteSheet(isPresented: self.$presentAddNoteSheet, observation: self.observation)
                 }
                 
                 Divider()
             }
-                .offset(x: 0, y: -110)
-                .padding(.leading, 20)
+                //.offset(x: 0, y: -110)
+                .padding(.bottom, 20)
             
             VStack(alignment: .leading) {
                 
@@ -69,15 +70,15 @@ struct ObservationActionButtons: View {
                 
                 Divider()
             }
-                .offset(x: 0, y: -110)
-                .padding(.leading, 20)
-                .padding(.top, 30)
+                //.offset(x: 0, y: -110)
+                //.padding(.leading, 20)
+                .padding(.bottom, 30)
         }
     }
 }
 
 struct ObservationActionButtons_Previews: PreviewProvider {
     static var previews: some View {
-        ObservationActionButtons(observation: .constant(mockRecord[0]))
+        ObservationActionButtons(observation: mockRecord[0])
     }
 }
