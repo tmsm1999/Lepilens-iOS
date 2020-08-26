@@ -13,21 +13,26 @@ struct ObservationNoteSheet: View {
     @Binding var isPresented: Bool
     @Binding var observation: Observation
     
+    //@State var noteText: String = observation.userNote
+    
     var body: some View {
         
         NavigationView {
             
             VStack {
-                Text("Hello, World!")
+                
+                MultilineTextField(noteText: $observation.userNote)
                 
                 .navigationBarTitle(Text("Observation Note"))
                 .navigationBarItems(trailing:
                     
-                    Button(action: {self.isPresented.toggle() }) {
+                    Button(action: { self.isPresented.toggle(); print(self.$observation.userNote) }) {
                         Text("Save")
+                        //print($observation.userNote)
                     }
                 )
             }
+            .padding(20)
         }
     }
 }

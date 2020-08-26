@@ -24,7 +24,8 @@ struct ClassificationView: View {
                     classificationConfidence: 0.70,
                     latitude: -116.166868,
                     longitude: 34.011286,
-                    id: 0))
+                    id: 0,
+                    imageName: "aglais_io"))
         }) {
             Text("Classify")
         }

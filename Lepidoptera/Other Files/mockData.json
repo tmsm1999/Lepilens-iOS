@@ -5,7 +5,8 @@
         "longitude": -116.166868,
         "latitude": 34.011286,
         "imageName": "aglais_io",
-        "id": 1001
+        "id": 1001,
+        "userNote": ""
     },
     {
         "speciesName": "Vanessa Atalanta",
@@ -13,7 +14,8 @@
         "longitude": -135.334571,
         "latitude": 59.560551,
         "imageName": "vanessa_atalanta",
-        "id": 1002
+        "id": 1002,
+        "userNote": ""
     },
     {
         "speciesName": "Pieris Napi",
@@ -21,7 +23,8 @@
         "longitude": -113.536248,
         "latitude": 48.69423,
         "imageName": "pieris_napi",
-        "id": 1003
+        "id": 1003,
+        "userNote": ""
     }
 ]
 

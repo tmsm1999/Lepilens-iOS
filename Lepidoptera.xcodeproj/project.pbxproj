@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7E3405FE24F5690A00BE3AA3 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */; };
+		7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */; };
 		7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3624E6C41E00D9715A /* AppDelegate.swift */; };
 		7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */; };
 		7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3A24E6C41E00D9715A /* AppView.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListView.swift; sourceTree = "<group>"; };
 		7EACEF3324E6C41E00D9715A /* Lepidoptera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepidoptera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EACEF3624E6C41E00D9715A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,9 +120,11 @@
 		7EACEF5124E6E56E00D9715A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7EACEF4E24E6D02800D9715A /* ClassificationView.swift */,
 				7EACEF5324E6E61B00D9715A /* ObservationDetails.swift */,
 				7EACEF6B24E956FA00D9715A /* DetailsSheet.swift */,
 				7EACEF6D24E99D2C00D9715A /* ObservationNoteSheet.swift */,
+				7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -131,7 +135,6 @@
 				7EACEF6324E88EAF00D9715A /* ConfidenceCircleResults.swift */,
 				7EACEF6524E94C4F00D9715A /* ObservationImage.swift */,
 				7EACEF6724E94CD500D9715A /* ObservationActionButtons.swift */,
-				7EACEF4E24E6D02800D9715A /* ClassificationView.swift */,
 				7EACEF6924E94F4500D9715A /* MapView.swift */,
 				7EACEF6F24E9A4DE00D9715A /* DetailField.swift */,
 				7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */,
@@ -142,8 +145,8 @@
 		7EACEF5924E6F93F00D9715A /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				7EACEF5C24E6F9DB00D9715A /* vanessa_atalanta.jpg */,
 				7EACEF5A24E6F95F00D9715A /* aglais_io.jpg */,
+				7EACEF5C24E6F9DB00D9715A /* vanessa_atalanta.jpg */,
 				7EACEF5E24E6FA1500D9715A /* pieris_napi.jpg */,
 			);
 			path = Images;
@@ -240,6 +243,7 @@
 				7EACEF5424E6E61B00D9715A /* ObservationDetails.swift in Sources */,
 				7EACEF6624E94C4F00D9715A /* ObservationImage.swift in Sources */,
 				7EACEF6E24E99D2C00D9715A /* ObservationNoteSheet.swift in Sources */,
+				7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */,
 				7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */,
 				7EACEF4D24E6C59500D9715A /* ObservationRecords.swift in Sources */,
 				7EACEF7024E9A4DE00D9715A /* DetailField.swift in Sources */,

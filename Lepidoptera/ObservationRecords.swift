@@ -14,6 +14,10 @@ class ObservationRecords: ObservableObject {
     
     @Published var record = mockRecord
     
+    init() {
+        print(record)
+    }
+    
     func addObservation(_ newObservation: Observation) {
         print("Added observation")
         //record.append(newObservation)

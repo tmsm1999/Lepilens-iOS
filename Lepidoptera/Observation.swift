@@ -17,6 +17,7 @@ struct Observation: Identifiable, Hashable, Codable {
     var longitude: Double
     var id: Int
     //var isFavorite: Bool
-    var userNote: String?
+    var userNote: String = ""
+    var imageName: String
     
 }
