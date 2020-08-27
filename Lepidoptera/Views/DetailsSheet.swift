@@ -19,14 +19,14 @@ struct DetailsSheet: View {
             
             VStack {
                 DetailField(field: "Species Name: ", value: observation.speciesName)
-                DetailField(field: "Confidence: ", value: "70%")
-                DetailField(field: "Date: ", value: "02/02/2020")
-                DetailField(field: "Time: ", value: "17:30")
-                DetailField(field: "Latitude: ", value: "-12.38482925")
-                DetailField(field: "Longitude: ", value: "9.29251192")
+                DetailField(field: "Confidence: ", value: String(observation.classificationConfidence * 100) + "%")
+                DetailField(field: "Date: ", value: observation.date)
+                DetailField(field: "Time: ", value: observation.time)
+                DetailField(field: "Latitude: ", value: String(observation.latitude))
+                DetailField(field: "Longitude: ", value: String(observation.longitude))
                 DetailField(field: "Place: ", value: "Porto")
                 
-                Image("aglais_io")
+                Image(observation.imageName)
                     .resizable()
                     .scaledToFit()
                     .cornerRadius(10)

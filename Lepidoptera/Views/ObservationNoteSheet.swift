@@ -37,7 +37,6 @@ struct ObservationNoteSheet: View {
                         
                     }) {
                         Text("Save")
-                        //print($observation.userNote)
                     }
                 )
             }

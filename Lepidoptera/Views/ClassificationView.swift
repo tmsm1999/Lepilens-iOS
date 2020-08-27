@@ -26,7 +26,9 @@ struct ClassificationView: View {
                     longitude: 34.011286,
                     id: 0,
                     date: "02/02/199",
-                    imageName: "aglais_io"))
+                    isFavorite: false,
+                    imageName: "aglais_io",
+                    time: "17:00"))
         }) {
             Text("Classify")
         }

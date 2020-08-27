@@ -14,20 +14,16 @@ struct ObservationDetails: View {
     @EnvironmentObject var records: ObservationRecords
     var observation: Observation
     
-    var observationIndex: Int {
-        records.record.firstIndex(where: { $0.id == observation.id})!
-    }
-    
     var body: some View {
         VStack(alignment: .center) {
             
             ZStack {
                 MapView(observationCoordinates: CLLocationCoordinate2D(latitude: observation.latitude, longitude: observation.longitude))
-                .frame(height: 220)
+                .frame(height: 280)
                 .edgesIgnoringSafeArea(.top)
                 
                 ObservationImage(imageName: observation.imageName)
-                .offset(x: 0, y: 30)
+                .offset(x: 0, y: 50)
             }
             
             GeometryReader { geometry in
@@ -59,7 +55,7 @@ struct ObservationDetails: View {
                         
                     }
                 }
-                .padding(.top, 20)
+                .padding(.top, 10)
             }
             .padding(.leading, 20)
             .padding(.bottom, 2)
@@ -72,7 +68,7 @@ struct ObservationDetails: View {
 
 struct ClassificationDetails_Previews: PreviewProvider {
     static var previews: some View {
-        ObservationDetails(observation: mockRecord[0])
+        ObservationDetails(observation: mockRecord[0]).environmentObject(ObservationRecords())
             .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
     }
 }

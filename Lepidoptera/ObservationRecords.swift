@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 import CoreLocation
 
-class ObservationRecords: ObservableObject {
+class ObservationRecords: ObservableObject, Identifiable {
     
     @Published var record = mockRecord
     

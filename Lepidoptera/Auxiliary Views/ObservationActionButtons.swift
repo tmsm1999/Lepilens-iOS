@@ -15,6 +15,11 @@ struct ObservationActionButtons: View {
 
     var observation: Observation
     @EnvironmentObject var records: ObservationRecords
+    @Environment(\.presentationMode) var presentationMode
+    
+    var observationIndex: Int {
+        records.record.firstIndex(where: { $0.id == observation.id}) ?? -1
+    }
     
     var body: some View {
         
@@ -48,21 +53,40 @@ struct ObservationActionButtons: View {
                 Divider()
             }
                 //.offset(x: 0, y: -110)
-                .padding(.bottom, 20)
+                .padding(.bottom, 30)
             
             VStack(alignment: .leading) {
                 
                 Divider()
-                Button(action: {}) {
-                    HStack {
-                        Image(systemName: "star.circle.fill")
-                            .foregroundColor(.yellow)
-                        Text("Add to Favorites")
+                Button(action: {
+                    self.records.record[self.observationIndex].isFavorite = !self.records.record[self.observationIndex].isFavorite
+                }) {
+                    
+                    if observationIndex >= 0 {
+                        if records.record[observationIndex].isFavorite {
+                            HStack {
+                                Image(systemName: "star.circle.fill")
+                                    .foregroundColor(.yellow)
+                                Text("Remove from favorites")
+                            }
+                        }
+                        else {
+                            HStack {
+                                Image(systemName: "star.circle")
+                                    .foregroundColor(.yellow)
+                                Text("Add to Favorites")
+                            }
+                        }
                     }
                 }
                 
                 Divider()
-                Button(action: {}) {
+                Button(action: {
+                    if self.observationIndex != -1 {
+                        self.presentationMode.wrappedValue.dismiss()
+                        self.records.record.remove(at: self.observationIndex)
+                    }
+                }) {
                     HStack {
                         Image(systemName: "trash.circle.fill")
                             .foregroundColor(.red)
@@ -72,8 +96,6 @@ struct ObservationActionButtons: View {
                 
                 Divider()
             }
-                //.offset(x: 0, y: -110)
-                //.padding(.leading, 20)
                 .padding(.bottom, 30)
         }
     }
@@ -81,6 +103,6 @@ struct ObservationActionButtons: View {
 
 struct ObservationActionButtons_Previews: PreviewProvider {
     static var previews: some View {
-        ObservationActionButtons(observation: mockRecord[0])
+        ObservationActionButtons(observation: mockRecord[0]).environmentObject(ObservationRecords())
     }
 }

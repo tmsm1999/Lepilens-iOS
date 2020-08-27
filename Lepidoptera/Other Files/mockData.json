@@ -7,7 +7,9 @@
         "imageName": "aglais_io",
         "id": 1001,
         "userNote": "",
-        "date": "02/02/2020"
+        "date": "02/02/2020",
+        "isFavorite": false,
+        "time": "12:00"
     },
     {
         "speciesName": "Vanessa Atalanta",
@@ -17,7 +19,9 @@
         "imageName": "vanessa_atalanta",
         "id": 1002,
         "userNote": "",
-        "date": "07/05/2020"
+        "date": "07/05/2020",
+        "isFavorite": true,
+        "time": "17:00"
     },
     {
         "speciesName": "Pieris Napi",
@@ -27,7 +31,8 @@
         "imageName": "pieris_napi",
         "id": 1003,
         "userNote": "",
-        "date": "29/08/2020"
+        "date": "29/08/2020",
+        "isFavorite": false,
+        "time": "15:00"
     }
 ]
-
