@@ -42,7 +42,7 @@ struct AppView: View {
         .font(.headline)
         //.animation(.easeInOut)
         //.transition()
-        .accentColor(Color.init(red: 0 / 255, green: 153 / 255, blue: 51 / 255))
+//        .accentColor(Color.init(red: 0 / 255, green: 153 / 255, blue: 51 / 255))
     }
 }
 

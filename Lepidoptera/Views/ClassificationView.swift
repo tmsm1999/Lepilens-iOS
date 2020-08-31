@@ -11,7 +11,7 @@ import SwiftUI
 struct ClassificationView: View {
     
     //@ObservedObject var records = ObservationRecords()
-    @EnvironmentObject var records: ObservationRecords
+    //@EnvironmentObject var records: ObservationRecords
     //@State var id: Int = 0
     
     var body: some View {
@@ -19,44 +19,40 @@ struct ClassificationView: View {
         NavigationView {
             
             GeometryReader { geometry in
-            
-                VStack() {
-                    
-                    Rectangle()
-                        .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.30)
-                    
-                    ZStack(alignment: .center) {
-                        
-//                        Image(systemName: "photo.on.rectangle")
-                    
-                        Rectangle()
-                            .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.30)
-                            .cornerRadius(8)
-                            //.padding(.top, 50)
-                            .foregroundColor(Color.init(red: 0 / 255, green: 153 / 255, blue: 51 / 255))
-                        //.offset(x: 0, y: 400)
-                        
-                        VStack {
-                        
-                            Image(systemName: "photo.on.rectangle")
-                                .font(.system(size: 60))
-                            
-                            HStack {
-                                Text("Import from Photos")
-                            }
-                            .padding(.top, 20)
-                        }
+                VStack {
+                    Button(action: {
+                        print("Classify - Image from Photos")
+                    }) {
+                        RectangleButton(buttonString: "Import from Photos", imageTitle: "photo")
+                            //.background(Color.red)
                     }
-                    .padding(.top, 50)
+                    .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
                     
+                    Button(action: {
+                        print("Classify - Take photo from camera")
+                    }) {
+                        RectangleButton(buttonString: "Take Photograph", imageTitle: "camera")
+                            //.background(Color.red)
+                    }
+                    .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
+                    .padding(.top, 40)
                     Spacer()
                 }
-                    .padding(.top, 70)
+                .padding(.top, 40)
             }
-            
+                
             .navigationBarTitle(Text("Classify"))
         }
-        
+    }
+}
+
+struct ClassificationView_Previews: PreviewProvider {
+    static var previews: some View {
+        ClassificationView()//.environmentObject(ObservationRecords())
+    }
+}
+
+
 //        Button(action: {
 //
 //            //self.id += 1
@@ -75,12 +71,3 @@ struct ClassificationView: View {
 //        }) {
 //            Text("Classify")
 //        }
-        
-    }
-}
-
-struct ClassificationView_Previews: PreviewProvider {
-    static var previews: some View {
-        ClassificationView().environmentObject(ObservationRecords())
-    }
-}

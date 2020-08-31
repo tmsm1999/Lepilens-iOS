@@ -31,6 +31,7 @@
 		7EACEF6C24E956FA00D9715A /* DetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6B24E956FA00D9715A /* DetailsSheet.swift */; };
 		7EACEF6E24E99D2C00D9715A /* ObservationNoteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6D24E99D2C00D9715A /* ObservationNoteSheet.swift */; };
 		7EACEF7024E9A4DE00D9715A /* DetailField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6F24E9A4DE00D9715A /* DetailField.swift */; };
+		7EC9DD9C24FD7B14005F110A /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		7EACEF6B24E956FA00D9715A /* DetailsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSheet.swift; sourceTree = "<group>"; };
 		7EACEF6D24E99D2C00D9715A /* ObservationNoteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationNoteSheet.swift; sourceTree = "<group>"; };
 		7EACEF6F24E9A4DE00D9715A /* DetailField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailField.swift; sourceTree = "<group>"; };
+		7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				7EACEF6B24E956FA00D9715A /* DetailsSheet.swift */,
 				7EACEF6D24E99D2C00D9715A /* ObservationNoteSheet.swift */,
 				7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */,
+				7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				7EACEF7024E9A4DE00D9715A /* DetailField.swift in Sources */,
 				7EACEF4F24E6D02800D9715A /* ClassificationView.swift in Sources */,
 				7EACEF6224E707DC00D9715A /* Data.swift in Sources */,
+				7EC9DD9C24FD7B14005F110A /* RectangleButton.swift in Sources */,
 				7EACEF6424E88EAF00D9715A /* ConfidenceCircleResults.swift in Sources */,
 				7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */,
 				7EACEF6C24E956FA00D9715A /* DetailsSheet.swift in Sources */,
