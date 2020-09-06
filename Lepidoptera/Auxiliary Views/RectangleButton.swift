@@ -26,9 +26,9 @@ struct RectangleButton: View {
                 HStack {
                     Button(action: { self.sheetIsOpen.toggle() } ) {
                         Text(self.buttonString)
-                            .padding([.top, .bottom], 12)
-                            .padding([.leading, .trailing], 20)
-                            .font(.system(size: 18, weight: .medium, design: .rounded))
+                            .padding([.top, .bottom], 9)
+                            .padding([.leading, .trailing], 16)
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
                             .foregroundColor(.white)
                             .background(RoundedRectangle(cornerRadius: 60, style: .continuous))
                     }

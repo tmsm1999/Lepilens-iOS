@@ -6,27 +6,27 @@
 //  Copyright © 2020 Tomás Santiago. All rights reserved.
 //
 
-import UIKit
-
+//import UIKit
+//
 //let mockRecord: [Observation] = loadData("mockData")
-
-func loadData(_ filename: String) -> [Observation] {
-    
-    guard let file = Bundle.main.url(forResource: filename, withExtension: "json") else {
-        fatalError("Can not load file")
-    }
-    
-    let decoder = JSONDecoder()
-    var decodedData = [Observation]()
-    
-    do {
-        decodedData = try decoder.decode([Observation].self, from: Data(contentsOf: file))
-    }
-    catch {
-        fatalError("Can not decode json")
-    }
-    
-    print(decodedData)
-    
-    return decodedData
-}
+//
+//func loadData(_ filename: String) -> [Observation] {
+//    
+//    guard let file = Bundle.main.url(forResource: filename, withExtension: "json") else {
+//        fatalError("Can not load file")
+//    }
+//    
+//    let decoder = JSONDecoder()
+//    var decodedData = [Observation]()
+//    
+//    do {
+//        decodedData = try decoder.decode([Observation].self, from: Data(contentsOf: file))
+//    }
+//    catch {
+//        fatalError("Can not decode json")
+//    }
+//    
+//    print(decodedData)
+//    
+//    return decodedData
+//}

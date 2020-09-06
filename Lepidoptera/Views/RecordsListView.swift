@@ -34,7 +34,7 @@ struct RecordsListView: View {
                                 
                                 HStack {
                                 
-                                    Image(record.imageName)
+                                    Image(uiImage: record.image)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 60, height: 60, alignment: .center)

@@ -13,6 +13,7 @@ import CoreLocation
 class ObservationRecords: ObservableObject, Identifiable {
     
     @Published var record = [Observation]()
+    //@Published var record = mockRecord
     
     init() {
         print(record)
@@ -20,6 +21,6 @@ class ObservationRecords: ObservableObject, Identifiable {
     
     func addObservation(_ newObservation: Observation) {
         print("Added observation")
-        //record.append(newObservation)
+        record.append(newObservation)
     }
 }

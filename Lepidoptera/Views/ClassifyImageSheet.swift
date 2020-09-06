@@ -14,11 +14,15 @@ struct ClassifyImageSheet: View {
     
     @State var imagePickerIsPresented = false
     @State var imageWasImported = false
+    
     @State var imageToClassify =  UIImage()
     
     var importImageFromPhotos: Bool
     
     @EnvironmentObject var records: ObservationRecords
+    
+    @State var observation: Observation? = nil
+    @State var showResult = false
     
     //Animation properties for image
     @State var isVibible = false
@@ -49,7 +53,6 @@ struct ClassifyImageSheet: View {
                         else {
                             Button(action: {
                                 self.imageWasImported.toggle()
-                                //self.imagePickerIsPresented.toggle()
                             }) {
                                 Text("Open the Camera app")
                             }
@@ -64,15 +67,24 @@ struct ClassifyImageSheet: View {
                                 withAnimation(.easeIn(duration: 1)) {
                                     self.isVibible.toggle()
                                 }
-                            }
-//                            .transition(AnyTransition.slide)
-//                            .animation(.default)
+                        }
+                        //                            .transition(AnyTransition.slide)
+                        //                            .animation(.default)
                     }
                     
                     Spacer()
                     
                     VStack {
-                        Button(action: { return } ) {
+                        Button(action: {
+                            self.observation = self.createObservation()
+                            self.records.addObservation(self.observation!)
+                            self.showResult.toggle()
+                            //self.isPresented.toggle()
+                            //                            NavigationLink(destination: ObservationDetails(observation: observation).environmentObject(self.records)) {
+                            //                                EmptyView()
+                            //                            }
+                            //print(self.records.record.count)
+                        }) {
                             Text("Classify")
                                 .padding([.top, .bottom], 12)
                                 .padding([.leading, .trailing], 30)
@@ -81,6 +93,11 @@ struct ClassifyImageSheet: View {
                                 .background(RoundedRectangle(cornerRadius: 60, style: .continuous))
                         }
                         .disabled(self.imageWasImported == false)
+                        .sheet(isPresented: self.$showResult) {
+                            if self.observation != nil {
+                                ViewWithNavigationLink(observation: self.observation!, isPresented: self.$showResult, parentIsPresented: self.$isPresented).environmentObject(self.records)
+                            }
+                        }
                         
                         Button(action: {
                             self.imageWasImported = false
@@ -92,7 +109,7 @@ struct ClassifyImageSheet: View {
                         .disabled(self.imageWasImported == false)
                     }
                 }
-                    
+                .navigationBarTitle(Text("New Observation"))
                 .navigationBarItems(trailing:
                     
                     Button(action: { self.isPresented.toggle() }) {
@@ -102,10 +119,56 @@ struct ClassifyImageSheet: View {
             }
         }
     }
+    
+    func createObservation() -> Observation{
+        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: 34.011286,
+                                      longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: imageToClassify, time: "17:00")
+        
+        return observation
+    }
+}
+
+struct ViewWithNavigationLink: View {
+    
+    @EnvironmentObject var records: ObservationRecords
+    
+    var observation: Observation
+    @Binding var isPresented: Bool
+    @Binding var parentIsPresented: Bool
+    
+    var body: some View {
+        
+        NavigationView {
+            NavigationLink(destination: ObservationDetails(observation: observation)) {
+                ObservationDetails(observation: observation).environmentObject(records)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .edgesIgnoringSafeArea(.all)
+            .onDisappear() {
+                self.parentIsPresented.toggle()
+            }
+            .navigationBarItems(trailing:
+                
+                Button(action: { self.isPresented.toggle() }) {
+                    Text("Cancel")
+                }
+            )
+        }
+        
+//        ObservationDetails(observation: observation).environmentObject(records)
+//            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//            .edgesIgnoringSafeArea(.all)
+//            .onDisappear() {
+//                self.parentIsPresented.toggle()
+//        }
+    }
 }
 
 struct ClassifyImageSheet_Previews: PreviewProvider {
     static var previews: some View {
-        ClassifyImageSheet(isPresented: .constant(true), importImageFromPhotos: false)
+        
+        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
+        
+        return ClassifyImageSheet(isPresented: .constant(true), importImageFromPhotos: false, observation: observation)
     }
 }

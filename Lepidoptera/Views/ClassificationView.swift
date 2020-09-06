@@ -22,7 +22,7 @@ struct ClassificationView: View {
                         .environmentObject(self.records)
                     
                     
-                    RectangleButton(buttonString: "Take a photo", imageTitle: "TakePhotoRect", action: "Camera")
+                    RectangleButton(buttonString: "Take a photo", imageTitle: "taking_photo_camera", action: "Camera")
                         .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
                     
                     Spacer()
@@ -40,23 +40,3 @@ struct ClassificationView_Previews: PreviewProvider {
         ClassificationView()//.environmentObject(ObservationRecords())
     }
 }
-
-
-//        Button(action: {
-//
-//            //self.id += 1
-//            print("Clicou!")
-//            self.records.addObservation(
-//                Observation(
-//                    speciesName: "Aglais io",
-//                    classificationConfidence: 0.70,
-//                    latitude: -116.166868,
-//                    longitude: 34.011286,
-//                    id: 0,
-//                    date: "02/02/199",
-//                    isFavorite: false,
-//                    imageName: "aglais_io",
-//                    time: "17:00"))
-//        }) {
-//            Text("Classify")
-//        }

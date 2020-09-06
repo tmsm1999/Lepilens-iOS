@@ -34,7 +34,12 @@ struct MapView: UIViewRepresentable {
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         
-        MapView(observationCoordinates: CLLocationCoordinate2D(latitude: mockRecord[0].latitude, longitude: mockRecord[0].longitude)
+//        let observationRecords = ObservationRecords()
+//        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
+//
+//        observationRecords.addObservation(observation)
+        
+        MapView(observationCoordinates: CLLocationCoordinate2D(latitude: -116.16686800, longitude: +34.01128600)
         )
     }
 }

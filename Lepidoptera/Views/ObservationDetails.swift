@@ -70,9 +70,11 @@ struct ClassificationDetails_Previews: PreviewProvider {
     static var previews: some View {
         
         let observationRecords = ObservationRecords()
+        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
         
-        ObservationDetails(observation: mockRecord[0]).environmentObject(ObservationRecords())
-            .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+        observationRecords.addObservation(observation)
+        
+        return ObservationDetails(observation: observationRecords.record[0]).environmentObject(observationRecords)
     }
 }
 
