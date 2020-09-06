@@ -139,20 +139,23 @@ struct ViewWithNavigationLink: View {
     var body: some View {
         
         NavigationView {
-            NavigationLink(destination: ObservationDetails(observation: observation)) {
-                ObservationDetails(observation: observation).environmentObject(records)
+            VStack {
+//                NavigationLink(destination: ObservationDetails(observation: observation)) {
+//                    Text("New View")
+//                }
+                ObservationDetails(observation: observation)
+                .onDisappear() {
+                    self.parentIsPresented.toggle()
+                }
+                .navigationBarItems(trailing:
+                    
+                    Button(action: { self.isPresented.toggle() }) {
+                        Text("Dismiss")
+                    }
+                )
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .edgesIgnoringSafeArea(.all)
-            .onDisappear() {
-                self.parentIsPresented.toggle()
-            }
-            .navigationBarItems(trailing:
-                
-                Button(action: { self.isPresented.toggle() }) {
-                    Text("Cancel")
-                }
-            )
         }
         
 //        ObservationDetails(observation: observation).environmentObject(records)
