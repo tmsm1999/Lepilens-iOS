@@ -127,7 +127,6 @@
 				7EACEF6B24E956FA00D9715A /* DetailsSheet.swift */,
 				7EACEF6D24E99D2C00D9715A /* ObservationNoteSheet.swift */,
 				7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */,
-				7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -141,6 +140,7 @@
 				7EACEF6924E94F4500D9715A /* MapView.swift */,
 				7EACEF6F24E9A4DE00D9715A /* DetailField.swift */,
 				7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */,
+				7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */,
 			);
 			path = "Auxiliary Views";
 			sourceTree = "<group>";

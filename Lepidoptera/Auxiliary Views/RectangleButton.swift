@@ -45,10 +45,10 @@ struct RectangleButton: View {
                 Image(self.imageTitle)
                     .resizable()
                     .renderingMode(.original)
-                    .scaledToFill())
+                    .scaledToFill()
+                    .opacity(0.7))
                 .border(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)), width: 2)
                 .cornerRadius(10)
-//            .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
         }
     }
     
