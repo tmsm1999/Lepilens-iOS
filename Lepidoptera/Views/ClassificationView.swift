@@ -16,33 +16,38 @@ struct ClassificationView: View {
     
     var body: some View {
         
-        NavigationView {
-            
-            GeometryReader { geometry in
-                VStack {
-                    Button(action: {
-                        print("Classify - Image from Photos")
-                    }) {
-                        RectangleButton(buttonString: "Import from Photos", imageTitle: "photo")
-                            //.background(Color.red)
-                    }
-                    .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
+        GeometryReader { geometry in
+            NavigationView {
+                VStack(spacing: 50) {
+                    RectangleButton(buttonString: "Import from Photos", imageTitle: "ImportFromPhotosRect", action: "Photos")
+                        .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
                     
-                    Button(action: {
-                        print("Classify - Take photo from camera")
-                    }) {
-                        RectangleButton(buttonString: "Take Photograph", imageTitle: "camera")
-                            //.background(Color.red)
-                    }
-                    .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
-                    .padding(.top, 40)
+                    
+                    RectangleButton(buttonString: "Take a photo", imageTitle: "TakePhotoRect", action: "Camera")
+                        .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
+                    
                     Spacer()
                 }
                 .padding(.top, 40)
+                    
+                .navigationBarTitle(Text("Classify"))
             }
-                
-            .navigationBarTitle(Text("Classify"))
         }
+        
+        //        NavigationView {
+        //
+        //            VStack {
+        //
+        //                RectangleButton(buttonString: "Import from Photos", imageTitle: "ImportFromPhotosRect", action: "Photos")
+        //
+        //                RectangleButton(buttonString: "Take Photograph", imageTitle: "TakePhotoRect", action: "Camera")
+        //                Spacer()
+        //            }
+        //            //.padding(.top, 40)
+        //
+        //            .navigationBarTitle(Text("Classify"))
+        //        }
+        //        .accentColor(Color.clear)
     }
 }
 
