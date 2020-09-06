@@ -14,6 +14,8 @@ struct RectangleButton: View {
     var imageTitle: String
     var action: String
     
+    @State var sheetIsOpen: Bool = false
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -28,7 +30,7 @@ struct RectangleButton: View {
 //                .padding(.leading, 30)
                 
                 HStack {
-                    Button(action: { self.openSheetWithPhoto() } ) {
+                    Button(action: { self.sheetIsOpen.toggle() } ) {
                         Text(self.buttonString)
                             .padding([.top, .bottom], 12)
                             .padding([.leading, .trailing], 20)
@@ -36,6 +38,15 @@ struct RectangleButton: View {
                             .foregroundColor(.white)
                             .background(RoundedRectangle(cornerRadius: 60, style: .continuous))
                     }
+                    .sheet(isPresented: self.$sheetIsOpen, content: {
+                        
+                        if self.action == "Photos" {
+                            ClassifyImageSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: true)
+                        }
+                        else {
+                            ClassifyImageSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: false)
+                        }
+                    })
                     Spacer()
                 }
                 .padding(.bottom, 20)

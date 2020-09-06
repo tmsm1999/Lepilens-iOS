@@ -31,15 +31,15 @@ struct DetailsSheet: View {
                     .scaledToFit()
                     .cornerRadius(10)
                     .padding(.top, 20)
-
+                
                 
                 Spacer()
             }
-                .padding(20)
-                .padding(.top, 30)
-            
-                .navigationBarTitle(Text("Observation Details"))
-                .navigationBarItems(trailing:
+            .padding(20)
+            .padding(.top, 30)
+                
+            .navigationBarTitle(Text("Observation Details"))
+            .navigationBarItems(trailing:
                 
                 Button(action: { self.isPresented.toggle() }) {
                     Text("Done")
