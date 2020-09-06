@@ -16,19 +16,13 @@ struct RectangleButton: View {
     
     @State var sheetIsOpen: Bool = false
     
+    @EnvironmentObject var records: ObservationRecords
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 Spacer()
-//                HStack {
-//                    Text(self.buttonString)
-//                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
-//                        .font(.system(size: 22, weight: .semibold, design: .rounded))
-//                    Spacer()
-//                }
-//                .padding(.bottom, 30)
-//                .padding(.leading, 30)
-                
+
                 HStack {
                     Button(action: { self.sheetIsOpen.toggle() } ) {
                         Text(self.buttonString)
@@ -42,6 +36,7 @@ struct RectangleButton: View {
                         
                         if self.action == "Photos" {
                             ClassifyImageSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: true)
+                                .environmentObject(self.records)
                         }
                         else {
                             ClassifyImageSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: false)
@@ -57,7 +52,7 @@ struct RectangleButton: View {
                     .resizable()
                     .renderingMode(.original)
                     .scaledToFill()
-                    .opacity(0.7))
+                    .opacity(0.85))
                 .border(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)), width: 2)
                 .cornerRadius(10)
         }

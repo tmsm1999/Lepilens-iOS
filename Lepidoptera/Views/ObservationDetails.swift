@@ -22,7 +22,7 @@ struct ObservationDetails: View {
                 .frame(height: 280)
                 .edgesIgnoringSafeArea(.top)
                 
-                ObservationImage(imageName: observation.imageName)
+                ObservationImage(image: observation.image)
                 .offset(x: 0, y: 50)
             }
             
@@ -68,6 +68,9 @@ struct ObservationDetails: View {
 
 struct ClassificationDetails_Previews: PreviewProvider {
     static var previews: some View {
+        
+        let observationRecords = ObservationRecords()
+        
         ObservationDetails(observation: mockRecord[0]).environmentObject(ObservationRecords())
             .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
     }

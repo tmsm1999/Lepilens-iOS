@@ -33,6 +33,8 @@
 		7EACEF7024E9A4DE00D9715A /* DetailField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6F24E9A4DE00D9715A /* DetailField.swift */; };
 		7EC9DD9C24FD7B14005F110A /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */; };
 		7EDC07F22504FDE000058033 /* ClassifyImageSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F12504FDE000058033 /* ClassifyImageSheet.swift */; };
+		7EDC07F42505076F00058033 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F32505076F00058033 /* ImagePickerView.swift */; };
+		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		7EACEF6F24E9A4DE00D9715A /* DetailField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailField.swift; sourceTree = "<group>"; };
 		7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleButton.swift; sourceTree = "<group>"; };
 		7EDC07F12504FDE000058033 /* ClassifyImageSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassifyImageSheet.swift; sourceTree = "<group>"; };
+		7EDC07F32505076F00058033 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToClassifyPlaceholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,8 @@
 				7EACEF6F24E9A4DE00D9715A /* DetailField.swift */,
 				7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */,
 				7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */,
+				7EDC07F32505076F00058033 /* ImagePickerView.swift */,
+				7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */,
 			);
 			path = "Auxiliary Views";
 			sourceTree = "<group>";
@@ -246,6 +252,8 @@
 				7EACEF6A24E94F4500D9715A /* MapView.swift in Sources */,
 				7EACEF6824E94CD500D9715A /* ObservationActionButtons.swift in Sources */,
 				7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */,
+				7EDC07F42505076F00058033 /* ImagePickerView.swift in Sources */,
+				7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */,
 				7EACEF5424E6E61B00D9715A /* ObservationDetails.swift in Sources */,
 				7EACEF6624E94C4F00D9715A /* ObservationImage.swift in Sources */,
 				7EACEF6E24E99D2C00D9715A /* ObservationNoteSheet.swift in Sources */,

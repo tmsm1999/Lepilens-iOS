@@ -9,10 +9,8 @@
 import SwiftUI
 
 struct ClassificationView: View {
-    
-    //@ObservedObject var records = ObservationRecords()
-    //@EnvironmentObject var records: ObservationRecords
-    //@State var id: Int = 0
+
+    @EnvironmentObject var records: ObservationRecords
     
     var body: some View {
         
@@ -21,6 +19,7 @@ struct ClassificationView: View {
                 VStack(spacing: 50) {
                     RectangleButton(buttonString: "Import from Photos", imageTitle: "ImportFromPhotosRect", action: "Photos")
                         .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
+                        .environmentObject(self.records)
                     
                     
                     RectangleButton(buttonString: "Take a photo", imageTitle: "TakePhotoRect", action: "Camera")
@@ -33,21 +32,6 @@ struct ClassificationView: View {
                 .navigationBarTitle(Text("Classify"))
             }
         }
-        
-        //        NavigationView {
-        //
-        //            VStack {
-        //
-        //                RectangleButton(buttonString: "Import from Photos", imageTitle: "ImportFromPhotosRect", action: "Photos")
-        //
-        //                RectangleButton(buttonString: "Take Photograph", imageTitle: "TakePhotoRect", action: "Camera")
-        //                Spacer()
-        //            }
-        //            //.padding(.top, 40)
-        //
-        //            .navigationBarTitle(Text("Classify"))
-        //        }
-        //        .accentColor(Color.clear)
     }
 }
 

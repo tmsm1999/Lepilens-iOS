@@ -8,7 +8,7 @@
 
 import UIKit
 
-let mockRecord: [Observation] = loadData("mockData")
+//let mockRecord: [Observation] = loadData("mockData")
 
 func loadData(_ filename: String) -> [Observation] {
     

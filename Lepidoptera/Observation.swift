@@ -19,6 +19,7 @@ struct Observation: Identifiable, Hashable, Codable {
     var date: String
     var isFavorite: Bool
     var userNote: String = ""
-    var imageName: String
+    //var imageName: String?
+    var image: UIImage
     var time: String
 }

@@ -12,7 +12,7 @@ import CoreLocation
 
 class ObservationRecords: ObservableObject, Identifiable {
     
-    @Published var record = mockRecord
+    @Published var record = [Observation]()
     
     init() {
         print(record)

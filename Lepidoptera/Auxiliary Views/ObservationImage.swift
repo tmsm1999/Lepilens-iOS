@@ -10,11 +10,11 @@ import SwiftUI
 
 struct ObservationImage: View {
     
-    var imageName: String
+    var image: UIImage
     
     var body: some View {
         
-        Image(imageName)
+        Image(uiImage: image)
             .resizable()
             .frame(width: 180, height: 180, alignment: .center)
             .aspectRatio(contentMode: .fill)
@@ -25,6 +25,6 @@ struct ObservationImage: View {
 
 struct ObservationImage_Previews: PreviewProvider {
     static var previews: some View {
-        ObservationImage(imageName: "aglais_io")
+        ObservationImage(image: UIImage(named: "aglais_io")!)
     }
 }
