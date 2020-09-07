@@ -22,7 +22,7 @@ struct RectangleButton: View {
         GeometryReader { geometry in
             VStack {
                 Spacer()
-
+                
                 HStack {
                     Button(action: { self.sheetIsOpen.toggle() } ) {
                         Text(self.buttonString)
@@ -39,7 +39,7 @@ struct RectangleButton: View {
                                 .environmentObject(self.records)
                         }
                         else {
-                            ClassifyImageSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: false)
+                            ClassifyImageSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: false).environmentObject(self.records)
                         }
                     })
                     Spacer()

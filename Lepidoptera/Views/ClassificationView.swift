@@ -20,10 +20,12 @@ struct ClassificationView: View {
                     RectangleButton(buttonString: "Import from Photos", imageTitle: "ImportFromPhotosRect", action: "Photos")
                         .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
                         .environmentObject(self.records)
+                        .shadow(color: Color.gray, radius: 20)
                     
                     
                     RectangleButton(buttonString: "Take a photo", imageTitle: "taking_photo_camera", action: "Camera")
                         .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center).environmentObject(self.records)
+                    .shadow(color: Color.gray, radius: 20)
                     
                     Spacer()
                 }
