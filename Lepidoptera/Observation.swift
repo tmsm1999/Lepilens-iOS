@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreLocation
 
-struct Observation: Identifiable {
+struct Observation: Identifiable, Equatable {
 
     let speciesName: String
     let classificationConfidence: Double

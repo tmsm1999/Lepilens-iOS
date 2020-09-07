@@ -14,8 +14,11 @@ struct ObservationActionButtons: View {
     @State private var presentAddNoteSheet: Bool = false
 
     var observation: Observation
+    
     @EnvironmentObject var records: ObservationRecords
     @Environment(\.presentationMode) var presentationMode
+    
+    @Binding var dismissModalView: Bool //Mal acabo de classificar alguma view.
     
     var observationIndex: Int {
         records.record.firstIndex(where: { $0.id == observation.id}) ?? -1
@@ -85,7 +88,11 @@ struct ObservationActionButtons: View {
                     if self.observationIndex != -1 {
                         self.presentationMode.wrappedValue.dismiss()
                         self.records.record.remove(at: self.observationIndex)
-                    }
+                        
+                        if self.dismissModalView == true {
+                            self.dismissModalView = false
+                        }
+                     }
                 }) {
                     HStack {
                         Image(systemName: "trash.circle.fill")
@@ -109,6 +116,6 @@ struct ObservationActionButtons_Previews: PreviewProvider {
         
         observationRecords.addObservation(observation)
         
-        return ObservationActionButtons(observation: observationRecords.record[0]).environmentObject(ObservationRecords())
+        return ObservationActionButtons(observation: observationRecords.record[0], dismissModalView: .constant(true)).environmentObject(ObservationRecords())
     }
 }

@@ -30,7 +30,7 @@ struct RecordsListView: View {
                     ForEach(self.records.record) { record in
                         
                         if !self.showFavoritesOnly || record.isFavorite {
-                            NavigationLink(destination: ObservationDetails(observation: record)) {
+                            NavigationLink(destination: ObservationDetails(dismissModalView: .constant(false), observation: record)) {
                                 
                                 HStack {
                                 

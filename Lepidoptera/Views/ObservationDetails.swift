@@ -12,6 +12,10 @@ import MapKit
 struct ObservationDetails: View {
     
     @EnvironmentObject var records: ObservationRecords
+    //@Environment(\.presentationMode) var presentationMode
+    
+    @Binding var dismissModalView: Bool //Mal acabo de classificar alguma view.
+    
     var observation: Observation
     
     var body: some View {
@@ -49,7 +53,7 @@ struct ObservationDetails: View {
                         }
                             .frame(width: geometry.size.width)
                         
-                        ObservationActionButtons(observation: self.observation)
+                        ObservationActionButtons(observation: self.observation, dismissModalView: self.$dismissModalView)
                             .offset(x: 0, y: 30)
                             .environmentObject(self.records)
                         
@@ -74,7 +78,7 @@ struct ClassificationDetails_Previews: PreviewProvider {
         
         observationRecords.addObservation(observation)
         
-        return ObservationDetails(observation: observationRecords.record[0]).environmentObject(observationRecords)
+        return ObservationDetails(dismissModalView: .constant(true), observation: observationRecords.record[0]).environmentObject(observationRecords)
     }
 }
 

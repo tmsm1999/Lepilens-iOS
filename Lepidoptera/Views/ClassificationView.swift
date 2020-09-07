@@ -23,7 +23,7 @@ struct ClassificationView: View {
                     
                     
                     RectangleButton(buttonString: "Take a photo", imageTitle: "taking_photo_camera", action: "Camera")
-                        .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
+                        .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center).environmentObject(self.records)
                     
                     Spacer()
                 }
