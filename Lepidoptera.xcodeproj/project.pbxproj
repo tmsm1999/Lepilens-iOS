@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7E3405FE24F5690A00BE3AA3 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */; };
 		7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */; };
+		7E69B0052508001100D2033B /* UserLoation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E69B0042508001100D2033B /* UserLoation.swift */; };
 		7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3624E6C41E00D9715A /* AppDelegate.swift */; };
 		7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */; };
 		7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3A24E6C41E00D9715A /* AppView.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListView.swift; sourceTree = "<group>"; };
+		7E69B0042508001100D2033B /* UserLoation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoation.swift; sourceTree = "<group>"; };
 		7EACEF3324E6C41E00D9715A /* Lepidoptera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepidoptera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EACEF3624E6C41E00D9715A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				7EACEF5724E6F70F00D9715A /* mockData.json */,
 				7EACEF6124E707DC00D9715A /* Data.swift */,
+				7E69B0042508001100D2033B /* UserLoation.swift */,
 			);
 			path = "Other Files";
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				7EDC07F22504FDE000058033 /* ClassifyImageSheet.swift in Sources */,
 				7EACEF6C24E956FA00D9715A /* DetailsSheet.swift in Sources */,
 				7E3405FE24F5690A00BE3AA3 /* MultilineTextField.swift in Sources */,
+				7E69B0052508001100D2033B /* UserLoation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

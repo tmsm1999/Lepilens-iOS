@@ -12,6 +12,8 @@ struct AppView: View {
     
     @EnvironmentObject var records: ObservationRecords
     
+    private let location = UserLocation()
+    
 //    init() {
 //        UITabBar.appearance().backgroundColor = UIColor(red: 153 / 255, green: 255 / 255, blue: 153 / 255, alpha: 1)
 //    }
@@ -19,6 +21,7 @@ struct AppView: View {
     var body: some View {
         
         TabView {
+            
             //Aqui coloco a minha view em vez de Text
             ClassificationView().environmentObject(self.records)
                 .tabItem {

@@ -17,7 +17,7 @@ struct ObservationImage: View {
         Image(uiImage: image)
             .resizable()
             .frame(width: 180, height: 180, alignment: .center)
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .clipShape(Circle())
             .overlay(Circle().stroke(Color.black, lineWidth: 2))
     }

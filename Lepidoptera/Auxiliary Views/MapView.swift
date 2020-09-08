@@ -13,33 +13,36 @@ struct MapView: UIViewRepresentable {
     
     private let CLLOcationDegrees = 0.10
     
-    var observationCoordinates: CLLocationCoordinate2D
+    var observationCoordinates: CLLocation?
     
     func makeUIView(context: Context) -> MKMapView {
         MKMapView.init(frame: .zero)
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        let span = MKCoordinateSpan(latitudeDelta: CLLOcationDegrees, longitudeDelta: CLLOcationDegrees)
-        let region = MKCoordinateRegion(center: observationCoordinates, span: span)
+        if let location = observationCoordinates {
+            let span = MKCoordinateSpan(latitudeDelta: CLLOcationDegrees, longitudeDelta: CLLOcationDegrees)
+            let region = MKCoordinateRegion(center: location.coordinate, span: span)
+            
+            let annotation =  MKPointAnnotation()
+            annotation.coordinate = location.coordinate
+            
+            uiView.setRegion(region, animated: true)
+            uiView.addAnnotation(annotation)
+        }
         
-        let annotation =  MKPointAnnotation()
-        annotation.coordinate = observationCoordinates
-        
-        uiView.setRegion(region, animated: true)
-        uiView.addAnnotation(annotation)
     }
 }
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        
+//struct MapView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
 //        let observationRecords = ObservationRecords()
 //        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
 //
 //        observationRecords.addObservation(observation)
-        
-        MapView(observationCoordinates: CLLocationCoordinate2D(latitude: -116.16686800, longitude: +34.01128600)
-        )
-    }
-}
+//
+//        MapView(observationCoordinates: CLLocationCoordinate2D(latitude: -116.16686800, longitude: +34.01128600)
+//        )
+//    }
+//}

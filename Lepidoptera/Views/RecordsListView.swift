@@ -45,7 +45,7 @@ struct RecordsListView: View {
                                         Text(record.speciesName)
                                             .font(.system(size: 20))
                                             .bold()
-                                        Text(record.date)
+                                        Text(record.date.description)
                                             .font(.system(size: 15))
                                             .foregroundColor(.secondary)
                                     }

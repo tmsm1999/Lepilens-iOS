@@ -13,10 +13,9 @@ struct Observation: Identifiable, Equatable {
 
     let speciesName: String
     let classificationConfidence: Double
-    let latitude: Double
-    let longitude: Double
+    let location: CLLocation?
     let id = UUID()
-    let date: String
+    let date: Date
     var isFavorite: Bool
     var userNote: String = ""
     //var imageName: String?

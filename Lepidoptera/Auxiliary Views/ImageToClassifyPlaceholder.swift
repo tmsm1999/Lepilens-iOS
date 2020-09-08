@@ -16,7 +16,7 @@ struct ImageToClassifyPlaceholder: View {
         GeometryReader { geometry in
             Image(uiImage: self.image)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .scaledToFill()
                 .frame(width: geometry.size.width * 0.80, height: geometry.size.height * 0.4, alignment: .center)
         }
     }

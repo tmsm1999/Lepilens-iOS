@@ -63,14 +63,14 @@ struct MultilineTextField: UIViewRepresentable {
     }
  }
 
-struct MultilineTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let observationRecords = ObservationRecords()
-        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
-        
-        observationRecords.addObservation(observation)
-        
-        return MultilineTextField(userNote: .constant(""), observation: observationRecords.record[0])
-    }
-}
+//struct MultilineTextField_Previews: PreviewProvider {
+//    static var previews: some View {
+//        
+//        let observationRecords = ObservationRecords()
+//        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
+//        
+//        observationRecords.addObservation(observation)
+//        
+//        return MultilineTextField(userNote: .constant(""), observation: observationRecords.record[0])
+//    }
+//}

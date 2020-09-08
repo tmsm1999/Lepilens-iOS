@@ -22,12 +22,12 @@ struct ObservationDetails: View {
         VStack(alignment: .center) {
             
             ZStack {
-                MapView(observationCoordinates: CLLocationCoordinate2D(latitude: observation.latitude, longitude: observation.longitude))
-                .frame(height: 280)
-                .edgesIgnoringSafeArea(.top)
+                MapView(observationCoordinates: observation.location)
+                    .frame(height: 280)
+                    .edgesIgnoringSafeArea(.top)
                 
                 ObservationImage(image: observation.image)
-                .offset(x: 0, y: 50)
+                    .offset(x: 0, y: 50)
             }
             
             GeometryReader { geometry in
@@ -41,17 +41,17 @@ struct ObservationDetails: View {
                             VStack(alignment: .leading) {
                                 Text(self.observation.speciesName)
                                     .font(.system(size: 40, weight: .semibold))
-                                    
-                                Text(self.observation.date)
+                                
+                                Text(self.observation.date.description)
                             }
                             
                             Spacer()
-
+                            
                             ConfidenceCircleResults(confidence: self.observation.classificationConfidence)
                                 .padding(.trailing, 10)
                             
                         }
-                            .frame(width: geometry.size.width)
+                        .frame(width: geometry.size.width)
                         
                         ObservationActionButtons(observation: self.observation, dismissModalView: self.$dismissModalView)
                             .offset(x: 0, y: 30)
@@ -70,15 +70,15 @@ struct ObservationDetails: View {
     }
 }
 
-struct ClassificationDetails_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let observationRecords = ObservationRecords()
-        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
-        
-        observationRecords.addObservation(observation)
-        
-        return ObservationDetails(dismissModalView: .constant(true), observation: observationRecords.record[0]).environmentObject(observationRecords)
-    }
-}
+//struct ClassificationDetails_Previews: PreviewProvider {
+//    static var previews: some View {
+//        
+//        let observationRecords = ObservationRecords()
+//        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
+//        
+//        observationRecords.addObservation(observation)
+//        
+//        return ObservationDetails(dismissModalView: .constant(true), observation: observationRecords.record[0]).environmentObject(observationRecords)
+//    }
+//}
 

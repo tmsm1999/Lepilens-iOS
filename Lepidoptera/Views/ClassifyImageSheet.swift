@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Photos
 
 struct ClassifyImageSheet: View {
     
@@ -28,7 +29,7 @@ struct ClassifyImageSheet: View {
             VStack {
                 
                 if self.observation == nil {
-                    SheetImagePicker(observation: self.$observation, importImageFromPhotos: self.importImageFromPhotos).environmentObject(self.records)
+                    SheetImagePicker(observation: self.$observation, sheetIsPresented: self.$isPresented, importImageFromPhotos: self.importImageFromPhotos)
                 }
                 else {
                     //ObservationDetails(records: observation!).environmentObject(self.records)
@@ -55,8 +56,13 @@ struct SheetImagePicker: View {
     @State var imagePickerIsPresented = false
     @State var isVibible = false
     @State var imageWasImported = false
+    @State var showAlert = false
+    
+    @State var imageDate: Date?
+    @State var imageLocation: CLLocation?
     
     @Binding var observation: Observation?
+    @Binding var sheetIsPresented: Bool
     
     var importImageFromPhotos: Bool
     
@@ -75,10 +81,7 @@ struct SheetImagePicker: View {
                         }
                         .padding(.top, geometry.size.height / 2.5)
                         .sheet(isPresented: self.$imagePickerIsPresented, content: {
-                            ImagePickerView(
-                                isPresented: self.$imagePickerIsPresented,
-                                selectedImage: self.$imageToClassify,
-                                imageWasImported: self.$imageWasImported, sourceType: "Photos")
+                            ImagePickerView(isPresented: self.$isVibible, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Photos")
                         })
                     }
                     else {
@@ -89,10 +92,7 @@ struct SheetImagePicker: View {
                         }
                         .padding(.top, geometry.size.height / 2.5)
                         .sheet(isPresented: self.$imagePickerIsPresented, content: {
-                            ImagePickerView(
-                                isPresented: self.$imagePickerIsPresented,
-                                selectedImage: self.$imageToClassify,
-                                imageWasImported: self.$imageWasImported, sourceType: "Camera")
+                            ImagePickerView(isPresented: self.$isVibible, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Camera")
                         })
                     }
                 }
@@ -105,16 +105,25 @@ struct SheetImagePicker: View {
                                 self.isVibible.toggle()
                             }
                     }
-                    //                            .transition(AnyTransition.slide)
-                    //                            .animation(.default)
                 }
                 
                 Spacer()
                 
                 VStack {
                     Button(action: {
-                        self.observation = self.createObservation()
-                        self.records.addObservation(self.observation!)
+                        
+                        self.createObservation()
+                        
+                        if let newObservation = self.observation {
+                            self.records.addObservation(newObservation)
+                        }
+                        else {
+                            self.showAlert.toggle()
+                        }
+                        
+                        //self.observation = self.createObservation()
+                        //self.records.addObservation(self.observation!)
+                        //self.sheetIsPresented.toggle()
                     }) {
                         Text("Classify")
                             .padding([.top, .bottom], 12)
@@ -137,12 +146,25 @@ struct SheetImagePicker: View {
             }
             .navigationBarTitle(Text("New Observation"))
         }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Location Error"), message: Text("To create a new observation Imago needs to use your location"), primaryButton: .destructive(Text("Close")) { self.sheetIsPresented.toggle() }, secondaryButton: .cancel(Text("Continue")))
+            }
     }
     
-    func createObservation() -> Observation {
-        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: 34.011286, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: imageToClassify, time: "17:00")
+    func createObservation() {
         
-        return observation
+        if let locationUnwrapped = self.$imageLocation.wrappedValue {
+            print("Unwrapped location!")
+            if let date = self.$imageDate.wrappedValue {
+                print("Unwrapped date")
+                self.observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, location: locationUnwrapped, date: date, isFavorite: false, image: imageToClassify, time: "17:00")
+            }
+        }
+        else if let date = self.$imageDate.wrappedValue {
+            self.observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, location: nil, date: date, isFavorite: false, image: imageToClassify, time: "17:00")
+        }
+        
+        //return self.observation!
     }
 }
 

@@ -18,13 +18,14 @@ struct DetailsSheet: View {
         NavigationView {
             
             VStack {
+                
                 DetailField(field: "Species Name: ", value: observation.speciesName)
                 DetailField(field: "Confidence: ", value: String(observation.classificationConfidence * 100) + "%")
-                DetailField(field: "Date: ", value: observation.date)
+                DetailField(field: "Date: ", value: observation.date.description)
                 DetailField(field: "Time: ", value: observation.time)
-                DetailField(field: "Latitude: ", value: String(observation.latitude))
-                DetailField(field: "Longitude: ", value: String(observation.longitude))
-                DetailField(field: "Place: ", value: "Porto")
+                DetailField(field: "Latitude: ", value: String(observation.location?.coordinate.latitude.description ?? "Location is unavailable"))
+                DetailField(field: "Longitude: ", value: String(observation.location?.coordinate.longitude.description ?? "Location is unavailable"))
+                //DetailField(field: "Place: ", value: "Porto")
                 
                 Image(uiImage: observation.image)
                     .resizable()
@@ -49,15 +50,15 @@ struct DetailsSheet: View {
     }
 }
 
-struct DetailsSheet_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        let observationRecords = ObservationRecords()
-        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
-        
-        observationRecords.addObservation(observation)
-        
-        return DetailsSheet(isPresented: .constant(true), observation: observationRecords.record[0])
-    }
-}
+//struct DetailsSheet_Previews: PreviewProvider {
+//    
+//    static var previews: some View {
+//        
+//        let observationRecords = ObservationRecords()
+//        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
+//        
+//        observationRecords.addObservation(observation)
+//        
+//        return DetailsSheet(isPresented: .constant(true), observation: observationRecords.record[0])
+//    }
+//}
