@@ -33,6 +33,8 @@ struct ClassifyImageSheet: View {
                 else {
                     //ObservationDetails(records: observation!).environmentObject(self.records)
                     ObservationDetails(dismissModalView: self.$isPresented, observation: observation!).environmentObject(self.records)
+                        .transition(.slide)
+                        .animation(.linear(duration: 1))
                 }
             }
                 
@@ -76,16 +78,22 @@ struct SheetImagePicker: View {
                             ImagePickerView(
                                 isPresented: self.$imagePickerIsPresented,
                                 selectedImage: self.$imageToClassify,
-                                imageWasImported: self.$imageWasImported)
+                                imageWasImported: self.$imageWasImported, sourceType: "Photos")
                         })
                     }
                     else {
                         Button(action: {
-                            self.imageWasImported.toggle()
+                            self.imagePickerIsPresented.toggle()
                         }) {
                             Text("Open the Camera app")
                         }
                         .padding(.top, geometry.size.height / 2.5)
+                        .sheet(isPresented: self.$imagePickerIsPresented, content: {
+                            ImagePickerView(
+                                isPresented: self.$imagePickerIsPresented,
+                                selectedImage: self.$imageToClassify,
+                                imageWasImported: self.$imageWasImported, sourceType: "Camera")
+                        })
                     }
                 }
                 else {
