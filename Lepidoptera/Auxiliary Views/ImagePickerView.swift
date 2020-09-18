@@ -94,10 +94,6 @@ struct ImagePickerView: UIViewControllerRepresentable {
                 }
              }
             
-            //print(self.parent.date)
-            //print(self.parent.location)
-            
-            
             self.parent.isPresented = false
          }
     }

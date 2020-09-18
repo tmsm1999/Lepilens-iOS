@@ -35,11 +35,10 @@ struct RectangleButton: View {
                     .sheet(isPresented: self.$sheetIsOpen, content: {
                         
                         if self.action == "Photos" {
-                            ClassifyImageSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: true)
-                                .environmentObject(self.records)
+                            NewClassificationSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: true).environmentObject(self.records)
                         }
                         else {
-                            ClassifyImageSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: false).environmentObject(self.records)
+                            NewClassificationSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: false).environmentObject(self.records)
                         }
                     })
                     Spacer()

@@ -15,6 +15,8 @@ struct ConfidenceCircleResults: View {
     
     var body: some View {
         
+        //Escolher as cores conforme a confiança da observação.
+        
         ZStack {
             Circle()
                 .trim(from: show ? (1 - CGFloat(confidence)) : 0.99, to: 1)

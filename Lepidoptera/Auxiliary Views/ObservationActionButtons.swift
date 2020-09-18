@@ -55,7 +55,6 @@ struct ObservationActionButtons: View {
                 
                 Divider()
             }
-                //.offset(x: 0, y: -110)
                 .padding(.bottom, 30)
             
             VStack(alignment: .leading) {

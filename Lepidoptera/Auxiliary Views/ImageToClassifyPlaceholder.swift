@@ -15,9 +15,9 @@ struct ImageToClassifyPlaceholder: View {
     var body: some View {
         GeometryReader { geometry in
             Image(uiImage: self.image)
-                .resizable()
-                .scaledToFill()
-                .frame(width: geometry.size.width * 0.80, height: geometry.size.height * 0.4, alignment: .center)
+               .resizable()
+               .scaledToFit()
+               .frame(width: geometry.size.width * 0.80, height: geometry.size.height * 0.4, alignment: .center)
         }
     }
 }
