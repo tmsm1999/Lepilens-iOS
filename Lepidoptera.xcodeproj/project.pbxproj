@@ -14,6 +14,8 @@
 		7E2F0E222513A93D009C328D /* AutoML-dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E2F0E212513A93D009C328D /* AutoML-dict.txt */; };
 		7E3405FE24F5690A00BE3AA3 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */; };
 		7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */; };
+		7E483EC22515692800FF8B6F /* dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E483EC02515692800FF8B6F /* dict.txt */; };
+		7E483EC32515692800FF8B6F /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 7E483EC12515692800FF8B6F /* model.tflite */; };
 		7E69B0052508001100D2033B /* UserLoation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E69B0042508001100D2033B /* UserLoation.swift */; };
 		7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3624E6C41E00D9715A /* AppDelegate.swift */; };
 		7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */; };
@@ -45,9 +47,12 @@
 		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
 		7EF008292514ED2700D42CA6 /* iOSModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7EF008282514ED2700D42CA6 /* iOSModel.mlmodel */; };
 		7EF0082B2514EF2300D42CA6 /* NewGenusModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7EF0082A2514EF2200D42CA6 /* NewGenusModel.mlmodel */; };
+		D842820BDAF07B742513D5DF /* Pods_Lepidoptera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4153244D043E2EB76FBF4703 /* Pods-Lepidoptera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepidoptera.release.xcconfig"; path = "Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera.release.xcconfig"; sourceTree = "<group>"; };
+		52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepidoptera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E071BAB2513D26E00E2A107 /* AutoML.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AutoML.mlmodel; sourceTree = "<group>"; };
 		7E071BAF251400BF00E2A107 /* Genus.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Genus.mlmodel; sourceTree = "<group>"; };
 		7E071BB12514037500E2A107 /* ArgynnisModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ArgynnisModel.mlmodel; sourceTree = "<group>"; };
@@ -55,6 +60,8 @@
 		7E2F0E212513A93D009C328D /* AutoML-dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "AutoML-dict.txt"; sourceTree = "<group>"; };
 		7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListView.swift; sourceTree = "<group>"; };
+		7E483EC02515692800FF8B6F /* dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dict.txt; sourceTree = "<group>"; };
+		7E483EC12515692800FF8B6F /* model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
 		7E69B0042508001100D2033B /* UserLoation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoation.swift; sourceTree = "<group>"; };
 		7EACEF3324E6C41E00D9715A /* Lepidoptera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepidoptera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EACEF3624E6C41E00D9715A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +95,7 @@
 		7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToClassifyPlaceholder.swift; sourceTree = "<group>"; };
 		7EF008282514ED2700D42CA6 /* iOSModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = iOSModel.mlmodel; sourceTree = "<group>"; };
 		7EF0082A2514EF2200D42CA6 /* NewGenusModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = NewGenusModel.mlmodel; sourceTree = "<group>"; };
+		A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepidoptera.debug.xcconfig"; path = "Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,17 +103,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D842820BDAF07B742513D5DF /* Pods_Lepidoptera.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14B3E7F36D77E21B02B1AE42 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */,
+				4153244D043E2EB76FBF4703 /* Pods-Lepidoptera.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		1FE312F87079FAD09C6CB2D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7EACEF2A24E6C41E00D9715A = {
 			isa = PBXGroup;
 			children = (
 				7EACEF3524E6C41E00D9715A /* Lepidoptera */,
 				7EACEF3424E6C41E00D9715A /* Products */,
+				14B3E7F36D77E21B02B1AE42 /* Pods */,
+				1FE312F87079FAD09C6CB2D3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +230,8 @@
 				7EDB974B25114F2F00211118 /* Classification.swift */,
 				7E071BAB2513D26E00E2A107 /* AutoML.mlmodel */,
 				7E071BB12514037500E2A107 /* ArgynnisModel.mlmodel */,
+				7E483EC02515692800FF8B6F /* dict.txt */,
+				7E483EC12515692800FF8B6F /* model.tflite */,
 				7EF008282514ED2700D42CA6 /* iOSModel.mlmodel */,
 				7E071BAF251400BF00E2A107 /* Genus.mlmodel */,
 				7EF0082A2514EF2200D42CA6 /* NewGenusModel.mlmodel */,
@@ -218,6 +248,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7EACEF4724E6C42200D9715A /* Build configuration list for PBXNativeTarget "Lepidoptera" */;
 			buildPhases = (
+				30F4FAC624D47DF80312C122 /* [CP] Check Pods Manifest.lock */,
 				7EACEF2F24E6C41E00D9715A /* Sources */,
 				7EACEF3024E6C41E00D9715A /* Frameworks */,
 				7EACEF3124E6C41E00D9715A /* Resources */,
@@ -274,13 +305,40 @@
 				7EACEF5824E6F70F00D9715A /* mockData.json in Resources */,
 				7E2F0E222513A93D009C328D /* AutoML-dict.txt in Resources */,
 				7EACEF5D24E6F9DB00D9715A /* vanessa_atalanta.jpg in Resources */,
+				7E483EC32515692800FF8B6F /* model.tflite in Resources */,
 				7EACEF4024E6C42200D9715A /* Preview Assets.xcassets in Resources */,
 				7EACEF5F24E6FA1500D9715A /* pieris_napi.jpg in Resources */,
+				7E483EC22515692800FF8B6F /* dict.txt in Resources */,
 				7EACEF3D24E6C42200D9715A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30F4FAC624D47DF80312C122 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lepidoptera-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7EACEF2F24E6C41E00D9715A /* Sources */ = {
@@ -450,6 +508,7 @@
 		};
 		7EACEF4824E6C42200D9715A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +529,7 @@
 		};
 		7EACEF4924E6C42200D9715A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4153244D043E2EB76FBF4703 /* Pods-Lepidoptera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

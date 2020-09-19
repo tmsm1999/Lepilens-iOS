@@ -29,7 +29,7 @@ struct ConfidenceCircleResults: View {
                     self.show.toggle()
             }
             
-            Text(String(confidence * 100) + "%")
+            Text(String(format: "%.1f", confidence * 100) + "%")
                 .fontWeight(.semibold)
                 .font(.system(size: 15))
         }

@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Photos
+import CoreImage
 
 struct SheetImagePicker: View {
     
@@ -73,8 +74,29 @@ struct SheetImagePicker: View {
                 VStack {
                     Button(action: {
                         
-                        let classification = Classification()
-                        classification.classifyImage(receivedImage: self.imageToClassify)
+//                        let classification = Classification()
+//                        classification.classifyImage(receivedImage: self.imageToClassify)
+                        
+//                        let model = FileInfo(name: "model", extension: "tflite")
+//                        let labels = FileInfo(name: "dict", extension: "txt")
+//                        let modelHandler = ModelDataHandler(modelFileInfo: model, labelsFileInfo: labels)
+//
+////                        let image = CIImage(image: self.imageToClassify)
+////                        let pixelBuffer = CIContext.render(image!, to: CVPixelBuffer as! CVPixelBuffer)
+//                        let image = CVImageBuffer.buffer(from: self.imageToClassify)
+//                        let results = modelHandler?.runModel(onFrame: image!)
+//
+//                        if let results = results {
+//                            let res = results.inferences
+//                            for inference in res {
+//                                print("Label: \(inference.label) | Accuracy: \(inference.confidence)")
+//                            }
+//                        }
+//                        else {
+//                            print("error!")
+//                        }
+                        
+                        
                         
 //                        let image = Image(uiImage: self.imageToClassify)
 //                        
@@ -84,14 +106,14 @@ struct SheetImagePicker: View {
 //                               }
 //                        
 //                        print(output)
+                        let classification = Classification()
+                        let results = classification.classifyImage(receivedImage: self.imageToClassify)
+                        print(results ?? "No results available")
 
-                        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, location: self.imageLocation, date: Date(), isFavorite: false, image: self.imageToClassify, time: "17:00")
+                        //let observation = Observation(speciesName: (results.inferences[0].label)!, classificationConfidence: Double((results?.inferences[0].confidence)!), location: self.imageLocation, date: Date(), isFavorite: false, image: self.imageToClassify, time: "17:00")
                         
-                        self.observation = observation
-                        self.records.addObservation(self.observation!)
-                        //let classification = Classification()
-                        //let results = classification.classifyImage(receivedImage: self.imageToClassify)
-                        //print(results ?? "No results available")
+                        //self.observation = observation
+                        //self.records.addObservation(self.observation!)
                     }) {
                         Text("Classify")
                             .padding([.top, .bottom], 12)
