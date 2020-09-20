@@ -16,6 +16,9 @@
 		7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */; };
 		7E483EC22515692800FF8B6F /* dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E483EC02515692800FF8B6F /* dict.txt */; };
 		7E483EC32515692800FF8B6F /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 7E483EC12515692800FF8B6F /* model.tflite */; };
+		7E483EC72516730300FF8B6F /* especies_model.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7E483EC62516730300FF8B6F /* especies_model.mlmodel */; };
+		7E483EC92516741300FF8B6F /* new_especies_model.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7E483EC82516741300FF8B6F /* new_especies_model.mlmodel */; };
+		7E483ECB2516B0D400FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7E483ECA2516B0D300FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel */; };
 		7E69B0052508001100D2033B /* UserLoation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E69B0042508001100D2033B /* UserLoation.swift */; };
 		7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3624E6C41E00D9715A /* AppDelegate.swift */; };
 		7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */; };
@@ -62,6 +65,9 @@
 		7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListView.swift; sourceTree = "<group>"; };
 		7E483EC02515692800FF8B6F /* dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dict.txt; sourceTree = "<group>"; };
 		7E483EC12515692800FF8B6F /* model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
+		7E483EC62516730300FF8B6F /* especies_model.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = especies_model.mlmodel; sourceTree = "<group>"; };
+		7E483EC82516741300FF8B6F /* new_especies_model.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = new_especies_model.mlmodel; sourceTree = "<group>"; };
+		7E483ECA2516B0D300FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel"; sourceTree = "<group>"; };
 		7E69B0042508001100D2033B /* UserLoation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoation.swift; sourceTree = "<group>"; };
 		7EACEF3324E6C41E00D9715A /* Lepidoptera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepidoptera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EACEF3624E6C41E00D9715A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +239,9 @@
 				7E483EC02515692800FF8B6F /* dict.txt */,
 				7E483EC12515692800FF8B6F /* model.tflite */,
 				7EF008282514ED2700D42CA6 /* iOSModel.mlmodel */,
+				7E483EC62516730300FF8B6F /* especies_model.mlmodel */,
+				7E483ECA2516B0D300FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel */,
+				7E483EC82516741300FF8B6F /* new_especies_model.mlmodel */,
 				7E071BAF251400BF00E2A107 /* Genus.mlmodel */,
 				7EF0082A2514EF2200D42CA6 /* NewGenusModel.mlmodel */,
 				7E071BB3251410AF00E2A107 /* Euchloe.mlmodel */,
@@ -346,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E071BB4251410AF00E2A107 /* Euchloe.mlmodel in Sources */,
+				7E483ECB2516B0D400FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel in Sources */,
 				7EACEF4B24E6C46000D9715A /* Observation.swift in Sources */,
 				7EACEF6A24E94F4500D9715A /* MapView.swift in Sources */,
 				7EACEF6824E94CD500D9715A /* ObservationActionButtons.swift in Sources */,
@@ -360,6 +370,7 @@
 				7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */,
 				7E071BB0251400BF00E2A107 /* Genus.mlmodel in Sources */,
 				7EF0082B2514EF2300D42CA6 /* NewGenusModel.mlmodel in Sources */,
+				7E483EC72516730300FF8B6F /* especies_model.mlmodel in Sources */,
 				7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */,
 				7EACEF4D24E6C59500D9715A /* ObservationRecords.swift in Sources */,
 				7EACEF7024E9A4DE00D9715A /* DetailField.swift in Sources */,
@@ -367,6 +378,7 @@
 				7EACEF4F24E6D02800D9715A /* ClassificationView.swift in Sources */,
 				7EACEF6224E707DC00D9715A /* Data.swift in Sources */,
 				7EC9DD9C24FD7B14005F110A /* RectangleButton.swift in Sources */,
+				7E483EC92516741300FF8B6F /* new_especies_model.mlmodel in Sources */,
 				7EACEF6424E88EAF00D9715A /* ConfidenceCircleResults.swift in Sources */,
 				7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */,
 				7EDB974C25114F2F00211118 /* Classification.swift in Sources */,

@@ -73,47 +73,39 @@ struct SheetImagePicker: View {
                 
                 VStack {
                     Button(action: {
+                        let modelFile = FileInfo(name: "model", extension: "tflite")
+                        let dict = FileInfo(name: "dict", extension: "txt")
                         
-//                        let classification = Classification()
-//                        classification.classifyImage(receivedImage: self.imageToClassify)
+                        let model = ModelDataHandler(modelFileInfo: modelFile, labelsFileInfo: dict)
+                        let image = CVPixelBuffer.buffer(from: self.imageToClassify)
                         
-//                        let model = FileInfo(name: "model", extension: "tflite")
-//                        let labels = FileInfo(name: "dict", extension: "txt")
-//                        let modelHandler = ModelDataHandler(modelFileInfo: model, labelsFileInfo: labels)
-//
-////                        let image = CIImage(image: self.imageToClassify)
-////                        let pixelBuffer = CIContext.render(image!, to: CVPixelBuffer as! CVPixelBuffer)
-//                        let image = CVImageBuffer.buffer(from: self.imageToClassify)
-//                        let results = modelHandler?.runModel(onFrame: image!)
-//
-//                        if let results = results {
-//                            let res = results.inferences
-//                            for inference in res {
-//                                print("Label: \(inference.label) | Accuracy: \(inference.confidence)")
-//                            }
-//                        }
-//                        else {
-//                            print("error!")
-//                        }
+                        let results = model?.runModel(onFrame: image!)
+                        print(results)
                         
                         
-                        
-//                        let image = Image(uiImage: self.imageToClassify)
-//                        
-//                        let automl = AutoML()
-//                        guard let output = try? automl.prediction(image__0: image as! CVPixelBuffer) else {
-//                                   fatalError("Unexpected runtime error.")
-//                               }
-//                        
-//                        print(output)
-                        let classification = Classification()
-                        let results = classification.classifyImage(receivedImage: self.imageToClassify)
-                        print(results ?? "No results available")
-
-                        //let observation = Observation(speciesName: (results.inferences[0].label)!, classificationConfidence: Double((results?.inferences[0].confidence)!), location: self.imageLocation, date: Date(), isFavorite: false, image: self.imageToClassify, time: "17:00")
-                        
-                        //self.observation = observation
-                        //self.records.addObservation(self.observation!)
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            let classification = Classification()
+                            
+                            DispatchQueue.global().sync {
+                                if let classificationResults = classification.classifyImage(receivedImage: self.imageToClassify) {
+                                    
+                                    //print(classificationResults)
+                                
+                                    DispatchQueue.main.async {
+                                        
+                                        let labelComponents = classificationResults[0].label.components(separatedBy: "_")
+                                        let finalLabel = labelComponents[0] + " " + labelComponents[1]
+                                        
+                                        let confidence = classificationResults[0].confidence
+                                        
+                                        let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, location: self.imageLocation, date: Date(), isFavorite: false, image: self.imageToClassify, time: "17:00")
+                                        
+                                        self.observation = observation
+                                        self.records.addObservation(self.observation!)
+                                    }
+                                }
+                            }
+                        }
                     }) {
                         Text("Classify")
                             .padding([.top, .bottom], 12)
