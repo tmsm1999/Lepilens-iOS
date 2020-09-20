@@ -73,30 +73,22 @@ struct SheetImagePicker: View {
                 
                 VStack {
                     Button(action: {
-                        let modelFile = FileInfo(name: "model", extension: "tflite")
-                        let dict = FileInfo(name: "dict", extension: "txt")
-                        
-                        let model = ModelDataHandler(modelFileInfo: modelFile, labelsFileInfo: dict)
-                        let image = CVPixelBuffer.buffer(from: self.imageToClassify)
-                        
-                        let results = model?.runModel(onFrame: image!)
-                        print(results)
-                        
                         
                         DispatchQueue.global(qos: .userInitiated).async {
-                            let classification = Classification()
                             
-                            DispatchQueue.global().sync {
-                                if let classificationResults = classification.classifyImage(receivedImage: self.imageToClassify) {
-                                    
-                                    //print(classificationResults)
-                                
-                                    DispatchQueue.main.async {
+                            let newInference = ModelInference()
+        
+                            newInference.runInference(image: self.imageToClassify)
+                            print("Aqui 1")
+                                DispatchQueue.main.async {
+                                    print("Aqui 2")
+                                    if let topFiveResults = newInference.getResults() {
+                                    print("Aqui!")
                                         
-                                        let labelComponents = classificationResults[0].label.components(separatedBy: "_")
+                                        let labelComponents = topFiveResults[0].label.components(separatedBy: "_")
+                                        
                                         let finalLabel = labelComponents[0] + " " + labelComponents[1]
-                                        
-                                        let confidence = classificationResults[0].confidence
+                                        let confidence = topFiveResults[0].confidence
                                         
                                         let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, location: self.imageLocation, date: Date(), isFavorite: false, image: self.imageToClassify, time: "17:00")
                                         
@@ -105,7 +97,7 @@ struct SheetImagePicker: View {
                                     }
                                 }
                             }
-                        }
+                        //}
                     }) {
                         Text("Classify")
                             .padding([.top, .bottom], 12)

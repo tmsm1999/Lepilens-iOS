@@ -20,6 +20,7 @@
 		7E483EC92516741300FF8B6F /* new_especies_model.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7E483EC82516741300FF8B6F /* new_especies_model.mlmodel */; };
 		7E483ECB2516B0D400FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7E483ECA2516B0D300FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel */; };
 		7E69B0052508001100D2033B /* UserLoation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E69B0042508001100D2033B /* UserLoation.swift */; };
+		7E8B589425178D2E00D158F7 /* ModelInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B589325178D2E00D158F7 /* ModelInference.swift */; };
 		7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3624E6C41E00D9715A /* AppDelegate.swift */; };
 		7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */; };
 		7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3A24E6C41E00D9715A /* AppView.swift */; };
@@ -69,6 +70,7 @@
 		7E483EC82516741300FF8B6F /* new_especies_model.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = new_especies_model.mlmodel; sourceTree = "<group>"; };
 		7E483ECA2516B0D300FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel"; sourceTree = "<group>"; };
 		7E69B0042508001100D2033B /* UserLoation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoation.swift; sourceTree = "<group>"; };
+		7E8B589325178D2E00D158F7 /* ModelInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInference.swift; sourceTree = "<group>"; };
 		7EACEF3324E6C41E00D9715A /* Lepidoptera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepidoptera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EACEF3624E6C41E00D9715A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				7EF0082A2514EF2200D42CA6 /* NewGenusModel.mlmodel */,
 				7E071BB3251410AF00E2A107 /* Euchloe.mlmodel */,
 				7E2F0E212513A93D009C328D /* AutoML-dict.txt */,
+				7E8B589325178D2E00D158F7 /* ModelInference.swift */,
 			);
 			path = "ML Model";
 			sourceTree = "<group>";
@@ -261,6 +264,8 @@
 				7EACEF2F24E6C41E00D9715A /* Sources */,
 				7EACEF3024E6C41E00D9715A /* Frameworks */,
 				7EACEF3124E6C41E00D9715A /* Resources */,
+				B4C8527CC08E15478DFE7520 /* [CP] Embed Pods Frameworks */,
+				FBCF78FD603E3BF0019C8CF2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -347,6 +352,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B4C8527CC08E15478DFE7520 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBCF78FD603E3BF0019C8CF2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -377,6 +416,7 @@
 				7EDB974525114A1B00211118 /* SheetImagePicker.swift in Sources */,
 				7EACEF4F24E6D02800D9715A /* ClassificationView.swift in Sources */,
 				7EACEF6224E707DC00D9715A /* Data.swift in Sources */,
+				7E8B589425178D2E00D158F7 /* ModelInference.swift in Sources */,
 				7EC9DD9C24FD7B14005F110A /* RectangleButton.swift in Sources */,
 				7E483EC92516741300FF8B6F /* new_especies_model.mlmodel in Sources */,
 				7EACEF6424E88EAF00D9715A /* ConfidenceCircleResults.swift in Sources */,
