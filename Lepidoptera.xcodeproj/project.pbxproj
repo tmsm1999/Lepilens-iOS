@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,8 @@
 		7E483ECB2516B0D400FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7E483ECA2516B0D300FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel */; };
 		7E69B0052508001100D2033B /* UserLoation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E69B0042508001100D2033B /* UserLoation.swift */; };
 		7E8B589425178D2E00D158F7 /* ModelInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B589325178D2E00D158F7 /* ModelInference.swift */; };
+		7E8B589C2517B8AF00D158F7 /* genero.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B589A2517B8AE00D158F7 /* genero.tflite */; };
+		7E8B589D2517B8AF00D158F7 /* generodict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B589B2517B8AF00D158F7 /* generodict.txt */; };
 		7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3624E6C41E00D9715A /* AppDelegate.swift */; };
 		7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */; };
 		7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF3A24E6C41E00D9715A /* AppView.swift */; };
@@ -71,6 +73,8 @@
 		7E483ECA2516B0D300FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel"; sourceTree = "<group>"; };
 		7E69B0042508001100D2033B /* UserLoation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoation.swift; sourceTree = "<group>"; };
 		7E8B589325178D2E00D158F7 /* ModelInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInference.swift; sourceTree = "<group>"; };
+		7E8B589A2517B8AE00D158F7 /* genero.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = genero.tflite; sourceTree = "<group>"; };
+		7E8B589B2517B8AF00D158F7 /* generodict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generodict.txt; sourceTree = "<group>"; };
 		7EACEF3324E6C41E00D9715A /* Lepidoptera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lepidoptera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EACEF3624E6C41E00D9715A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 				7E483ECA2516B0D300FF8B6F /* 000-model-export-icn-core_ml-por_genero_model_20200529120908-2020-09-19T21-29-56.732Z-model.mlmodel */,
 				7E483EC82516741300FF8B6F /* new_especies_model.mlmodel */,
 				7E071BAF251400BF00E2A107 /* Genus.mlmodel */,
+				7E8B589A2517B8AE00D158F7 /* genero.tflite */,
+				7E8B589B2517B8AF00D158F7 /* generodict.txt */,
 				7EF0082A2514EF2200D42CA6 /* NewGenusModel.mlmodel */,
 				7E071BB3251410AF00E2A107 /* Euchloe.mlmodel */,
 				7E2F0E212513A93D009C328D /* AutoML-dict.txt */,
@@ -316,7 +322,9 @@
 			files = (
 				7EACEF4324E6C42200D9715A /* LaunchScreen.storyboard in Resources */,
 				7EACEF5B24E6F95F00D9715A /* aglais_io.jpg in Resources */,
+				7E8B589C2517B8AF00D158F7 /* genero.tflite in Resources */,
 				7EACEF5824E6F70F00D9715A /* mockData.json in Resources */,
+				7E8B589D2517B8AF00D158F7 /* generodict.txt in Resources */,
 				7E2F0E222513A93D009C328D /* AutoML-dict.txt in Resources */,
 				7EACEF5D24E6F9DB00D9715A /* vanessa_atalanta.jpg in Resources */,
 				7E483EC32515692800FF8B6F /* model.tflite in Resources */,

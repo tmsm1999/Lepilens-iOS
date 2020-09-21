@@ -8,49 +8,40 @@
 
 import SwiftUI
 
+///View that contains the tab bar and manages the main screens in the application.
+///The first screen that appears in the TabView is the default screen in the application.
 struct AppView: View {
     
+    ///Variable that stores the user observations recorded in the application.
     @EnvironmentObject var records: ObservationRecords
     
+    ///Prompts user to allow or deny acess to the location when the application is launched.
     private let location = UserLocation()
-    
-//    init() {
-//        UITabBar.appearance().backgroundColor = UIColor(red: 153 / 255, green: 255 / 255, blue: 153 / 255, alpha: 1)
-//    }
     
     var body: some View {
         
         TabView {
-            
-            //Aqui coloco a minha view em vez de Text
             ClassificationView().environmentObject(self.records)
                 .tabItem {
                     Image(systemName: "camera.fill")
-                        .font(.system(size: 22))
+                        .font(.system(size: tabBarItemFontSize))
                     Text("Classify")
                 }
             RecordsListView().environmentObject(self.records)
                 .tabItem {
                     Image(systemName: "book.fill")
-                        .font(.system(size: 22))
+                        .font(.system(size: tabBarItemFontSize))
                     Text("Observations")
                 }
             Text("Settings View")
                 .tabItem {
                     Image(systemName: "gear")
-                        .font(.system(size: 22))
+                        .font(.system(size: tabBarItemFontSize))
                     Text("Settings")
                 }
         }
         .font(.headline)
-        //.animation(.easeInOut)
-        //.transition()
-//        .accentColor(Color.init(red: 0 / 255, green: 153 / 255, blue: 51 / 255))
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppView().environmentObject(ObservationRecords())
-    }
-}
+private let tabBarItemFontSize: CGFloat = 22

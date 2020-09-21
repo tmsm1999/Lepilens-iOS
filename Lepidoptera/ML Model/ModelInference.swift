@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 import MLKit
 
+/**
+A struct that represents a label in an observaation.
+ - Parameters:
+     - label: Stores the label String. For example: "Vanessa Atalanta".
+     - confidence: Stores a Double with the confidence for the label in the context of an observation.
+*/
 struct PairLabelConfidence {
     var label: String
     var confidence: Double
@@ -17,6 +23,7 @@ struct PairLabelConfidence {
 
 class ModelInference {
     
+    ///Variable that stores the top five labels in terms of confidence for an observation.
     var topFive = [PairLabelConfidence]()
     
     func runInference(image: UIImage) {

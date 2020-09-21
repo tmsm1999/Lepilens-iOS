@@ -10,17 +10,22 @@ import UIKit
 import SwiftUI
 import CoreLocation
 
+///Manages and stores de application data.
 class ObservationRecords: ObservableObject, Identifiable {
     
+    ///Array that saves all observations performed by the user.
+    ///The @Published object property allow the record arrray to announce when a change occurs.
     @Published var record = [Observation]()
-    //@Published var record = mockRecord
     
+    //TODO: Check if init method needs to be here.
     init() {
-        print(record)
     }
     
+    ///Function that adds a new observation to the record array. Modifies the record array.
+    /// - Parameters:
+    ///     - newObservation: Observation performed by the user
     func addObservation(_ newObservation: Observation) {
-        print("Added observation")
+        //TODO: Check if underscore can be removed.
         record.append(newObservation)
     }
 }

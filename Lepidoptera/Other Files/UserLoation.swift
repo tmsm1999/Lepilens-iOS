@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 
+///Class that manages userLocation in the app. Calls location request banner when app is lauched.
 class UserLocation: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager?
@@ -23,9 +24,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            //coordinates = locationManager?.location
-        }
+        if status == .authorizedWhenInUse {}
     }
     
     func getUserLocation() -> CLLocation? {
