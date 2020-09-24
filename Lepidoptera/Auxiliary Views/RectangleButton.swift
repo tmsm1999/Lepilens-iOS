@@ -35,10 +35,10 @@ struct RectangleButton: View {
                     .sheet(isPresented: self.$sheetIsOpen, content: {
                         
                         if self.action == "Photos" {
-                            NewClassificationSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: true).environmentObject(self.records)
+                            NewClassificationController(isPresented: self.$sheetIsOpen, importImageFromPhotos: true).environmentObject(self.records)
                         }
                         else {
-                            NewClassificationSheet(isPresented: self.$sheetIsOpen, importImageFromPhotos: false).environmentObject(self.records)
+                            NewClassificationController(isPresented: self.$sheetIsOpen, importImageFromPhotos: false).environmentObject(self.records)
                         }
                     })
                     Spacer()

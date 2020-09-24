@@ -8,9 +8,13 @@
 
 import SwiftUI
 
+///This view lists the observations made by the user.
+///It includes photos imported from the Photos app and photos taken directly with the camera.
 struct RecordsListView: View {
     
     @EnvironmentObject var records: ObservationRecords
+    
+    ///Controls which obsrvations are showed in the list based on being a favorite or not.
     @State var showFavoritesOnly = false
     
     var body: some View {
@@ -74,24 +78,21 @@ struct RecordsListView: View {
         }
     }
     
+    ///Funtion that removes an observation from the list of observations.
     func delete(at offset: IndexSet) {
         records.record.remove(atOffsets: offset)
         print(records.record.count)
     }
     
+    ///Allows the user to organize the order in which the observations appear in the list.
     func move(from source: IndexSet, to destination: Int) {
         records.record.move(fromOffsets: source, toOffset: destination)
     }
     
+    ///Adds an observation to the favorites.
     func favoriteAction(at offset: IndexSet) {
         offset.forEach { i in
             records.record[i].isFavorite = !records.record[i].isFavorite
         }
-    }
-}
-
-struct RecordsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecordsListView().environmentObject(ObservationRecords())
     }
 }

@@ -9,23 +9,17 @@
 import SwiftUI
 import Photos
 
-///Background view responsible for controlling what should appear based on the user input.
-///If the user chooses to classify and the classification was sucessful the observation variable will be
-///initialized. When this happens the picker disappears and the ObservationDetails View appears.
 struct NewClassificationController: View {
     
     @EnvironmentObject var records: ObservationRecords
+    //@Environment(\.presentationMode) var presentationMode
     
-    ///Variable that saves the observation to be shown in the ObservationDetailsView.
-    ///The fact of it being null or not also controls the View that appears.
+    @Binding var isPresented: Bool //Sheet atual
+    
     @State var observation: Observation?
-
-    ///Controlls if the current sheet is up or down.
-    @Binding var isPresented: Bool
+    @State var pickerIsVisible = true
+    @State var dismissModalView: Bool = false
     
-    ///Variable that controlls what appears in the sheet that opens the picker.
-    ///If "Import from Photos" is selected then the Picker will open the Photos app.
-    ///Otherwise the picker will open the Camera app.
     var importImageFromPhotos: Bool
     
     var body: some View {

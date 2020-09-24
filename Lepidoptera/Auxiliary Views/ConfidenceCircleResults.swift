@@ -21,12 +21,13 @@ struct ConfidenceCircleResults: View {
             Circle()
                 .trim(from: show ? (1 - CGFloat(confidence)) : 0.99, to: 1)
                 .stroke(Color.green, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+                .frame(width: 75, height: 75, alignment: .center)
                 .rotationEffect(.degrees(90))
                 .rotation3DEffect(Angle(degrees: 180), axis: (x:1, y: 0, z: 0))
-                .frame(width: 75, height: 75, alignment: .center)
-                .animation(.easeOut(duration: 1.7))
                 .onAppear() {
-                    self.show.toggle()
+                    withAnimation(.easeOut(duration: 1.7)) {
+                        self.show = true
+                    }
             }
             
             Text(String(format: "%.1f", confidence * 100) + "%")

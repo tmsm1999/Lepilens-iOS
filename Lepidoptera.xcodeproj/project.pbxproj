@@ -48,7 +48,7 @@
 		7EC9DD9C24FD7B14005F110A /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */; };
 		7EDB974525114A1B00211118 /* SheetImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB974425114A1B00211118 /* SheetImagePicker.swift */; };
 		7EDB974C25114F2F00211118 /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB974B25114F2F00211118 /* Classification.swift */; };
-		7EDC07F22504FDE000058033 /* NewClassificationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F12504FDE000058033 /* NewClassificationSheet.swift */; };
+		7EDC07F22504FDE000058033 /* NewClassificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F12504FDE000058033 /* NewClassificationController.swift */; };
 		7EDC07F42505076F00058033 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F32505076F00058033 /* ImagePickerView.swift */; };
 		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
 		7EF008292514ED2700D42CA6 /* iOSModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7EF008282514ED2700D42CA6 /* iOSModel.mlmodel */; };
@@ -102,7 +102,7 @@
 		7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleButton.swift; sourceTree = "<group>"; };
 		7EDB974425114A1B00211118 /* SheetImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetImagePicker.swift; sourceTree = "<group>"; };
 		7EDB974B25114F2F00211118 /* Classification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
-		7EDC07F12504FDE000058033 /* NewClassificationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClassificationSheet.swift; sourceTree = "<group>"; };
+		7EDC07F12504FDE000058033 /* NewClassificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClassificationController.swift; sourceTree = "<group>"; };
 		7EDC07F32505076F00058033 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToClassifyPlaceholder.swift; sourceTree = "<group>"; };
 		7EF008282514ED2700D42CA6 /* iOSModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = iOSModel.mlmodel; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 				7EACEF6B24E956FA00D9715A /* DetailsSheet.swift */,
 				7EACEF6D24E99D2C00D9715A /* ObservationNoteSheet.swift */,
 				7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */,
-				7EDC07F12504FDE000058033 /* NewClassificationSheet.swift */,
+				7EDC07F12504FDE000058033 /* NewClassificationController.swift */,
 				7EDB974425114A1B00211118 /* SheetImagePicker.swift */,
 			);
 			path = Views;
@@ -289,7 +289,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Tomás Santiago";
 				TargetAttributes = {
 					7EACEF3224E6C41E00D9715A = {
@@ -430,7 +430,7 @@
 				7EACEF6424E88EAF00D9715A /* ConfidenceCircleResults.swift in Sources */,
 				7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */,
 				7EDB974C25114F2F00211118 /* Classification.swift in Sources */,
-				7EDC07F22504FDE000058033 /* NewClassificationSheet.swift in Sources */,
+				7EDC07F22504FDE000058033 /* NewClassificationController.swift in Sources */,
 				7E071BB22514037600E2A107 /* ArgynnisModel.mlmodel in Sources */,
 				7EACEF6C24E956FA00D9715A /* DetailsSheet.swift in Sources */,
 				7E3405FE24F5690A00BE3AA3 /* MultilineTextField.swift in Sources */,
