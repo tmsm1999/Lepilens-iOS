@@ -39,18 +39,18 @@ struct ObservationNoteSheet: View {
                 /// - userNote: placeholder to save the note.
                 /// - observation: observation the note is about.
                 MultilineTextField(userNote: $userNote, observation: records.record[observationIndex])
-                
-                .navigationBarTitle(Text("Observation Note"))
-                .navigationBarItems(trailing:
                     
-                    Button(action: {
-                        self.self.records.record[self.observationIndex].userNote = self.userNote
-                        self.isPresented.toggle();
-                        
-                    }) {
-                        Text("Save")
-                    }
-                )
+                    .navigationBarTitle(Text("Observation Note"))
+                    .navigationBarItems(trailing:
+                                            
+                        Button(action: {
+                            self.self.records.record[self.observationIndex].userNote = self.userNote
+                            self.isPresented.toggle();
+                            
+                        }) {
+                            Text("Save")
+                        }
+                    )
             }
             .padding(20)
         }

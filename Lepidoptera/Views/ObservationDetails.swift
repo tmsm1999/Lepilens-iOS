@@ -9,13 +9,16 @@
 import SwiftUI
 import MapKit
 
+///Model view that is used to present an observation.
+///This show a circular image, map view with the location of the image.
+///Also it includes buttons to show details, add to favorites and delete a view.
 struct ObservationDetails: View {
     
     @EnvironmentObject var records: ObservationRecords
-    //@Environment(\.presentationMode) var presentationMode
     
-    @Binding var dismissModalView: Bool //Mal acabo de classificar alguma view.
-    
+    ///Informs the parent view if the model view is being shown or not.
+    @Binding var dismissModalView: Bool
+    ///Current observation being shown.
     var observation: Observation
     
     var body: some View {
@@ -56,7 +59,6 @@ struct ObservationDetails: View {
                         ObservationActionButtons(observation: self.observation, dismissModalView: self.$dismissModalView)
                             .offset(x: 0, y: 30)
                             .environmentObject(self.records)
-                        
                     }
                 }
                 .padding(.top, 10)
@@ -65,7 +67,6 @@ struct ObservationDetails: View {
             .padding(.bottom, 2)
             
             Spacer()
-            
         }
     }
 }

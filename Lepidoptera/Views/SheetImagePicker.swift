@@ -151,9 +151,9 @@ struct SheetImagePicker: View {
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
             //.background(Color.red)
         }
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("Location Error"), message: Text("To create a new observation Imago needs to use your location"), primaryButton: .destructive(Text("Close")) { self.sheetIsPresented.toggle() }, secondaryButton: .cancel(Text("Continue"))) //FIXME: This strings need to be put in constants outside the view.
-            }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Location Error"), message: Text("To create a new observation Imago needs to use your location"), primaryButton: .destructive(Text("Close")) { self.sheetIsPresented.toggle() }, secondaryButton: .cancel(Text("Continue"))) //FIXME: This strings need to be put in constants outside the view.
+        }
         //TODO: Change to show alert if the classification failed.
     }
 }

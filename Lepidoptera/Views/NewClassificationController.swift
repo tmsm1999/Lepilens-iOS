@@ -29,7 +29,7 @@ struct NewClassificationController: View {
             VStack(alignment: .center) {
                 
                 if self.observation == nil {
-                        SheetImagePicker(sheetIsPresented: self.$isPresented, observation: self.$observation, imageWillBeImportedFromPhotos: self.importImageFromPhotos)
+                    SheetImagePicker(sheetIsPresented: self.$isPresented, observation: self.$observation, imageWillBeImportedFromPhotos: self.importImageFromPhotos)
                 }
                 else {
                     ObservationDetails(dismissModalView: self.$isPresented, observation: observation!).environmentObject(self.records)
@@ -37,11 +37,11 @@ struct NewClassificationController: View {
                         .animation(.linear(duration: 1))
                 }
             }
-                
+            
             .navigationBarItems(trailing:
-                Button(action: { self.isPresented.toggle() }) {
-                    Text("Dismiss")
-                }
+                                    Button(action: { self.isPresented.toggle() }) {
+                                        Text("Dismiss")
+                                    }
             )
         }
     }

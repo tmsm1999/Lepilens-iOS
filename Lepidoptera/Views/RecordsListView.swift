@@ -37,7 +37,7 @@ struct RecordsListView: View {
                             NavigationLink(destination: ObservationDetails(dismissModalView: .constant(false), observation: record)) {
                                 
                                 HStack {
-                                
+                                    
                                     Image(uiImage: record.image)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
