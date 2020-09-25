@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+///View that shows the image avout to be classified in the sheet with the classify button.
 struct ImageToClassifyPlaceholder: View {
     
     @State var image: UIImage
@@ -22,11 +23,5 @@ struct ImageToClassifyPlaceholder: View {
                 Spacer()
             }
         }
-    }
-}
-
-struct ImageToClassifyPlaceholder_Previews: PreviewProvider {
-    static var previews: some View {
-        ImageToClassifyPlaceholder(image: UIImage(named: "aglais_io")!)
     }
 }

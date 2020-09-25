@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct ObservationImage: View {
     
     var image: UIImage
@@ -20,11 +21,5 @@ struct ObservationImage: View {
             .frame(width: 180, height: 180, alignment: .center)
             .clipShape(Circle())
             .overlay(Circle().stroke(Color.black, lineWidth: 2))
-    }
-}
-
-struct ObservationImage_Previews: PreviewProvider {
-    static var previews: some View {
-        ObservationImage(image: UIImage(named: "aglais_io")!)
     }
 }

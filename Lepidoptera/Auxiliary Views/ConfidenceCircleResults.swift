@@ -8,14 +8,17 @@
 
 import SwiftUI
 
+///Circular view that shows the confidence of the observation.
 struct ConfidenceCircleResults: View {
+    //TODO: Change color depending on the confidence of the observation.
     
+    ///Confidence value received to be shown.
     var confidence: Double
+    
+    ///Controls animation completion.
     @State var show = false
     
     var body: some View {
-        
-        //Escolher as cores conforme a confiança da observação.
         
         ZStack {
             Circle()
@@ -35,11 +38,5 @@ struct ConfidenceCircleResults: View {
                 .font(.system(size: 15))
         }
             .padding(10)
-    }
-}
-
-struct ConfidenceCircleResults_Previews: PreviewProvider {
-    static var previews: some View {
-        ConfidenceCircleResults(confidence: 0.85)
     }
 }
