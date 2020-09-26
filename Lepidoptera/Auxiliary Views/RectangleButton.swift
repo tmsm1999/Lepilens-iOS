@@ -8,22 +8,31 @@
 
 import SwiftUI
 
+///Rectangle View that contains buttons to import image from Photos or open the Camera app to take a picture.
 struct RectangleButton: View {
     
+    ///String inside the button
     var buttonString: String
+    ///Image from the assets folder that is the background for the rectangle.
     var imageTitle: String
+    ///There are two different options: Photos or Camera.
     var action: String
     
+    ///Controls the child modal view and stores if it is open or closed.
     @State var sheetIsOpen: Bool = false
     
     @EnvironmentObject var records: ObservationRecords
     
     var body: some View {
+        
         GeometryReader { geometry in
+            
             VStack {
+                
                 Spacer()
                 
                 HStack {
+                    
                     Button(action: { self.sheetIsOpen.toggle() } ) {
                         Text(self.buttonString)
                             .padding([.top, .bottom], 9)
@@ -41,6 +50,7 @@ struct RectangleButton: View {
                             NewClassificationController(isPresented: self.$sheetIsOpen, importImageFromPhotos: false).environmentObject(self.records)
                         }
                     })
+                    
                     Spacer()
                 }
                 .padding(.bottom, 20)
@@ -56,15 +66,5 @@ struct RectangleButton: View {
             .border(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)), width: 2)
             .cornerRadius(10)
         }
-    }
-    
-    func openSheetWithPhoto() {
-        return
-    }
-}
-
-struct RectangleButton_Previews: PreviewProvider {
-    static var previews: some View {
-        RectangleButton(buttonString: "Import from Photos", imageTitle: "ImportFromPhotosRect", action: "Photos")
     }
 }

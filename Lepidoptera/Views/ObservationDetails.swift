@@ -37,7 +37,7 @@ struct ObservationDetails: View {
                 
                 ScrollView(.vertical, showsIndicators: true) {
                     
-                    VStack {
+                    VStack(alignment: .leading) {
                         
                         HStack() {
                             
@@ -56,8 +56,8 @@ struct ObservationDetails: View {
                         }
                         .frame(width: geometry.size.width)
                         
-                        ObservationActionButtons(observation: self.observation, dismissModalView: self.$dismissModalView)
-                            .offset(x: 0, y: 30)
+                        ObservationActionButtons(dismissModalView: self.$dismissModalView, observation: self.observation)
+                            .offset(x: 0, y: 40)
                             .environmentObject(self.records)
                     }
                 }

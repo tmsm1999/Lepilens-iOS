@@ -8,9 +8,14 @@
 
 import SwiftUI
 
+///Text field that allows the user to take notes about an observation.
+///For example, here the user can specify if a butterfly is male or female.
 struct MultilineTextField: UIViewRepresentable {
     
+    ///Binding variable that passes the user note to the parent view.
     @Binding var userNote: String
+    
+    ///Stores the current observation about which the user is taking notes.
     var observation: Observation
     
     func makeUIView(context: UIViewRepresentableContext<MultilineTextField>) -> UITextView {
@@ -33,8 +38,7 @@ struct MultilineTextField: UIViewRepresentable {
         return textView
     }
     
-    func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<MultilineTextField>) {
-    }
+    func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<MultilineTextField>) {}
     
     func makeCoordinator() -> Coordinator {
         return MultilineTextField.Coordinator(parent: self, observation: observation)
@@ -55,22 +59,10 @@ struct MultilineTextField: UIViewRepresentable {
         }
         
         func textViewDidBeginEditing(_ textView: UITextView) {
-            self.parent.userNote = observation.userNote
+            self.parent.userNote = observation.userNote //Updates the current note.
             
             textView.text = self.parent.userNote
             textView.textColor = .label
         }
     }
- }
-
-//struct MultilineTextField_Previews: PreviewProvider {
-//    static var previews: some View {
-//        
-//        let observationRecords = ObservationRecords()
-//        let observation = Observation(speciesName: "Aglais io", classificationConfidence: 0.70, latitude: -116.166868, longitude: -116.166868, date: "02/02/1999", isFavorite: false, image: UIImage(named: "aglais_io")!, time: "17:00")
-//        
-//        observationRecords.addObservation(observation)
-//        
-//        return MultilineTextField(userNote: .constant(""), observation: observationRecords.record[0])
-//    }
-//}
+}

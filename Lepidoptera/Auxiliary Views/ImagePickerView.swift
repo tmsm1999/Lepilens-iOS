@@ -32,6 +32,7 @@ struct ImagePickerView: UIViewControllerRepresentable {
         let controller = UIImagePickerController()
         
         if sourceType == "Photos" {
+            //let library = PHPhotoLibrary.shared()
             controller.sourceType = .photoLibrary
         }
         else {
@@ -53,23 +54,11 @@ struct ImagePickerView: UIViewControllerRepresentable {
     
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
-        let parent: ImagePickerView
-        let sourceType: String
-        
-        private var userPermission: PHAuthorizationStatus
+        var parent: ImagePickerView
+        var sourceType: String
         
         init(parent: ImagePickerView, sourceType: String) {
-            
-            let status = PHPhotoLibrary.authorizationStatus()
-            if status == .notDetermined || status == .denied {
-                //Requests user authorization to use the Photos app.
-                PHPhotoLibrary.requestAuthorization { status in
-                    self.userPermission = status
-                }
-            }
-            
-            self.sourceType = sourceType
-            self.parent = parent
+            self.sourceType = sourceType; self.parent = parent
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -77,35 +66,37 @@ struct ImagePickerView: UIViewControllerRepresentable {
             if sourceType == "Photos" {
                 if let selectedImageFromPicker = info[.originalImage] as? UIImage {
                     
-                    let asset = info[UIImagePickerController.InfoKey.phAsset] as! PHAsset
+                    guard let asset = info[UIImagePickerController.InfoKey.phAsset] as? PHAsset else {
+                        return
+                    }
                     
                     if let date = asset.creationDate {
-                        self.parent.date = date
+                        parent.date = date
                     }
                     else {
-                        self.parent.date = Date()
+                        parent.date = Date()
                     }
                     
                     if let location = asset.location {
-                        self.parent.location = location
+                        parent.location = location
                     }
                     
-                    self.parent.selectedImage = selectedImageFromPicker
-                    self.parent.imageWasImported = true
+                    parent.selectedImage = selectedImageFromPicker
+                    parent.imageWasImported = true
                 }
             }
             else {
                 if let selectedImageFromPicker = info[.editedImage] as? UIImage {
-                    self.parent.selectedImage = selectedImageFromPicker
-                    self.parent.imageWasImported = true
+                    parent.selectedImage = selectedImageFromPicker
+                    parent.imageWasImported = true
                     
-                    self.parent.date = Date()
-                    self.parent.location = UserLocation().getUserLocation()
-                    print(self.parent.location ?? "No location")
+                    parent.date = Date()
+                    parent.location = UserLocation().getUserLocation()
+                    print(parent.location ?? "No location")
                 }
             }
             
-            self.parent.isPresented = false
+            parent.isPresented = false
         }
     }
 }

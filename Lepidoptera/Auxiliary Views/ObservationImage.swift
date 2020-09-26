@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-
+///Circular image visible in  the result view of an observation.
 struct ObservationImage: View {
     
     var image: UIImage

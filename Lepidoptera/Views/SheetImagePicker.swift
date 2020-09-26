@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Photos
+import PhotosUI
 import CoreImage
 
 ///This View imports the image and has the buttons to manage the imported image.
@@ -29,6 +30,8 @@ struct SheetImagePicker: View {
     @State var imageLocation: CLLocation?
     ///Shows alert if something went wrong this the classification.
     @State var showAlert = false
+    ///Show alert if user denied access to the Photos app.
+    @State var showPhotosAccessDeniedAlert = false
     ///Controls if the image placeholder for the image to classify is visible.
     @State var imagePlaceholderIsVisible = false
     ///Boolean variable that tells if the image Placeholder is empty or not.
@@ -55,26 +58,79 @@ struct SheetImagePicker: View {
                     
                     if self.imageWillBeImportedFromPhotos {
                         
+                        ///Handle Photos app acess.
                         Button(action: {
-                            self.imagePickerIsPresented.toggle()
+                            
+                            if #available(iOS 14, *) {
+                                
+                                let accessLevel: PHAccessLevel = .readWrite
+                                let status = PHPhotoLibrary.authorizationStatus(for: accessLevel)
+                                
+                                switch status {
+                                case .authorized:
+                                    self.imagePickerIsPresented.toggle()
+                                case .limited:
+                                    print("Limited access - show picker.")
+                                    self.imagePickerIsPresented.toggle()
+                                case .denied:
+                                    self.showPhotosAccessDeniedAlert.toggle()
+                                case .notDetermined:
+                                    PHPhotoLibrary.requestAuthorization { newStatus in
+                                        switch newStatus {
+                                        case .authorized:
+                                            print("Full access.")
+                                        case .limited:
+                                            print("Limited access.")
+                                            break
+                                        case .denied:
+                                            break
+                                        default:
+                                            break
+                                        }
+                                    }
+                                default:
+                                    break
+                                    
+                                    
+                                }
+                            } else {
+                                // Fallback on earlier versions
+                            }
+                            
+                            print(self.imagePickerIsPresented)
                         }) {
-                            Text(topRectangleButtonString)
+                            Text(openPhotosAppTextString)
                         }
                         .padding(.top, geometry.size.height / rectanglePaddingDivisor)
                         .sheet(isPresented: self.$imagePickerIsPresented, content: {
-                            ImagePickerView(isPresented: self.$imagePlaceholderIsVisible, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Photos") //FIXME: Change the way the source type is handled.
+                            
+                            if #available(iOS 14, *) {
+                                ImagePicker(imageToImport: self.$imageToClassify, isPresented: self.$imagePickerIsPresented, imageWasImported: self.$imageWasImported)
+                            }
+                            //else {
+//                                ImagePickerView(isPresented: self.$imagePlaceholderIsVisible, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Photos") //FIXME: Change the way the source type is handled.
+                            //}
                         })
                     }
                     else {
                         
+                        //Handle Camera access.
                         Button(action: {
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             self.imagePickerIsPresented.toggle()
+                            print(self.$imagePickerIsPresented)
                         }) {
-                            Text(bottomRectangleButtonString)
+                            Text(openCameraAppTextString)
                         }
                         .padding(.top, geometry.size.height / rectanglePaddingDivisor)
                         .sheet(isPresented: self.$imagePickerIsPresented, content: {
-                            ImagePickerView(isPresented: self.$imagePlaceholderIsVisible, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Camera") //FIXME: Change the way the source type is handled.
+                            ImagePickerView(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Camera") //FIXME: Change the way the source type is handled.
                         })
                     }
                 }
@@ -149,15 +205,17 @@ struct SheetImagePicker: View {
             }
             .navigationBarTitle(Text("New Observation"))
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-            //.background(Color.red)
         }
+        //TODO: Change to show alert if the classification failed.
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Location Error"), message: Text("To create a new observation Imago needs to use your location"), primaryButton: .destructive(Text("Close")) { self.sheetIsPresented.toggle() }, secondaryButton: .cancel(Text("Continue"))) //FIXME: This strings need to be put in constants outside the view.
         }
-        //TODO: Change to show alert if the classification failed.
+        .alert(isPresented: $showPhotosAccessDeniedAlert) {
+            Alert(title: Text("Access to Photos was denied"), message: Text("If you want to give this app access to Photos, go to Settings -> Lepidoptera -> Photos."), dismissButton: .default(Text("Close")))
+        }
     }
 }
 
-private let topRectangleButtonString: String = "Import photo from Photos"
+private let openPhotosAppTextString: String = "Import image from Photos"
+private let openCameraAppTextString: String = "Open the Camera app"
 private let rectanglePaddingDivisor: CGFloat = 2.5 //FIXME: Is it possible to change this?
-private let bottomRectangleButtonString: String = "Open the Camera app"

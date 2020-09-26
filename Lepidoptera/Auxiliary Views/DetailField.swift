@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+///Reresents a row of details in the Details sheet.
 struct DetailField: View {
     
     var field: String
@@ -23,12 +24,5 @@ struct DetailField: View {
             }
             Divider()
         }
-    }
-}
-
-
-struct DetailField_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailField(field: "Species Name: ", value: "Aglais io")
     }
 }
