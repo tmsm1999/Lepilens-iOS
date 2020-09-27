@@ -30,3 +30,14 @@
 //    
 //    return decodedData
 //}
+
+import PhotosUI
+
+@available(iOS 14, *)
+func presentLibrary() {
+
+    let library = PHPhotoLibrary.shared()
+    let viewController = UIViewController()
+
+    library.presentLimitedLibraryPicker(from: viewController)
+}

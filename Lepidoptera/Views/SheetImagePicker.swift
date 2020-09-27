@@ -32,6 +32,10 @@ struct SheetImagePicker: View {
     @State var showAlert = false
     ///Show alert if user denied access to the Photos app.
     @State var showPhotosAccessDeniedAlert = false
+    
+    @State var showLimitedPicker = false
+    
+    @State var showCanNotImportPhotoAlert = false
     ///Controls if the image placeholder for the image to classify is visible.
     @State var imagePlaceholderIsVisible = false
     ///Boolean variable that tells if the image Placeholder is empty or not.
@@ -60,12 +64,11 @@ struct SheetImagePicker: View {
                         
                         ///Handle Photos app acess.
                         Button(action: {
-                            
                             if #available(iOS 14, *) {
-                                
+
                                 let accessLevel: PHAccessLevel = .readWrite
                                 let status = PHPhotoLibrary.authorizationStatus(for: accessLevel)
-                                
+
                                 switch status {
                                 case .authorized:
                                     self.imagePickerIsPresented.toggle()
@@ -75,13 +78,13 @@ struct SheetImagePicker: View {
                                 case .denied:
                                     self.showPhotosAccessDeniedAlert.toggle()
                                 case .notDetermined:
-                                    PHPhotoLibrary.requestAuthorization { newStatus in
+                                    PHPhotoLibrary.requestAuthorization(for: accessLevel) { newStatus in
                                         switch newStatus {
-                                        case .authorized:
-                                            print("Full access.")
                                         case .limited:
                                             print("Limited access.")
                                             break
+                                        case .authorized:
+                                            print("Full access.")
                                         case .denied:
                                             break
                                         default:
@@ -90,8 +93,6 @@ struct SheetImagePicker: View {
                                     }
                                 default:
                                     break
-                                    
-                                    
                                 }
                             } else {
                                 // Fallback on earlier versions
@@ -105,26 +106,15 @@ struct SheetImagePicker: View {
                         .sheet(isPresented: self.$imagePickerIsPresented, content: {
                             
                             if #available(iOS 14, *) {
-                                ImagePicker(imageToImport: self.$imageToClassify, isPresented: self.$imagePickerIsPresented, imageWasImported: self.$imageWasImported)
+                                ImagePicker(imageToImport: self.$imageToClassify, isPresented: self.$imagePickerIsPresented, imageWasImported: self.$imageWasImported, presentAlert: self.$showCanNotImportPhotoAlert)
                             }
-                            //else {
-//                                ImagePickerView(isPresented: self.$imagePlaceholderIsVisible, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Photos") //FIXME: Change the way the source type is handled.
-                            //}
                         })
                     }
                     else {
                         
                         //Handle Camera access.
                         Button(action: {
-                            
-                            
-                            
-                            
-                            
-                            
-                            
                             self.imagePickerIsPresented.toggle()
-                            print(self.$imagePickerIsPresented)
                         }) {
                             Text(openCameraAppTextString)
                         }
@@ -213,8 +203,14 @@ struct SheetImagePicker: View {
         .alert(isPresented: $showPhotosAccessDeniedAlert) {
             Alert(title: Text("Access to Photos was denied"), message: Text("If you want to give this app access to Photos, go to Settings -> Lepidoptera -> Photos."), dismissButton: .default(Text("Close")))
         }
+        .alert(isPresented: $showCanNotImportPhotoAlert) {
+            Alert(title: Text("Error! Access denied"), message: Text("This app can not access the selected photo because of limited access to your Photo Library."), primaryButton: .default(Text("Add Photos")) { self.showLimitedPicker.toggle() }, secondaryButton: .default(Text("Close")))
+        }
     }
+    
 }
+
+
 
 private let openPhotosAppTextString: String = "Import image from Photos"
 private let openCameraAppTextString: String = "Open the Camera app"

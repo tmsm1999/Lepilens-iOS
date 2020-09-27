@@ -44,7 +44,7 @@
 		7EDC07F42505076F00058033 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F32505076F00058033 /* ImagePickerView.swift */; };
 		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
 		CFA1D631251F9DE00066064C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D630251F9DE00066064C /* ImagePicker.swift */; };
-		CFA1D634251FB8A70066064C /* TestLimitedLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D633251FB8A70066064C /* TestLimitedLibrary.swift */; };
+		CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */; };
 		D842820BDAF07B742513D5DF /* Pods_Lepidoptera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,7 +91,7 @@
 		7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToClassifyPlaceholder.swift; sourceTree = "<group>"; };
 		A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepidoptera.debug.xcconfig"; path = "Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera.debug.xcconfig"; sourceTree = "<group>"; };
 		CFA1D630251F9DE00066064C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		CFA1D633251FB8A70066064C /* TestLimitedLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLimitedLibrary.swift; sourceTree = "<group>"; };
+		CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedLibraryPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,7 +197,7 @@
 				7EDC07F32505076F00058033 /* ImagePickerView.swift */,
 				7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */,
 				CFA1D630251F9DE00066064C /* ImagePicker.swift */,
-				CFA1D633251FB8A70066064C /* TestLimitedLibrary.swift */,
+				CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */,
 			);
 			path = "Auxiliary Views";
 			sourceTree = "<group>";
@@ -382,11 +382,11 @@
 				7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */,
 				7EDC07F42505076F00058033 /* ImagePickerView.swift in Sources */,
 				7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */,
-				CFA1D634251FB8A70066064C /* TestLimitedLibrary.swift in Sources */,
 				7EACEF5424E6E61B00D9715A /* ObservationDetails.swift in Sources */,
 				7EACEF6624E94C4F00D9715A /* ObservationImage.swift in Sources */,
 				7EACEF6E24E99D2C00D9715A /* ObservationNoteSheet.swift in Sources */,
 				7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */,
+				CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */,
 				7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */,
 				7EACEF4D24E6C59500D9715A /* ObservationRecords.swift in Sources */,
 				7EACEF7024E9A4DE00D9715A /* DetailField.swift in Sources */,
