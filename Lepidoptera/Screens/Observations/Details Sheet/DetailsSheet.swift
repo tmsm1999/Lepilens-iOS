@@ -23,24 +23,28 @@ struct DetailsSheet: View {
             
             VStack {
                 
-                DetailField(field: "Species Name: ", value: observation.speciesName)
-                DetailField(field: "Confidence: ", value: String(observation.classificationConfidence * 100) + "%")
-                DetailField(field: "Date: ", value: observation.date.description)
-                DetailField(field: "Time: ", value: observation.time)
-                DetailField(field: "Latitude: ", value: String(observation.location?.coordinate.latitude.description ?? "Location is unavailable"))
-                DetailField(field: "Longitude: ", value: String(observation.location?.coordinate.longitude.description ?? "Location is unavailable"))
+                VStack(alignment: .leading) {
+                    
+                    DetailField(field: "Species Name: ", value: observation.speciesName)
+                    DetailField(field: "Confidence: ", value: String(observation.classificationConfidence * 100) + "%")
+                    DetailField(field: "Date: ", value: observation.date.description)
+                    DetailField(field: "Time: ", value: observation.time)
+                    DetailField(field: "Latitude: ", value: String(observation.location?.coordinate.latitude.description ?? "Location is unavailable"))
+                    DetailField(field: "Longitude: ", value: String(observation.location?.coordinate.longitude.description ?? "Location is unavailable"))
+                }
+                .padding(EdgeInsets(top: 25, leading: 20, bottom: 0, trailing: 0))
                 
-                Image(uiImage: observation.image)
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(10)
-                    .padding(.top, 20)
-                
-                
+                VStack(alignment: .center) {
+                    
+                    Image(uiImage: observation.image)
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(10)
+                        .padding(.top, 20)
+                }
                 Spacer()
             }
-            .padding(20)
-            .padding(EdgeInsets(top: 30, leading: 20, bottom: 20, trailing: 20))
+            
             .navigationBarTitle(Text("Observation Details"))
             .navigationBarItems(trailing:
                                     
