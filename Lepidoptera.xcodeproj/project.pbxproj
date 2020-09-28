@@ -41,9 +41,9 @@
 		7EDB974525114A1B00211118 /* SheetImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB974425114A1B00211118 /* SheetImagePicker.swift */; };
 		7EDB974C25114F2F00211118 /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB974B25114F2F00211118 /* Classification.swift */; };
 		7EDC07F22504FDE000058033 /* NewClassificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F12504FDE000058033 /* NewClassificationController.swift */; };
-		7EDC07F42505076F00058033 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F32505076F00058033 /* ImagePickerView.swift */; };
+		7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F32505076F00058033 /* ImagePickeriOS13.swift */; };
 		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
-		CFA1D631251F9DE00066064C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D630251F9DE00066064C /* ImagePicker.swift */; };
+		CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */; };
 		CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */; };
 		D842820BDAF07B742513D5DF /* Pods_Lepidoptera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */; };
 /* End PBXBuildFile section */
@@ -87,10 +87,10 @@
 		7EDB974425114A1B00211118 /* SheetImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetImagePicker.swift; sourceTree = "<group>"; };
 		7EDB974B25114F2F00211118 /* Classification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
 		7EDC07F12504FDE000058033 /* NewClassificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClassificationController.swift; sourceTree = "<group>"; };
-		7EDC07F32505076F00058033 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		7EDC07F32505076F00058033 /* ImagePickeriOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickeriOS13.swift; sourceTree = "<group>"; };
 		7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToClassifyPlaceholder.swift; sourceTree = "<group>"; };
 		A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepidoptera.debug.xcconfig"; path = "Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera.debug.xcconfig"; sourceTree = "<group>"; };
-		CFA1D630251F9DE00066064C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker_iOS14.swift; sourceTree = "<group>"; };
 		CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedLibraryPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,11 +144,11 @@
 		7EACEF3524E6C41E00D9715A /* Lepidoptera */ = {
 			isa = PBXGroup;
 			children = (
+				CFC728A12521F4530047631D /* Screens */,
 				7EDB974625114CB300211118 /* ML Model */,
 				7EACEF6024E6FA7D00D9715A /* Other Files */,
 				7EACEF5924E6F93F00D9715A /* Images */,
 				7EACEF5224E6E5CD00D9715A /* Auxiliary Views */,
-				7EACEF5124E6E56E00D9715A /* Views */,
 				7EACEF3624E6C41E00D9715A /* AppDelegate.swift */,
 				7EACEF3824E6C41E00D9715A /* SceneDelegate.swift */,
 				7EACEF3A24E6C41E00D9715A /* AppView.swift */,
@@ -170,33 +170,9 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		7EACEF5124E6E56E00D9715A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7EACEF4E24E6D02800D9715A /* ClassificationView.swift */,
-				7EACEF5324E6E61B00D9715A /* ObservationDetails.swift */,
-				7EACEF6B24E956FA00D9715A /* DetailsSheet.swift */,
-				7EACEF6D24E99D2C00D9715A /* ObservationNoteSheet.swift */,
-				7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */,
-				7EDC07F12504FDE000058033 /* NewClassificationController.swift */,
-				7EDB974425114A1B00211118 /* SheetImagePicker.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		7EACEF5224E6E5CD00D9715A /* Auxiliary Views */ = {
 			isa = PBXGroup;
 			children = (
-				7EACEF6324E88EAF00D9715A /* ConfidenceCircleResults.swift */,
-				7EACEF6524E94C4F00D9715A /* ObservationImage.swift */,
-				7EACEF6724E94CD500D9715A /* ObservationActionButtons.swift */,
-				7EACEF6924E94F4500D9715A /* MapView.swift */,
-				7EACEF6F24E9A4DE00D9715A /* DetailField.swift */,
-				7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */,
-				7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */,
-				7EDC07F32505076F00058033 /* ImagePickerView.swift */,
-				7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */,
-				CFA1D630251F9DE00066064C /* ImagePicker.swift */,
 				CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */,
 			);
 			path = "Auxiliary Views";
@@ -233,6 +209,94 @@
 				7E8B589325178D2E00D158F7 /* ModelInference.swift */,
 			);
 			path = "ML Model";
+			sourceTree = "<group>";
+		};
+		CFC728A12521F4530047631D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				CFC728A22521F47E0047631D /* Classify */,
+				CFC728A32521F48A0047631D /* Observations */,
+				CFC728A42521F49B0047631D /* More */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		CFC728A22521F47E0047631D /* Classify */ = {
+			isa = PBXGroup;
+			children = (
+				CFC728AA2521F7320047631D /* Input Image Sheet */,
+				7EACEF4E24E6D02800D9715A /* ClassificationView.swift */,
+				7EDC07F12504FDE000058033 /* NewClassificationController.swift */,
+				7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */,
+			);
+			path = Classify;
+			sourceTree = "<group>";
+		};
+		CFC728A32521F48A0047631D /* Observations */ = {
+			isa = PBXGroup;
+			children = (
+				CFC728A72521F6250047631D /* ObservationDetails */,
+				CFC728A62521F5FE0047631D /* Details Sheet */,
+				7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */,
+			);
+			path = Observations;
+			sourceTree = "<group>";
+		};
+		CFC728A42521F49B0047631D /* More */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		CFC728A62521F5FE0047631D /* Details Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				7EACEF6F24E9A4DE00D9715A /* DetailField.swift */,
+				7EACEF6B24E956FA00D9715A /* DetailsSheet.swift */,
+			);
+			path = "Details Sheet";
+			sourceTree = "<group>";
+		};
+		CFC728A72521F6250047631D /* ObservationDetails */ = {
+			isa = PBXGroup;
+			children = (
+				CFC728A92521F6D60047631D /* Observation Result */,
+				CFC728A82521F69F0047631D /* Observation Note */,
+			);
+			path = ObservationDetails;
+			sourceTree = "<group>";
+		};
+		CFC728A82521F69F0047631D /* Observation Note */ = {
+			isa = PBXGroup;
+			children = (
+				7EACEF6D24E99D2C00D9715A /* ObservationNoteSheet.swift */,
+				7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */,
+			);
+			path = "Observation Note";
+			sourceTree = "<group>";
+		};
+		CFC728A92521F6D60047631D /* Observation Result */ = {
+			isa = PBXGroup;
+			children = (
+				7EACEF5324E6E61B00D9715A /* ObservationDetails.swift */,
+				7EACEF6324E88EAF00D9715A /* ConfidenceCircleResults.swift */,
+				7EACEF6524E94C4F00D9715A /* ObservationImage.swift */,
+				7EACEF6724E94CD500D9715A /* ObservationActionButtons.swift */,
+				7EACEF6924E94F4500D9715A /* MapView.swift */,
+			);
+			path = "Observation Result";
+			sourceTree = "<group>";
+		};
+		CFC728AA2521F7320047631D /* Input Image Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				7EDB974425114A1B00211118 /* SheetImagePicker.swift */,
+				7EDC07F32505076F00058033 /* ImagePickeriOS13.swift */,
+				7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */,
+				CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */,
+			);
+			path = "Input Image Sheet";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,7 +444,7 @@
 				7EACEF6A24E94F4500D9715A /* MapView.swift in Sources */,
 				7EACEF6824E94CD500D9715A /* ObservationActionButtons.swift in Sources */,
 				7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */,
-				7EDC07F42505076F00058033 /* ImagePickerView.swift in Sources */,
+				7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */,
 				7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */,
 				7EACEF5424E6E61B00D9715A /* ObservationDetails.swift in Sources */,
 				7EACEF6624E94C4F00D9715A /* ObservationImage.swift in Sources */,
@@ -390,7 +454,7 @@
 				7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */,
 				7EACEF4D24E6C59500D9715A /* ObservationRecords.swift in Sources */,
 				7EACEF7024E9A4DE00D9715A /* DetailField.swift in Sources */,
-				CFA1D631251F9DE00066064C /* ImagePicker.swift in Sources */,
+				CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */,
 				7EDB974525114A1B00211118 /* SheetImagePicker.swift in Sources */,
 				7EACEF4F24E6D02800D9715A /* ClassificationView.swift in Sources */,
 				7EACEF6224E707DC00D9715A /* Data.swift in Sources */,
