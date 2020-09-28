@@ -22,6 +22,9 @@ struct DetailField: View {
                 Text(value)
                 Spacer()
             }
+            .padding(.top, 5)
+            
+            
             Divider()
         }
     }

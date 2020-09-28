@@ -33,7 +33,7 @@ struct AppView: View {
                         .font(.system(size: tabBarItemFontSize))
                     Text("Observations")
                 }
-            Text("Settings View")
+            More().environmentObject(self.records)
                 .tabItem {
                     Image(systemName: "gear")
                         .font(.system(size: tabBarItemFontSize))

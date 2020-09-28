@@ -40,7 +40,7 @@ struct DetailsSheet: View {
                         .resizable()
                         .scaledToFit()
                         .cornerRadius(10)
-                        .padding(.top, 20)
+                        .padding(20)
                 }
                 Spacer()
             }

@@ -33,6 +33,8 @@ struct ObservationActionButtons: View {
             
             VStack(alignment: .leading) {
                 
+                Divider()
+                
                 Button(action: { self.presentObservationDetailsSheet.toggle() }) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
@@ -42,7 +44,9 @@ struct ObservationActionButtons: View {
                 .sheet(isPresented: $presentObservationDetailsSheet) {
                     DetailsSheet(isPresented: self.$presentObservationDetailsSheet, observation: self.observation)
                 }
-                .padding(.bottom, 10)
+                .padding(.bottom, 5)
+                
+                Divider()
                 
                 Button(action: { self.presentAddNoteSheet.toggle() }) {
                     HStack() {
@@ -54,10 +58,14 @@ struct ObservationActionButtons: View {
                     ObservationNoteSheet(isPresented: self.$presentAddNoteSheet, userNote: "", observation: self.observation)
                         .environmentObject(self.records)
                 }
+                
+                Divider()
             }
             .padding(.bottom, 30)
             
             VStack(alignment: .leading) {
+                
+                Divider()
                 
                 Button(action: {
                     self.records.record[self.observationIndex].isFavorite = !self.records.record[self.observationIndex].isFavorite
@@ -80,7 +88,9 @@ struct ObservationActionButtons: View {
                         }
                     }
                 }
-                .padding(.bottom, 10)
+                .padding(.bottom, 5)
+                
+                Divider()
                 
                 Button(action: {
                     if self.observationIndex != -1 {
@@ -98,6 +108,8 @@ struct ObservationActionButtons: View {
                         Text("Remove Observation")
                     }
                 }
+                
+                Divider()
             }
             .padding(.bottom, 30)
         }
