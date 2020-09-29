@@ -23,8 +23,8 @@ struct ConfidenceCircleResults: View {
         ZStack {
             Circle()
                 .trim(from: show ? (1 - CGFloat(confidence)) : 0.99, to: 1)
-                .stroke(Color.green, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-                .frame(width: 75, height: 75, alignment: .center)
+                .stroke(getCircleColor(for: confidence), style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+//                .frame(width: 75, height: 75, alignment: .center)
                 .rotationEffect(.degrees(90))
                 .rotation3DEffect(Angle(degrees: 180), axis: (x:1, y: 0, z: 0))
                 .onAppear() {
@@ -39,4 +39,16 @@ struct ConfidenceCircleResults: View {
         }
             .padding(10)
     }
+}
+
+func getCircleColor(for confidence: Double) -> Color {
+    
+    if confidence >= 0.70 {
+        return Color.green
+    }
+    else if confidence >= 0.5 && confidence < 0.70 {
+        return Color.yellow
+    }
+    
+    return Color.red
 }

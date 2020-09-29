@@ -63,8 +63,8 @@ struct RectangleButton: View {
                     .scaledToFill()
                     .opacity(0.85))
             
-            .border(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)), width: 2)
-            .cornerRadius(10)
+            .border(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)), width: 2.3)
+            .cornerRadius(4.3)
         }
     }
 }

@@ -32,7 +32,7 @@ struct DetailsSheet: View {
                     DetailField(field: "Latitude: ", value: String(observation.location?.coordinate.latitude.description ?? "Location is unavailable"))
                     DetailField(field: "Longitude: ", value: String(observation.location?.coordinate.longitude.description ?? "Location is unavailable"))
                 }
-                .padding(EdgeInsets(top: 25, leading: 20, bottom: 0, trailing: 0))
+                .padding(.top, 25)
                 
                 VStack(alignment: .center) {
                     

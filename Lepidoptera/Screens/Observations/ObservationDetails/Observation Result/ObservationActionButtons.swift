@@ -37,27 +37,31 @@ struct ObservationActionButtons: View {
                 
                 Button(action: { self.presentObservationDetailsSheet.toggle() }) {
                     HStack {
-                        Image(systemName: "plus.circle.fill")
-                        Text("Observation Details")
+                        Image(systemName: "plus.square.fill")
+                        Text("Observation Details").bold()
                     }
+                    .padding(.leading, 15)
                 }
                 .sheet(isPresented: $presentObservationDetailsSheet) {
                     DetailsSheet(isPresented: self.$presentObservationDetailsSheet, observation: self.observation)
+                        .edgesIgnoringSafeArea(.bottom)
                 }
-                .padding(.bottom, 5)
+                .padding(.top, 4.3)
                 
                 Divider()
                 
                 Button(action: { self.presentAddNoteSheet.toggle() }) {
                     HStack() {
-                        Image(systemName: "pencil.circle.fill")
-                        Text("Add Note")
+                        Image(systemName: "square.and.pencil")
+                        Text("Add Note").bold()
                     }
+                    .padding(.leading, 15)
                 }
                 .sheet(isPresented: $presentAddNoteSheet) {
                     ObservationNoteSheet(isPresented: self.$presentAddNoteSheet, userNote: "", observation: self.observation)
                         .environmentObject(self.records)
                 }
+                .padding(.top, 4.3)
                 
                 Divider()
             }
@@ -74,21 +78,23 @@ struct ObservationActionButtons: View {
                     if observationIndex >= 0 {
                         if records.record[observationIndex].isFavorite {
                             HStack {
-                                Image(systemName: "star.circle.fill")
+                                Image(systemName: "star.fill")
                                     .foregroundColor(.yellow)
-                                Text("Remove from favorites")
+                                Text("Remove from favorites").bold()
                             }
+                            .padding(.leading, 15)
                         }
                         else {
                             HStack {
-                                Image(systemName: "star.circle")
+                                Image(systemName: "star")
                                     .foregroundColor(.yellow)
-                                Text("Add to Favorites")
+                                Text("Add to Favorites").bold()
                             }
+                            .padding(.leading, 15)
                         }
                     }
                 }
-                .padding(.bottom, 5)
+                .padding(.top, 4.3)
                 
                 Divider()
                 
@@ -103,15 +109,19 @@ struct ObservationActionButtons: View {
                     }
                 }) {
                     HStack {
-                        Image(systemName: "trash.circle.fill")
+                        Image(systemName: "trash.fill")
                             .foregroundColor(.red)
-                        Text("Remove Observation")
+                        Text("Remove Observation").bold()
                     }
+                    .padding(.leading, 15)
                 }
+                .padding(.top, 4.3)
                 
                 Divider()
             }
             .padding(.bottom, 30)
         }
+        .padding(.bottom, 90)
+        
     }
 }

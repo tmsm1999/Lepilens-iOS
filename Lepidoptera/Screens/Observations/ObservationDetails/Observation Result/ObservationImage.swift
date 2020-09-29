@@ -15,11 +15,14 @@ struct ObservationImage: View {
     
     var body: some View {
         
+        //GeometryReader { geometry in
+            
         Image(uiImage: image)
             .resizable()
             .scaledToFill()
-            .frame(width: 180, height: 180, alignment: .center)
+//                .frame(width: geometry.size.height / 3.5, height: geometry.size.height / 3.5, alignment: .center)
             .clipShape(Circle())
             .overlay(Circle().stroke(Color.black, lineWidth: 2))
+        //}
     }
 }

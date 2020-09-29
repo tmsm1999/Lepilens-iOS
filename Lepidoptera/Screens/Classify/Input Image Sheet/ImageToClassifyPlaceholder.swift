@@ -20,6 +20,7 @@ struct ImageToClassifyPlaceholder: View {
                 Image(uiImage: self.image)
                     .resizable()
                     .scaledToFit()
+                    .cornerRadius(5)
                 Spacer()
             }
         }

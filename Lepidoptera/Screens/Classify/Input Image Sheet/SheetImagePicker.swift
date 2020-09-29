@@ -122,7 +122,7 @@ struct SheetImagePicker: View {
                                 }
                             }
                         }) {
-                            Text(openPhotosAppTextString)
+                            Text(openPhotosAppTextString).bold()
                         }
                         .padding(.top, geometry.size.height / rectanglePaddingDivisor)
                         .sheet(isPresented: self.$imagePickerIsPresented, content: {
@@ -141,7 +141,7 @@ struct SheetImagePicker: View {
                             Button(action: {
                                 self.imagePickerIsPresented.toggle()
                             }) {
-                                Text(openCameraAppTextString)
+                                Text(openCameraAppTextString).bold()
                             }
                             .padding(.top, geometry.size.height / rectanglePaddingDivisor)
                             .fullScreenCover(isPresented: self.$imagePickerIsPresented, content: {
@@ -224,10 +224,11 @@ struct SheetImagePicker: View {
                     }) {
                         Text("Clear")
                     }
-                    .padding(.top, 15)
+                    .padding(.top, 10)
                     .disabled(self.imageWasImported == false)
                     //If no image was imported the button is disabled.
                 }
+                .padding(.bottom, 15)
             }
             .navigationBarTitle(Text("New Observation"))
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
@@ -247,6 +248,6 @@ struct SheetImagePicker: View {
     
 }
 
-private let openPhotosAppTextString: String = "Import image from Photos"
-private let openCameraAppTextString: String = "Open the Camera app"
+private let openPhotosAppTextString: String = "Import from Photos"
+private let openCameraAppTextString: String = "Open Camera"
 private let rectanglePaddingDivisor: CGFloat = 2.5 //FIXME: Is it possible to change this?

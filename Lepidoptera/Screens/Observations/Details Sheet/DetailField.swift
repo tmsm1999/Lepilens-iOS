@@ -19,10 +19,11 @@ struct DetailField: View {
         VStack {
             HStack {
                 Text(field).bold()
-                Text(value)
+                Text(value).fontWeight(.regular)
                 Spacer()
             }
             .padding(.top, 5)
+            .padding(.leading, 25)
             
             
             Divider()

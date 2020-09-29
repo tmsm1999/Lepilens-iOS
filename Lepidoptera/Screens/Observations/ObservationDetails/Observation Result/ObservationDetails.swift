@@ -22,51 +22,56 @@ struct ObservationDetails: View {
     var observation: Observation
     
     var body: some View {
-        VStack(alignment: .center) {
+        
+        GeometryReader { geometry in
             
-            ZStack {
-                MapView(observationCoordinates: observation.location)
-                    .frame(height: 280)
-                    .edgesIgnoringSafeArea(.top)
+            ScrollView(.vertical, showsIndicators: true) {
                 
-                ObservationImage(image: observation.image)
-                    .offset(x: 0, y: 50)
-            }
-            
-            GeometryReader { geometry in
-                
-                ScrollView(.vertical, showsIndicators: true) {
+                VStack {
                     
-                    VStack(alignment: .leading) {
+                    ZStack {
                         
-                        HStack() {
-                            
-                            VStack(alignment: .leading) {
-                                Text(self.observation.speciesName)
-                                    .font(.system(size: 40, weight: .semibold))
-                                
-                                Text(self.observation.date.description)
-                            }
-                            
-                            Spacer()
-                            
-                            ConfidenceCircleResults(confidence: self.observation.classificationConfidence)
-                                .padding(.trailing, 10)
-                            
-                        }
-                        .frame(width: geometry.size.width)
+                        MapView(observationCoordinates: observation.location)
+                            .frame(width: geometry.size.width, height: geometry.size.height / 3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .edgesIgnoringSafeArea(.top)
                         
-                        ObservationActionButtons(dismissModalView: self.$dismissModalView, observation: self.observation)
-                            .offset(x: 0, y: 40)
-                            .environmentObject(self.records)
+                        
+                        ObservationImage(image: observation.image)
+                            .frame(width: geometry.size.height / 4.3, height: geometry.size.height / 4.3, alignment: .center)
+                            .offset(x: 0, y: geometry.size.height / 4.7)
                     }
+                    
+                    HStack() {
+
+                        VStack(alignment: .leading) {
+                            Text(self.observation.speciesName)
+                                .font(.system(size: geometry.size.height / 17, weight: .semibold))
+
+                            Text(self.observation.date.description)
+                                .font(.system(size: geometry.size.height / 45, weight: .medium))
+                        }
+                        .padding(.leading, 10)
+
+                        Spacer()
+
+                        ConfidenceCircleResults(confidence: self.observation.classificationConfidence)
+                            .frame(width: geometry.size.width / 4.2, height: geometry.size.width / 4.2, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .padding(.trailing, 10)
+
+                    }
+                    .frame(width: geometry.size.width)
+                    .padding(.top, geometry.size.height / 6)
+                    
+                    Spacer()
                 }
-                .padding(.top, 10)
+                
+                ObservationActionButtons(dismissModalView: self.$dismissModalView, observation: self.observation)
+                                            .offset(x: 0, y: 20)
+                                            .environmentObject(self.records)
+                
+                //Spacer()
             }
-            .padding(.leading, 20)
-            .padding(.bottom, 2)
-            
-            Spacer()
         }
+        .edgesIgnoringSafeArea(.all)
     }
 }
