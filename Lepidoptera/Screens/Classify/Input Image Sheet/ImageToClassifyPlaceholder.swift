@@ -14,15 +14,13 @@ struct ImageToClassifyPlaceholder: View {
     @State var image: UIImage
     
     var body: some View {
-        GeometryReader { geometry in
-            HStack {
-                Spacer()
-                Image(uiImage: self.image)
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(5)
-                Spacer()
-            }
+        HStack {
+            Spacer()
+            Image(uiImage: self.image)
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(5)
+            Spacer()
         }
     }
 }

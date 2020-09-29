@@ -40,6 +40,8 @@ struct SheetImagePicker: View {
     @State var imagePlaceholderIsVisible = false
     ///Boolean variable that tells if the image Placeholder is empty or not.
     @State var imageWasImported = false
+    ///Controls progress view when ImageIsBeingClassified
+    @State var imageIsBeingClassified = false
     
     ///Variable that controls wheater the classification sheet is open or not.
     ///Whenever this variable changes the state of the sheet changes - up or down.
@@ -173,60 +175,73 @@ struct SheetImagePicker: View {
                             }
                         }
                         .frame(width: geometry.size.width * 0.80, height: geometry.size.height * 0.4, alignment: .center)
+                    
                 }
                 
                 Spacer()
                 
                 VStack {
                     
-                    Button(action: {
-                        
-                        //Runs user initiated action of classifying the image.
-                        //Executed out of the main thread not to block the user interface.
-                        DispatchQueue.global(qos: .userInitiated).async {
-                            //TODO: What happens if the this is sync. Do I need the semaphore?
+                    if !imageIsBeingClassified {
+                    
+                        Button(action: {
                             
-                            let newInference = ModelInference()
-                            newInference.runInference(image: self.imageToClassify)
+                            self.imageIsBeingClassified.toggle()
                             
-                            DispatchQueue.main.async {
+                            //Runs user initiated action of classifying the image.
+                            //Executed out of the main thread not to block the user interface.
+                            DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 3) {
+                                //TODO: What happens if the this is sync. Do I need the semaphore?
                                 
-                                if let topFiveResults = newInference.getResults() {
+                                let newInference = ModelInference()
+                                newInference.runInference(image: self.imageToClassify)
+                                
+                                DispatchQueue.main.async {
                                     
-                                    //Label comes in the format eg. Vanessa_atalanta.
-                                    let labelComponents = topFiveResults[0].label.components(separatedBy: "_")
-                                    let finalLabel = labelComponents[0] + " " + labelComponents[1]
-                                    
-                                    let confidence = topFiveResults[0].confidence
-                                    
-                                    let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, image: self.imageToClassify, location: self.imageLocation, date: Date(), isFavorite: false, time: "17:00")
-                                    
-                                    self.observation = observation
-                                    self.records.addObservation(self.observation!)
+                                    if let topFiveResults = newInference.getResults() {
+                                        
+                                        //Label comes in the format eg. Vanessa_atalanta.
+                                        let labelComponents = topFiveResults[0].label.components(separatedBy: "_")
+                                        let finalLabel = labelComponents[0] + " " + labelComponents[1]
+                                        
+                                        let confidence = topFiveResults[0].confidence
+                                        
+                                        let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, image: self.imageToClassify, location: self.imageLocation, date: Date(), isFavorite: false, time: "17:00")
+                                        
+                                        self.observation = observation
+                                        self.records.addObservation(self.observation!)
+                                    }
                                 }
                             }
+                        }) {
+                            Text("Classify")
+                                .padding([.top, .bottom], 12)
+                                .padding([.leading, .trailing], 30)
+                                .font(.system(size: 18, weight: .medium, design: .rounded))
+                                .foregroundColor(.white)
+                                .background(RoundedRectangle(cornerRadius: 60, style: .continuous))
                         }
-                    }) {
-                        Text("Classify")
-                            .padding([.top, .bottom], 12)
-                            .padding([.leading, .trailing], 30)
-                            .font(.system(size: 18, weight: .medium, design: .rounded))
-                            .foregroundColor(.white)
-                            .background(RoundedRectangle(cornerRadius: 60, style: .continuous))
-                    }
-                    .disabled(self.imageWasImported == false)
-                    //If no image was imported the button is disabled.
-                    
-                    Button(action: {
+                        .disabled(self.imageWasImported == false)
+                        //If no image was imported the button is disabled.
                         
-                        self.imageWasImported = false
-                        self.imagePlaceholderIsVisible.toggle()
-                    }) {
-                        Text("Clear")
+                        Button(action: {
+                            
+                            self.imageWasImported = false
+                            self.imagePlaceholderIsVisible.toggle()
+                        }) {
+                            Text("Clear")
+                        }
+                        .padding(.top, 10)
+                        .disabled(self.imageWasImported == false)
+                        //If no image was imported the button is disabled.
                     }
-                    .padding(.top, 10)
-                    .disabled(self.imageWasImported == false)
-                    //If no image was imported the button is disabled.
+                    else {
+                        if #available(iOS 14.0, *) {
+                            ProgressView("Classifying image...").padding(.bottom, 10)
+                        } else {
+                            // Fallback on earlier versions
+                        }
+                    }
                 }
                 .padding(.bottom, 15)
             }

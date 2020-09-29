@@ -121,6 +121,18 @@ struct More: View {
                         })
                     
                     Button(action: {
+                        if let url = URL(string: "https://github.com/tmsm1999/lepidoptera-ios-project") {
+                            UIApplication.shared.open(url)
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: "chevron.left.slash.chevron.right")
+                            Text("View source code")
+                            
+                        }
+                    }
+                    
+                    Button(action: {
                         
                     }) {
                         HStack {

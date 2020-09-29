@@ -17,6 +17,8 @@ struct ObservationActionButtons: View {
     @State private var presentObservationDetailsSheet: Bool = false
     ///Works with child modal view to present the sheet with the note for that observation.
     @State private var presentAddNoteSheet: Bool = false
+    ///Controls the toggle of the alert for deleting observation.
+    @State var showDeleteObservationAlert: Bool = false
     
     ///Works with parent to dismiss current view.
     @Binding var dismissModalView: Bool
@@ -99,14 +101,7 @@ struct ObservationActionButtons: View {
                 Divider()
                 
                 Button(action: {
-                    if self.observationIndex != -1 {
-                        self.presentationMode.wrappedValue.dismiss()
-                        self.records.record.remove(at: self.observationIndex)
-                        
-                        if self.dismissModalView == true {
-                            self.dismissModalView = false
-                        }
-                    }
+                    self.showDeleteObservationAlert.toggle()
                 }) {
                     HStack {
                         Image(systemName: "trash.fill")
@@ -122,6 +117,19 @@ struct ObservationActionButtons: View {
             .padding(.bottom, 30)
         }
         .padding(.bottom, 90)
+        .alert(isPresented: $showDeleteObservationAlert) {
+            Alert(title: Text("Delete observation"), message: Text("Are you sure you want to delete this observation and associated data?"), primaryButton: .destructive(Text("Yes")) {
+                
+                if self.observationIndex != -1 {
+                    self.presentationMode.wrappedValue.dismiss()
+                    self.records.record.remove(at: self.observationIndex)
+                    
+                    if self.dismissModalView == true {
+                        self.dismissModalView = false
+                    }
+                }
+            }, secondaryButton: .cancel(Text("No")))
+        }
         
     }
 }
