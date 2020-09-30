@@ -26,7 +26,7 @@ struct Observation: Identifiable, Equatable {
     let classificationConfidence: Double
     let image: UIImage
     let location: CLLocation?
-    let date: Date //TODO: Check what is wrong with the date because it represents one less hour.
+    let date: String //TODO: Check what is wrong with the date because it represents one less hour.
     var isFavorite: Bool
     var userNote: String = ""
     let id = UUID()

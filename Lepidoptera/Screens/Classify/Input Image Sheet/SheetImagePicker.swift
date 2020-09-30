@@ -190,7 +190,7 @@ struct SheetImagePicker: View {
                             
                             //Runs user initiated action of classifying the image.
                             //Executed out of the main thread not to block the user interface.
-                            DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 3) {
+                            DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
                                 //TODO: What happens if the this is sync. Do I need the semaphore?
                                 
                                 let newInference = ModelInference()
@@ -205,8 +205,10 @@ struct SheetImagePicker: View {
                                         let finalLabel = labelComponents[0] + " " + labelComponents[1]
                                         
                                         let confidence = topFiveResults[0].confidence
+                                        let date = formatDate(date: Date())
+                                        let time = formatTime(date: Date())
                                         
-                                        let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, image: self.imageToClassify, location: self.imageLocation, date: Date(), isFavorite: false, time: "17:00")
+                                        let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, image: self.imageToClassify, location: self.imageLocation, date: date, isFavorite: false, time: time)
                                         
                                         self.observation = observation
                                         self.records.addObservation(self.observation!)
@@ -239,7 +241,7 @@ struct SheetImagePicker: View {
                         if #available(iOS 14.0, *) {
                             ProgressView("Classifying image...").padding(.bottom, 10)
                         } else {
-                            // Fallback on earlier versions
+                            Text("Classifying image...")
                         }
                     }
                 }
@@ -266,3 +268,25 @@ struct SheetImagePicker: View {
 private let openPhotosAppTextString: String = "Import from Photos"
 private let openCameraAppTextString: String = "Open Camera"
 private let rectanglePaddingDivisor: CGFloat = 2.5 //FIXME: Is it possible to change this?
+
+func formatDate(date: Date) -> String {
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = .current
+    dateFormatter.dateFormat = "MMMM dd, yyyy"
+    
+    let date = dateFormatter.string(from: date)
+    return date
+}
+
+func formatTime(date: Date) -> String {
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = .current
+    dateFormatter.timeZone = .current
+    dateFormatter.dateFormat = "hh:mm a"
+    
+    let time = dateFormatter.string(from: date)
+    return time
+}
+

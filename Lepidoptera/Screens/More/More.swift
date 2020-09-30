@@ -143,6 +143,13 @@ struct More: View {
                     }
                 }
                 
+                Section {
+                    HStack {
+                        Text("Version")
+                        Spacer()
+                        Text("0.1").fontWeight(.regular)
+                    }
+                }
             }
             .navigationBarTitle(Text("Settings"))
         }
