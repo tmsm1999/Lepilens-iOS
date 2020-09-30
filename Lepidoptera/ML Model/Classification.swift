@@ -1,26 +1,21 @@
-////
-////  Classification.swift
-////  Lepidoptera
-////
-////  Created by Tomás Mamede on 15/09/2020.
-////  Copyright © 2020 Tomás Santiago. All rights reserved.
-////
 //
-//import Foundation
-//import SwiftUI
-//import Vision
-//import CoreML
-//import ImageIO
+//  Classification.swift
+//  Lepidoptera
 //
-////struct PairLabelConfidence {
-////    var label: String
-////    var confidence: Double
-////}
+//  Created by Tomás Mamede on 15/09/2020.
+//  Copyright © 2020 Tomás Santiago. All rights reserved.
 //
-//class Classification {
-//    
+
+import Foundation
+import SwiftUI
+import Vision
+import CoreML
+import ImageIO
+
+class Classification {
+    
 //    var results: [PairLabelConfidence]?
-//    
+//
 //    init() {}
 //
 //    private lazy var classificationRequest: VNCoreMLRequest = {
@@ -39,9 +34,32 @@
 //            fatalError("Error! Can't use Model.")
 //        }
 //    }()
-//
-//    func classifyImage(receivedImage: UIImage) -> [PairLabelConfidence]? {
-//
+
+    func detectButterfly(receivedImage: UIImage) {
+        
+        guard let cgImage = receivedImage.cgImage else {
+            return
+        }
+        
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        let request = VNClassifyImageRequest()
+        
+        try? handler.perform([request])
+        
+        guard let results = request.results as? [VNClassificationObservation] else {
+            return
+        }
+        
+        var categoriesDictionary: [String : Float] = [:]
+        for category in results {
+            categoriesDictionary[category.identifier] = category.confidence
+        }
+        
+        
+        
+        print(results)
+    }
+
 //        let orientation = CGImagePropertyOrientation(rawValue: UInt32(receivedImage.imageOrientation.rawValue))
 //
 //        if let image = CIImage(image: receivedImage) {
@@ -56,21 +74,21 @@
 //                }
 //            //}
 //        }
-//        
+//
 //        if let results = self.results {
 //            return results
 //        }
-//        
+//
 //        return nil
 //    }
-//
+
 //    func processClassifications(for request: VNRequest, error: Error?) {
 //        //DispatchQueue.main.async {
 //            guard let results = request.results as? [VNClassificationObservation] else {
 //                print("Unable to classify image!")
 //                return
 //            }
-//            
+//
 //            //print(results)
 //
 //             //The `results` will always be `VNClassificationObservation`s, as specified by the Core ML model in this project.
@@ -81,30 +99,57 @@
 //            if classifications.isEmpty {
 //                print("Unable to classify image!")
 //            } else {
-//                
+//
 //                for classification in classifications {
 //                    let label = String(format: "%@", classification.identifier)
 //                    let confidence = classification.confidence
 //                    let newPair = PairLabelConfidence(label: label, confidence: Double(confidence))
 //                    classificationResultsPerLabel.append(newPair)
 //                }
-//                
+//
 //                classificationResultsPerLabel.sort(by: {$0.confidence > $1.confidence})
 //                self.results = classificationResultsPerLabel
 //            }
 //        }
 //    //}
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //// Copyright 2019 The TensorFlow Authors. All Rights Reserved.
 ////
 //// Licensed under the Apache License, Version 2.0 (the "License");

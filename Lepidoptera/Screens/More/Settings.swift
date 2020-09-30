@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-struct More: View {
+let availableConfidence = [0.1, 0.25, 0.5, 0.75, 1]
+let precision = [70.98, 85.82, 94.06, 97.66, 100]
+let recall = [89.29, 81.65, 72.22, 57.94, 0.69]
+
+struct Settings: View {
     
     @EnvironmentObject var records: ObservationRecords
-    
-    let availableConfidence = [0.1, 0.25, 0.5, 0.75, 1]
-    let precision = [70.98, 85.82, 94.06, 97.66, 100]
-    let recall = [89.29, 81.65, 72.22, 57.94, 0.69]
     
     @State var availableConfidenceIndex: Int = 0
     @State var showConfidencePicker = false
@@ -36,19 +36,19 @@ struct More: View {
                     HStack {
                         Text("Precision")
                         Spacer()
-                        Text(String(format: "%.2f", self.precision[self.availableConfidenceIndex])).fontWeight(.regular)
+                        Text(String(format: "%.2f", precision[self.availableConfidenceIndex])).fontWeight(.regular)
                     }
                     
                     HStack {
                         Text("Recall")
                         Spacer()
-                        Text(String(format: "%.2f", self.recall[self.availableConfidenceIndex])).fontWeight(.regular)
+                        Text(String(format: "%.2f", recall[self.availableConfidenceIndex])).fontWeight(.regular)
                     }
                     
                     HStack {
                         Text("Confidence threshold")
                         Spacer()
-                        Text(String(format: "%.2f", self.availableConfidence[self.availableConfidenceIndex])).fontWeight(.regular)
+                        Text(String(format: "%.2f", availableConfidence[self.availableConfidenceIndex])).fontWeight(.regular)
                     }
                         .onTapGesture {
                             withAnimation(.easeInOut(duration: 0.5)) {
@@ -60,13 +60,13 @@ struct More: View {
                         Picker("Minimum Confidence", selection: self.$availableConfidenceIndex) {
                             
                             ForEach(0 ..< availableConfidence.count) {
-                                Text(String(format: "%.2f", self.availableConfidence[$0]))
+                                Text(String(format: "%.2f", availableConfidence[$0]))
                             }
                         }
                         .pickerStyle(WheelPickerStyle())
                         .onDisappear() {
                             print("Confidence saved")
-                            UserDefaults.standard.setValue(self.availableConfidenceIndex, forKey: "confidence_threshold_index")
+                            UserDefaults.standard.setValue(availableConfidenceIndex, forKey: "confidence_threshold_index")
                         }
                     }
                 }
@@ -133,7 +133,9 @@ struct More: View {
                     }
                     
                     Button(action: {
-                        
+                        if let url = URL(string: "https://twitter.com/mrtomasantiago") {
+                            UIApplication.shared.open(url)
+                        }
                     }) {
                         HStack {
                             Image(systemName: "envelope.fill")
@@ -161,6 +163,6 @@ struct More: View {
 
 struct More_Previews: PreviewProvider {
     static var previews: some View {
-        More(availableConfidenceIndex: 0)
+        Settings(availableConfidenceIndex: 0)
     }
 }

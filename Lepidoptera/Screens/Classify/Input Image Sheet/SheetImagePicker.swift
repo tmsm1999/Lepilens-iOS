@@ -11,6 +11,13 @@ import Photos
 import PhotosUI
 import CoreImage
 
+enum ActiveAlert {
+    case butterflyWasNotDetected,
+         noResultsConfidenceThreshold,
+         photosAccessDenied,
+         canNotImportPhoto
+}
+
 ///This View imports the image and has the buttons to manage the imported image.
 ///The classify button is used to classify an image and call the model to make a prediction.
 ///The clear button is used to clear the image from the view and that image is no longer used in the classification.
@@ -42,6 +49,12 @@ struct SheetImagePicker: View {
     @State var imageWasImported = false
     ///Controls progress view when ImageIsBeingClassified
     @State var imageIsBeingClassified = false
+    ///Makes alert appear when butterfly was not detected
+    @State var butterflyWasNotDetected = false
+    ///Makes alert appear when there are no results for the confidence threshoold.
+    @State var noResultsConfidenceThreshold = false
+    
+    @State var activeAlert: ActiveAlert?
     
     ///Variable that controls wheater the classification sheet is open or not.
     ///Whenever this variable changes the state of the sheet changes - up or down.
@@ -53,6 +66,8 @@ struct SheetImagePicker: View {
     ///Value comes from parent view to inform the current view the source of the image:
     ///Camera ou Photos application.
     var imageWillBeImportedFromPhotos: Bool
+    
+    let newInference = ModelInference()
     
     var body: some View {
         
@@ -81,7 +96,8 @@ struct SheetImagePicker: View {
                                         print("Limited access - show picker.")
                                         self.imagePickerIsPresented.toggle()
                                     case .denied:
-                                        self.showPhotosAccessDeniedAlert.toggle()
+                                        self.activeAlert = .photosAccessDenied
+                                        self.showAlert.toggle()
                                     case .notDetermined:
                                         PHPhotoLibrary.requestAuthorization(for: accessLevel) { newStatus in
                                             switch newStatus {
@@ -106,7 +122,8 @@ struct SheetImagePicker: View {
                                     case .authorized:
                                         self.imagePickerIsPresented.toggle()
                                     case .denied:
-                                        self.showPhotosAccessDeniedAlert.toggle()
+                                        self.activeAlert = .photosAccessDenied
+                                        self.showAlert.toggle()
                                     case .notDetermined:
                                         PHPhotoLibrary.requestAuthorization() { newStatus in
                                             switch newStatus {
@@ -130,7 +147,7 @@ struct SheetImagePicker: View {
                         .sheet(isPresented: self.$imagePickerIsPresented, content: {
                             
                             if #available(iOS 14, *) {
-                                ImagePicker_iOS14(imageToImport: self.$imageToClassify, isPresented: self.$imagePickerIsPresented, imageWasImported: self.$imageWasImported, presentAlert: self.$showCanNotImportPhotoAlert)
+                                ImagePicker_iOS14(imageToImport: self.$imageToClassify, isPresented: self.$imagePickerIsPresented, imageWasImported: self.$imageWasImported, presentAlert: self.$showAlert, activeAlert: self.$activeAlert)
                             }
                             else {
                                 ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Photos") //FIXME: Change the way the source type is handled.
@@ -193,26 +210,16 @@ struct SheetImagePicker: View {
                             DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
                                 //TODO: What happens if the this is sync. Do I need the semaphore?
                                 
-                                let newInference = ModelInference()
-                                newInference.runInference(image: self.imageToClassify)
+//                                let newInference = ModelInference()
+                                let butterflyWasDetected = newInference.detectButterfly(receivedImage: self.imageToClassify)
                                 
-                                DispatchQueue.main.async {
-                                    
-                                    if let topFiveResults = newInference.getResults() {
-                                        
-                                        //Label comes in the format eg. Vanessa_atalanta.
-                                        let labelComponents = topFiveResults[0].label.components(separatedBy: "_")
-                                        let finalLabel = labelComponents[0] + " " + labelComponents[1]
-                                        
-                                        let confidence = topFiveResults[0].confidence
-                                        let date = formatDate(date: Date())
-                                        let time = formatTime(date: Date())
-                                        
-                                        let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, image: self.imageToClassify, location: self.imageLocation, date: date, isFavorite: false, time: time)
-                                        
-                                        self.observation = observation
-                                        self.records.addObservation(self.observation!)
-                                    }
+                                if butterflyWasDetected {
+                                    runInference()
+                                }
+                                else {
+                                    print("Butterfly not detected")
+                                    self.activeAlert = .butterflyWasNotDetected
+                                    self.showAlert.toggle()
                                 }
                             }
                         }) {
@@ -252,17 +259,68 @@ struct SheetImagePicker: View {
         }
         //TODO: Change to show alert if the classification failed.
         .alert(isPresented: $showAlert) {
-            Alert(title: Text("Location Error"), message: Text("To create a new observation Imago needs to use your location"), primaryButton: .destructive(Text("Close")) { self.sheetIsPresented.toggle() }, secondaryButton: .cancel(Text("Continue"))) //FIXME: This strings need to be put in constants outside the view.
-        }
-        .alert(isPresented: $showPhotosAccessDeniedAlert) {
-            Alert(title: Text("Access to Photos was denied"), message: Text("If you want to give this app access to Photos, go to Settings -> Lepidoptera -> Photos."), dismissButton: .default(Text("Close")))
-        }
-        .alert(isPresented: $showCanNotImportPhotoAlert) {
-            Alert(title: Text("Access denied"), message: Text("This app can not access the selected photo because of limited access to your Photo Library. To change this go to Settings -> Lepidoptera -> Photos -> Edit Selected Photos"), primaryButton: .default(Text("Add Photos")) { //self.showLimitedPicker.toggle()
-            }, secondaryButton: .default(Text("Close")))
+            switch activeAlert {
+            case .butterflyWasNotDetected:
+                return Alert(title: Text("Butterfly not detected. Do you want to proceed with the classification?"), message: Text("The ML Model was not able to detect a butterfly in your image. Therefore, results may not make sense for the content of your image. To obtain the best results make sure the subject of your observation is centered and visible in the image."), primaryButton: .default(Text("No")) { self.sheetIsPresented.toggle()
+                }, secondaryButton: .destructive(Text("Proceed")) {
+                    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
+                        runInference() }
+                })
+            case .noResultsConfidenceThreshold:
+                return Alert(title: Text("No results for chosen confidence threshold."), message: Text("The confidence obtained for the observation was below the confidence threshold that was set. If you want to change it go to the \"Settings\" section of the app."), dismissButton: .default(Text("OK")) {
+                    self.sheetIsPresented.toggle()
+                })
+            case .canNotImportPhoto:
+                return Alert(title: Text("Access denied"), message: Text("This app can not access the selected photo because of limited access to your Photo Library. To change this go to Settings - Lepidoptera - Photos - Edit Selected Photos"), dismissButton: .default(Text("Ok")))
+            case .photosAccessDenied:
+                return Alert(title: Text("Access to Photos was denied"), message: Text("If you want to give this app access to Photos, go to Settings - Lepidoptera - Photos."), dismissButton: .default(Text("Close")))
+            case .none:
+                return Alert(title: Text("Default alert"))
+            }
         }
     }
     
+    func runInference() {
+        
+        newInference.runInference(image: self.imageToClassify)
+        
+        DispatchQueue.main.async {
+            
+            if let topFiveResults = newInference.getResults() {
+                
+                //Label comes in the format eg. Vanessa_atalanta.
+                let labelComponents = topFiveResults[0].label.components(separatedBy: "_")
+                let finalLabel = labelComponents[0] + " " + labelComponents[1]
+                
+                if UserDefaults.standard.value(forKey: "confidence_threshold_index") as? Int == nil {
+                    UserDefaults.standard.setValue(0, forKey: "confidence_threshold_index")
+                }
+                
+                guard let index = UserDefaults.standard.value(forKey: "confidence_threshold_index") as? Int else {
+                    return
+                }
+                
+                let chosenConfidenceThreshold = availableConfidence[index]
+                let confidence = topFiveResults[0].confidence
+                
+                if confidence >= chosenConfidenceThreshold {
+                    let date = formatDate(date: Date())
+                    let time = formatTime(date: Date())
+                    
+                    let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, image: self.imageToClassify, location: self.imageLocation, date: date, isFavorite: false, time: time)
+                    
+                    self.observation = observation
+                    self.records.addObservation(self.observation!)
+                }
+                else {
+                    self.imageIsBeingClassified = false
+                    self.imageWasImported = false
+                    self.activeAlert = .noResultsConfidenceThreshold
+                    self.showAlert.toggle()
+                }
+            }
+        }
+    }
 }
 
 private let openPhotosAppTextString: String = "Import from Photos"
@@ -289,4 +347,6 @@ func formatTime(date: Date) -> String {
     let time = dateFormatter.string(from: date)
     return time
 }
+
+
 

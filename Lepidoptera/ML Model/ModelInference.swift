@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MLKit
+import Vision
 
 /**
 A struct that represents a label in an observaation.
@@ -57,6 +58,7 @@ class ModelInference {
         let semaphore = DispatchSemaphore(value: 0)
         
         imageLabeler.process(visionImage) { result, error in
+            
             guard error == nil, let inferenceResult = result, !inferenceResult.isEmpty else {
                 print(error?.localizedDescription ?? "Error!")
                 return
@@ -83,5 +85,35 @@ class ModelInference {
         }
         
         return nil
+    }
+    
+    func detectButterfly(receivedImage: UIImage) -> Bool {
+        
+        guard let cgImage = receivedImage.cgImage else {
+            return false
+        }
+        
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        let request = VNClassifyImageRequest()
+        
+        try? handler.perform([request])
+        
+        guard let results = request.results as? [VNClassificationObservation] else {
+            return false
+        }
+        
+        var categoriesDictionary: [String : Float] = [:]
+        for category in results {
+            categoriesDictionary[category.identifier] = category.confidence
+        }
+        
+        if let butterflyConfidence = categoriesDictionary["butterfly"] {
+            print(butterflyConfidence)
+            if butterflyConfidence > 0.8 {
+                return true
+            }
+        }
+        
+        return false
     }
 }

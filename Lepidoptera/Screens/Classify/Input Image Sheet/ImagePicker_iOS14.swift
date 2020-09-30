@@ -17,6 +17,7 @@ struct ImagePicker_iOS14: UIViewControllerRepresentable {
     @Binding var isPresented: Bool
     @Binding var imageWasImported: Bool
     @Binding var presentAlert: Bool
+    @Binding var activeAlert: ActiveAlert?
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker_iOS14>) -> some UIViewController {
         
@@ -75,6 +76,7 @@ struct ImagePicker_iOS14: UIViewControllerRepresentable {
                                 self.parent.imageWasImported.toggle()
                             }
                             else {
+                                self.parent.activeAlert = .canNotImportPhoto
                                 self.parent.presentAlert.toggle()
                             }
                         }
