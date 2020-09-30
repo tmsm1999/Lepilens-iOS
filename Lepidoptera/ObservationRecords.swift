@@ -26,6 +26,6 @@ class ObservationRecords: ObservableObject, Identifiable {
     ///     - newObservation: Observation performed by the user
     func addObservation(_ newObservation: Observation) {
         //TODO: Check if underscore can be removed.
-        record.append(newObservation)
+        record.insert(newObservation, at: 0)
     }
 }

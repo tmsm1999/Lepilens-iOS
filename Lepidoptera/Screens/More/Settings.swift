@@ -109,13 +109,13 @@ struct Settings: View {
                 
                 Section(header: Text("This application")) {
                     NavigationLink(
-                        destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
+                        destination: PrivacyPolicyScreen(),
                         label: {
                             Text("About")
                         })
                     
                     NavigationLink(
-                        destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
+                        destination: PrivacyPolicyScreen(),
                         label: {
                             Text("Privacy Policy")
                         })

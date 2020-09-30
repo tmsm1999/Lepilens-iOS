@@ -109,7 +109,7 @@ class ModelInference {
         
         if let butterflyConfidence = categoriesDictionary["butterfly"] {
             print(butterflyConfidence)
-            if butterflyConfidence > 0.8 {
+            if butterflyConfidence > 0.6 {
                 return true
             }
         }

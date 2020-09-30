@@ -46,6 +46,7 @@
 		CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */; };
 		CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */; };
 		CFC728AE2521F9350047631D /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC728AD2521F9350047631D /* UserLocation.swift */; };
+		CFE5673925251A9100C9D341 /* PrivacyPolicyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */; };
 		D842820BDAF07B742513D5DF /* Pods_Lepidoptera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker_iOS14.swift; sourceTree = "<group>"; };
 		CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedLibraryPicker.swift; sourceTree = "<group>"; };
 		CFC728AD2521F9350047631D /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
+		CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				CF9892D0252205EF003BF22C /* Settings.swift */,
+				CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */,
 				7EACEF5424E6E61B00D9715A /* ObservationDetails.swift in Sources */,
 				7EACEF6624E94C4F00D9715A /* ObservationImage.swift in Sources */,
+				CFE5673925251A9100C9D341 /* PrivacyPolicyScreen.swift in Sources */,
 				7EACEF6E24E99D2C00D9715A /* ObservationNoteSheet.swift in Sources */,
 				7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */,
 				CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */,
