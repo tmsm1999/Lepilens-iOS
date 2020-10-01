@@ -22,6 +22,10 @@ struct ImagePickeriOS13: UIViewControllerRepresentable {
     @Binding var date: Date?
     ///Optional value that depending on the user settings sends to the parent view the location of the observation.
     @Binding var location: CLLocation?
+    ///Height in pixels of the image imported by the user.
+    @Binding var imageHeight: Int
+    ///Width in pixels of the image imported by the user.
+    @Binding var imageWidth: Int
     
     ///variable that stores the source of the image - Photos app or Camera app.
     var sourceType: String
@@ -77,9 +81,12 @@ struct ImagePickeriOS13: UIViewControllerRepresentable {
                         parent.date = Date()
                     }
                     
-                    if let location = asset.location {
+                    if let location = asset.location, UserDefaults.standard.bool(forKey: "include_location") {
                         parent.location = location
                     }
+                    
+                    parent.imageHeight = asset.pixelHeight
+                    parent.imageWidth = asset.pixelWidth
                     
                     parent.selectedImage = selectedImageFromPicker
                     parent.imageWasImported = true
@@ -87,12 +94,21 @@ struct ImagePickeriOS13: UIViewControllerRepresentable {
             }
             else {
                 if let selectedImageFromPicker = info[.editedImage] as? UIImage {
-                    parent.selectedImage = selectedImageFromPicker
-                    parent.imageWasImported = true
+                    
+                    if UserDefaults.standard.bool(forKey: "include_location") {
+                        parent.location = UserLocation().getUserLocation()
+                    }
                     
                     parent.date = Date()
-                    parent.location = UserLocation().getUserLocation()
-                    print(parent.location ?? "No location")
+                    
+                    let heightInPixels = selectedImageFromPicker.size.height * selectedImageFromPicker.scale
+                    parent.imageHeight = Int(heightInPixels)
+                    
+                    let widthInPixels = selectedImageFromPicker.size.width * selectedImageFromPicker.scale
+                    parent.imageWidth = Int(widthInPixels)
+                    
+                    parent.selectedImage = selectedImageFromPicker
+                    parent.imageWasImported = true
                 }
             }
             

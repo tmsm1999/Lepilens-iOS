@@ -79,13 +79,6 @@ struct Settings: View {
                     self.availableConfidenceIndex = confidenceThresholdIndex
                 }
                 
-                Section(header: Text("Location"), footer: Text("The app uses your current location or the location metadata in photos only when performing a classiifcation.")) {
-                    
-                    Toggle(isOn: includeLocation) {
-                        Text("Include Location")
-                    }
-                }
-                
                 Section(header: Text("Observation Data"), footer: Text("Your data is yours. It never leaves your device or your iCloud account.")) {
                     Button(action: {
                         
@@ -103,6 +96,40 @@ struct Settings: View {
                             Image(systemName: "trash.fill").foregroundColor(Color.red)
                             Text("Delete all observation data")
                                 .foregroundColor(Color.red)
+                        }
+                    }
+                }
+                
+                Section(header: Text("Location"), footer: Text("Pressing the toggle does not change your location settings. It only tells the app whether you want to include location in the next observation. The app uses your current location or the location metadata in photos only when performing a classification.")) {
+                    
+                    Button(action: {
+                        if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: "location.fill")
+                            Text("Change Location Settings")
+                            
+                        }
+                    }
+                    
+                    Toggle(isOn: includeLocation) {
+                        Text("Include Location")
+                    }
+                }
+                
+                Section(header: Text("Photos"), footer: Text("Every classification requires a photo. You can manage the type of access the app has to your photos.")) {
+                    
+                    Button(action: {
+                        if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: "photo.fill")
+                            Text("Change Photos Settings")
+                            
                         }
                     }
                 }

@@ -19,6 +19,15 @@ struct ImagePicker_iOS14: UIViewControllerRepresentable {
     @Binding var presentAlert: Bool
     @Binding var activeAlert: ActiveAlert?
     
+    ///Opptional value that contains the date in which the photo wa taken.
+    @Binding var date: Date?
+    ///Optional value that depending on the user settings sends to the parent view the location of the observation.
+    @Binding var location: CLLocation?
+    ///Height in pixels of the image imported by the user.
+    @Binding var imageHeight: Int
+    ///Width in pixels of the image imported by the user.
+    @Binding var imageWidth: Int
+    
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker_iOS14>) -> some UIViewController {
         
         var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
@@ -69,8 +78,21 @@ struct ImagePicker_iOS14: UIViewControllerRepresentable {
                             
                             if fetchResult.count > 0 {
                                 let imageMetadata = fetchResult[0]
-                                print(imageMetadata.creationDate!)
-
+                                
+                                if let date = imageMetadata.creationDate {
+                                    self.parent.date = date
+                                }
+                                else {
+                                    self.parent.date = Date()
+                                }
+                                
+                                if let location = imageMetadata.location, UserDefaults.standard.bool(forKey: "include_location") {
+                                    self.parent.location = location
+                                }
+                                
+                                self.parent.imageHeight = imageMetadata.pixelHeight
+                                self.parent.imageWidth = imageMetadata.pixelWidth
+                                
                                 print("Image impoted.")
                                 self.parent.imageToImport = image as! UIImage
                                 self.parent.imageWasImported.toggle()

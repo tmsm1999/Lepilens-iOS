@@ -21,7 +21,7 @@ struct DetailsSheet: View {
         
         NavigationView {
             
-            VStack {
+            ScrollView(.vertical, showsIndicators: true) {
                 
                 VStack(alignment: .leading) {
                     
@@ -31,6 +31,9 @@ struct DetailsSheet: View {
                     DetailField(field: "Time: ", value: observation.time)
                     DetailField(field: "Latitude: ", value: String(observation.location?.coordinate.latitude.description ?? "Location is unavailable"))
                     DetailField(field: "Longitude: ", value: String(observation.location?.coordinate.longitude.description ?? "Location is unavailable"))
+                    DetailField(field: "Image Height: ", value: String(observation.imageHeight))
+                    DetailField(field: "Image Width: ", value: String(observation.imageWidth))
+                    DetailField(field: "Image Source: ", value: observation.imageSource)
                 }
                 .padding(.top, 25)
                 

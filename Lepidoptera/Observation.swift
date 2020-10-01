@@ -24,7 +24,12 @@ struct Observation: Identifiable, Equatable {
 
     let speciesName: String
     let classificationConfidence: Double
+    
     let image: UIImage
+    let imageHeight: Int
+    let imageWidth: Int
+    let imageSource: String
+    
     let location: CLLocation?
     let date: String //TODO: Check what is wrong with the date because it represents one less hour.
     var isFavorite: Bool

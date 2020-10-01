@@ -35,6 +35,10 @@ struct SheetImagePicker: View {
     @State var imageDate: Date?
     ///User image metadata - if available stores the location where the picture was taken.
     @State var imageLocation: CLLocation?
+    ///Height in Pixels of the image imported by the user.
+    @State var imageHeight: Int = 0
+    ///Width in pixels of the imahe imported by the user.
+    @State var imageWidth: Int = 0
     ///Shows alert if something went wrong this the classification.
     @State var showAlert = false
     ///Show alert if user denied access to the Photos app.
@@ -63,9 +67,12 @@ struct SheetImagePicker: View {
     ///it should present a new sheet to import an image or to show the result of a classification.
     @Binding var observation: Observation?
     
+    
     ///Value comes from parent view to inform the current view the source of the image:
     ///Camera ou Photos application.
     var imageWillBeImportedFromPhotos: Bool
+    ///Where the user imported the image from.
+    @State var imageSource: String = ""
     
     let newInference = ModelInference()
     
@@ -82,6 +89,7 @@ struct SheetImagePicker: View {
                         ///Handle Photos app acess.
                         Button(action: {
                             
+                            self.imageSource = "iOS Photo Library"
                             DispatchQueue.global(qos: .userInteractive).async {
                                 
                                 if #available(iOS 14, *) {
@@ -147,10 +155,10 @@ struct SheetImagePicker: View {
                         .sheet(isPresented: self.$imagePickerIsPresented, content: {
                             
                             if #available(iOS 14, *) {
-                                ImagePicker_iOS14(imageToImport: self.$imageToClassify, isPresented: self.$imagePickerIsPresented, imageWasImported: self.$imageWasImported, presentAlert: self.$showAlert, activeAlert: self.$activeAlert)
+                                ImagePicker_iOS14(imageToImport: self.$imageToClassify, isPresented: self.$imagePickerIsPresented, imageWasImported: self.$imageWasImported, presentAlert: self.$showAlert, activeAlert: self.$activeAlert, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth)
                             }
                             else {
-                                ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Photos") //FIXME: Change the way the source type is handled.
+                                ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth, sourceType: "Photos") //FIXME: Change the way the source type is handled.
                             }
                         })
                     }
@@ -158,23 +166,25 @@ struct SheetImagePicker: View {
                         //Handle Camera access.
                         if #available(iOS 14.0, *) {
                             Button(action: {
+                                self.imageSource = "iPhone Camera"
                                 self.imagePickerIsPresented.toggle()
                             }) {
                                 Text(openCameraAppTextString).bold()
                             }
                             .padding(.top, geometry.size.height / rectanglePaddingDivisor)
                             .fullScreenCover(isPresented: self.$imagePickerIsPresented, content: {
-                                ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Camera").edgesIgnoringSafeArea(.all) //FIXME: Change the way the source type is handled.
+                                ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth, sourceType: "Camera").edgesIgnoringSafeArea(.all) //FIXME: Change the way the source type is handled.
                             })
                         } else {
                             Button(action: {
+                                self.imageSource = "iPhone Camera"
                                 self.imagePickerIsPresented.toggle()
                             }) {
                                 Text(openCameraAppTextString)
                             }
                             .padding(.top, geometry.size.height / rectanglePaddingDivisor)
                             .sheet(isPresented: self.$imagePickerIsPresented, content: {
-                                ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, sourceType: "Camera") //FIXME: Change the way the source type is handled.
+                                ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth, sourceType: "Camera") //FIXME: Change the way the source type is handled.
                             })
                         }
                     }
@@ -271,7 +281,12 @@ struct SheetImagePicker: View {
                     self.sheetIsPresented.toggle()
                 })
             case .canNotImportPhoto:
-                return Alert(title: Text("Access denied"), message: Text("This app can not access the selected photo because of limited access to your Photo Library. To change this go to Settings - Lepidoptera - Photos - Edit Selected Photos"), dismissButton: .default(Text("Ok")))
+                return Alert(title: Text("Access denied"), message: Text("This app can not access the selected photo because of limited access to your Photo Library. To change this you need to edit your selection."), primaryButton: .default(Text("Edit selection")) {
+                    if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                    }
+                }, secondaryButton: .default(Text("Ok")))
+                
             case .photosAccessDenied:
                 return Alert(title: Text("Access to Photos was denied"), message: Text("If you want to give this app access to Photos, go to Settings - Lepidoptera - Photos."), dismissButton: .default(Text("Close")))
             case .none:
@@ -307,7 +322,7 @@ struct SheetImagePicker: View {
                     let date = formatDate(date: Date())
                     let time = formatTime(date: Date())
                     
-                    let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, image: self.imageToClassify, location: self.imageLocation, date: date, isFavorite: false, time: time)
+                    let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, image: self.imageToClassify, imageHeight: self.imageHeight, imageWidth: self.imageWidth, imageSource: self.imageSource, location: self.imageLocation, date: date, isFavorite: false, time: time)
                     
                     self.observation = observation
                     self.records.addObservation(self.observation!)
