@@ -46,6 +46,7 @@
 		CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */; };
 		CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */; };
 		CFC728AE2521F9350047631D /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC728AD2521F9350047631D /* UserLocation.swift */; };
+		CFD122072526279900895E47 /* SendEmailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD122062526279900895E47 /* SendEmailSheet.swift */; };
 		CFE5673925251A9100C9D341 /* PrivacyPolicyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */; };
 		D842820BDAF07B742513D5DF /* Pods_Lepidoptera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,7 @@
 		CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker_iOS14.swift; sourceTree = "<group>"; };
 		CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedLibraryPicker.swift; sourceTree = "<group>"; };
 		CFC728AD2521F9350047631D /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
+		CFD122062526279900895E47 /* SendEmailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailSheet.swift; sourceTree = "<group>"; };
 		CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,7 +222,7 @@
 			children = (
 				CFC728A22521F47E0047631D /* Classify */,
 				CFC728A32521F48A0047631D /* Observations */,
-				CFC728A42521F49B0047631D /* More */,
+				CFC728A42521F49B0047631D /* Settings */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -246,13 +248,14 @@
 			path = Observations;
 			sourceTree = "<group>";
 		};
-		CFC728A42521F49B0047631D /* More */ = {
+		CFC728A42521F49B0047631D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				CF9892D0252205EF003BF22C /* Settings.swift */,
 				CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */,
+				CFD122062526279900895E47 /* SendEmailSheet.swift */,
 			);
-			path = More;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		CFC728A62521F5FE0047631D /* Details Sheet */ = {
@@ -468,6 +471,7 @@
 				7EACEF6224E707DC00D9715A /* Data.swift in Sources */,
 				7E8B589425178D2E00D158F7 /* ModelInference.swift in Sources */,
 				7EC9DD9C24FD7B14005F110A /* RectangleButton.swift in Sources */,
+				CFD122072526279900895E47 /* SendEmailSheet.swift in Sources */,
 				7EACEF6424E88EAF00D9715A /* ConfidenceCircleResults.swift in Sources */,
 				CFC728AE2521F9350047631D /* UserLocation.swift in Sources */,
 				7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */,

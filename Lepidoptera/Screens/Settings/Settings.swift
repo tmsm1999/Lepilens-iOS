@@ -7,10 +7,16 @@
 //
 
 import SwiftUI
+import MessageUI
 
 let availableConfidence = [0.1, 0.25, 0.5, 0.75, 1]
 let precision = [70.98, 85.82, 94.06, 97.66, 100]
 let recall = [89.29, 81.65, 72.22, 57.94, 0.69]
+
+enum AlertType {
+    case deleteAllData,
+         canNotSendEmail
+}
 
 struct Settings: View {
     
@@ -24,6 +30,14 @@ struct Settings: View {
     var includeLocation = Binding<Bool>(
         get: { UserDefaults.standard.bool(forKey: "include_location") },
         set: { UserDefaults.standard.set($0, forKey: "include_location") })
+    
+    
+    @State var emailErrorAlert: Bool = false
+    
+    @State var showAlert: Bool = false
+    @State var showEmailComposer: Bool = false
+    
+    @State var activeAlert: AlertType?
     
     var body: some View {
         
@@ -90,7 +104,9 @@ struct Settings: View {
                     }
                     
                     Button(action: {
-                        self.showDeleteDataAlert.toggle()
+                        self.activeAlert = .deleteAllData
+                        self.showAlert.toggle()
+                        
                     }) {
                         HStack {
                             Image(systemName: "trash.fill").foregroundColor(Color.red)
@@ -135,6 +151,7 @@ struct Settings: View {
                 }
                 
                 Section(header: Text("This application")) {
+                    
                     NavigationLink(
                         destination: PrivacyPolicyScreen(),
                         label: {
@@ -148,6 +165,21 @@ struct Settings: View {
                         })
                     
                     Button(action: {
+                        if MFMailComposeViewController.canSendMail() {
+                            self.showEmailComposer.toggle()
+                        }
+                        else {
+                            self.activeAlert = .canNotSendEmail
+                            self.showAlert.toggle()
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: "envelope.fill")
+                            Text("Contact Developer")
+                        }
+                    }
+                    
+                    Button(action: {
                         if let url = URL(string: "https://github.com/tmsm1999/lepidoptera-ios-project") {
                             UIApplication.shared.open(url)
                         }
@@ -155,18 +187,6 @@ struct Settings: View {
                         HStack {
                             Image(systemName: "chevron.left.slash.chevron.right")
                             Text("View source code")
-                            
-                        }
-                    }
-                    
-                    Button(action: {
-                        if let url = URL(string: "https://twitter.com/mrtomasantiago") {
-                            UIApplication.shared.open(url)
-                        }
-                    }) {
-                        HStack {
-                            Image(systemName: "envelope.fill")
-                            Text("Contact the Developer")
                             
                         }
                     }
@@ -182,8 +202,18 @@ struct Settings: View {
             }
             .navigationBarTitle(Text("Settings"))
         }
-        .alert(isPresented: $showDeleteDataAlert) {
-            Alert(title: Text("Delete all data"), message: Text("Are you sure you want to delete all observations and associated data?"), primaryButton: .destructive(Text("Yes")) { self.records.record.removeAll() }, secondaryButton: .cancel(Text("No")))
+        .alert(isPresented: $showAlert) {
+            switch activeAlert {
+            case .deleteAllData:
+                return Alert(title: Text("Delete all data"), message: Text("Are you sure you want to delete all observations and associated data?"), primaryButton: .destructive(Text("Yes")) { self.records.record.removeAll() }, secondaryButton: .cancel(Text("No")))
+            case .canNotSendEmail:
+                return Alert(title: Text("Can't send email"), message: Text("Please check your iPhone Settings and make sure you have an active email client."), dismissButton: .default(Text("OK")))
+            default:
+                return Alert(title: Text(""))
+            }
+        }
+        .sheet(isPresented: self.$showEmailComposer) {
+            SendEmailSheet(emailError: self.$emailErrorAlert)
         }
     }
 }
