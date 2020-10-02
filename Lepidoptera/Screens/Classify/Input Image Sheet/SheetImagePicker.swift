@@ -271,7 +271,7 @@ struct SheetImagePicker: View {
         .alert(isPresented: $showAlert) {
             switch activeAlert {
             case .butterflyWasNotDetected:
-                return Alert(title: Text("Butterfly not detected. Do you want to proceed with the classification?"), message: Text("The ML Model was not able to detect a butterfly in your image. Therefore, results may not make sense for the content of your image. To obtain the best results make sure the subject of your observation is centered and visible in the image."), primaryButton: .default(Text("No")) { self.sheetIsPresented.toggle()
+                return Alert(title: Text("Butterfly not detected"), message: Text("The ML Model was not able to detect a butterfly in your image. Therefore, results may not make sense for the content of your image. To obtain the best results make sure the subject of your observation is centered and visible in the image."), primaryButton: .default(Text("Cancel")) { self.sheetIsPresented.toggle()
                 }, secondaryButton: .destructive(Text("Proceed")) {
                     DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
                         runInference() }

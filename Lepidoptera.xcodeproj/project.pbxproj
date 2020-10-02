@@ -42,6 +42,7 @@
 		7EDC07F22504FDE000058033 /* NewClassificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F12504FDE000058033 /* NewClassificationController.swift */; };
 		7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F32505076F00058033 /* ImagePickeriOS13.swift */; };
 		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
+		CF16BDE825276C2C004E9D9D /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF16BDE725276C2C004E9D9D /* ShareSheet.swift */; };
 		CF9892D1252205EF003BF22C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9892D0252205EF003BF22C /* Settings.swift */; };
 		CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */; };
 		CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */; };
@@ -92,6 +93,7 @@
 		7EDC07F32505076F00058033 /* ImagePickeriOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickeriOS13.swift; sourceTree = "<group>"; };
 		7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToClassifyPlaceholder.swift; sourceTree = "<group>"; };
 		A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepidoptera.debug.xcconfig"; path = "Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera.debug.xcconfig"; sourceTree = "<group>"; };
+		CF16BDE725276C2C004E9D9D /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		CF9892D0252205EF003BF22C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker_iOS14.swift; sourceTree = "<group>"; };
 		CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedLibraryPicker.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */,
+				CF16BDE725276C2C004E9D9D /* ShareSheet.swift */,
 			);
 			path = "Auxiliary Views";
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 			files = (
 				7EACEF4B24E6C46000D9715A /* Observation.swift in Sources */,
 				7EACEF6A24E94F4500D9715A /* MapView.swift in Sources */,
+				CF16BDE825276C2C004E9D9D /* ShareSheet.swift in Sources */,
 				7EACEF6824E94CD500D9715A /* ObservationActionButtons.swift in Sources */,
 				7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */,
 				CF9892D1252205EF003BF22C /* Settings.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MessageUI
+import StoreKit
 
 let availableConfidence = [0.1, 0.25, 0.5, 0.75, 1]
 let precision = [70.98, 85.82, 94.06, 97.66, 100]
@@ -165,6 +166,16 @@ struct Settings: View {
                         })
                     
                     Button(action: {
+                        SKStoreReviewController.requestReview()
+                    }) {
+                        HStack {
+                            Image(systemName: "star.square.fill")
+                            Text("Rate & Review")
+                            
+                        }
+                    }
+                    
+                    Button(action: {
                         if MFMailComposeViewController.canSendMail() {
                             self.showEmailComposer.toggle()
                         }
@@ -178,6 +189,14 @@ struct Settings: View {
                             Text("Contact Developer")
                         }
                     }
+                }
+                
+                Section {
+                    HStack {
+                        Text("Version")
+                        Spacer()
+                        Text("0.1").fontWeight(.regular)
+                    }
                     
                     Button(action: {
                         if let url = URL(string: "https://github.com/tmsm1999/lepidoptera-ios-project") {
@@ -186,17 +205,9 @@ struct Settings: View {
                     }) {
                         HStack {
                             Image(systemName: "chevron.left.slash.chevron.right")
-                            Text("View source code")
+                            Text("View Source Code")
                             
                         }
-                    }
-                }
-                
-                Section {
-                    HStack {
-                        Text("Version")
-                        Spacer()
-                        Text("0.1").fontWeight(.regular)
                     }
                 }
             }

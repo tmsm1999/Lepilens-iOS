@@ -31,7 +31,7 @@ struct ImagePickeriOS13: UIViewControllerRepresentable {
     var sourceType: String
     
     ///This function configures the picker depending on the source type.
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickeriOS13>) -> some UIViewController {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickeriOS13>) -> UIViewController {
         
         let controller = UIImagePickerController()
         
@@ -41,8 +41,9 @@ struct ImagePickeriOS13: UIViewControllerRepresentable {
         }
         else {
             controller.sourceType = .camera
-            controller.allowsEditing = true
+            controller.allowsEditing = false
             controller.cameraDevice = .rear
+            //controller.cameraCaptureMode = .photo
         }
         
         controller.delegate = context.coordinator
@@ -93,7 +94,9 @@ struct ImagePickeriOS13: UIViewControllerRepresentable {
                 }
             }
             else {
-                if let selectedImageFromPicker = info[.editedImage] as? UIImage {
+                let image = info[.originalImage]
+                
+                if let selectedImageFromPicker = image as? UIImage {
                     
                     if UserDefaults.standard.bool(forKey: "include_location") {
                         parent.location = UserLocation().getUserLocation()

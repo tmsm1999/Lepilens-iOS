@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ObservationActionButtons: View {
     
@@ -19,6 +20,8 @@ struct ObservationActionButtons: View {
     @State private var presentAddNoteSheet: Bool = false
     ///Controls the toggle of the alert for deleting observation.
     @State var showDeleteObservationAlert: Bool = false
+    ///Controls when the share sheet is presented.
+    @State var isPresentedShareSheet: Bool = false
     
     ///Works with parent to dismiss current view.
     @Binding var dismissModalView: Bool
@@ -62,6 +65,20 @@ struct ObservationActionButtons: View {
                 .sheet(isPresented: $presentAddNoteSheet) {
                     ObservationNoteSheet(isPresented: self.$presentAddNoteSheet, userNote: "", observation: self.observation)
                         .environmentObject(self.records)
+                }
+                .padding(.top, 4.3)
+                
+                Divider()
+                
+                Button(action: { self.isPresentedShareSheet.toggle() }) {
+                    HStack() {
+                        Image(systemName: "square.and.arrow.up")
+                        Text("Share Observation").bold()
+                    }
+                    .padding(.leading, 15)
+                }
+                .sheet(isPresented: $isPresentedShareSheet) {
+                    ShareSheet(items: getItemShareSheet())
                 }
                 .padding(.top, 4.3)
                 
@@ -132,4 +149,28 @@ struct ObservationActionButtons: View {
         }
         
     }
+    
+    func getItemShareSheet() -> [Any] {
+        
+        let species = observation.speciesName
+        let image = observation.image.pngData()
+        let date = observation.date
+        
+        var finalText: String = ""
+        
+        if let location = observation.location {
+            
+            let latitude = String(format: "%.1f", Double(location.coordinate.latitude))
+            let longitude = String(format: "%.1f", Double(location.coordinate.longitude))
+            
+            finalText = "New observation - \(date)\nSpecies: \(species)\nLatitude: \(latitude)\nLongitude: \(longitude)"
+        }
+        else {
+            finalText = "New observation - \(date)\nSpecies: \(species)\n"
+        }
+        
+        let items: [Any] = [image!, finalText]
+        return items
+    }
+
 }
