@@ -26,6 +26,9 @@ struct ObservationActionButtons: View {
     ///Works with parent to dismiss current view.
     @Binding var dismissModalView: Bool
     
+    @State var imageName: String = "star"
+    @State var buttonLabel: String = "Add to Favorites"
+    
     var observation: Observation
     
     var observationIndex: Int {
@@ -52,6 +55,7 @@ struct ObservationActionButtons: View {
                         .edgesIgnoringSafeArea(.bottom)
                 }
                 .padding(.top, 4.3)
+                .animation(.none)
                 
                 Divider()
                 
@@ -67,6 +71,7 @@ struct ObservationActionButtons: View {
                         .environmentObject(self.records)
                 }
                 .padding(.top, 4.3)
+                .animation(.none)
                 
                 Divider()
                 
@@ -81,6 +86,7 @@ struct ObservationActionButtons: View {
                     ShareSheet(items: getItemShareSheet())
                 }
                 .padding(.top, 4.3)
+                .animation(.none)
                 
                 Divider()
             }
@@ -92,28 +98,17 @@ struct ObservationActionButtons: View {
                 
                 Button(action: {
                     self.records.record[self.observationIndex].isFavorite = !self.records.record[self.observationIndex].isFavorite
+                    changeFavoriteButton()
                 }) {
-                    
-                    if observationIndex >= 0 {
-                        if records.record[observationIndex].isFavorite {
-                            HStack {
-                                Image(systemName: "star.fill")
-                                    .foregroundColor(.yellow)
-                                Text("Remove from favorites").bold()
-                            }
-                            .padding(.leading, 15)
-                        }
-                        else {
-                            HStack {
-                                Image(systemName: "star")
-                                    .foregroundColor(.yellow)
-                                Text("Add to Favorites").bold()
-                            }
-                            .padding(.leading, 15)
-                        }
+                    HStack {
+                        Image(systemName: imageName).foregroundColor(.yellow)
+                        Text(buttonLabel)
+                            .bold()
                     }
+                    .padding(.leading, 15)
                 }
                 .padding(.top, 4.3)
+                .animation(.none)
                 
                 Divider()
                 
@@ -132,6 +127,7 @@ struct ObservationActionButtons: View {
                 Divider()
             }
             .padding(.bottom, 30)
+            .animation(.none)
         }
         .padding(.bottom, 90)
         .alert(isPresented: $showDeleteObservationAlert) {
@@ -146,6 +142,20 @@ struct ObservationActionButtons: View {
                     }
                 }
             }, secondaryButton: .cancel(Text("No")))
+        }
+        .onAppear() {
+            changeFavoriteButton()
+        }
+    }
+    
+    func changeFavoriteButton() {
+        if records.record[observationIndex].isFavorite {
+            imageName = "star.fill"
+            buttonLabel = "Remove from favorites"
+        }
+        else {
+            imageName = "star"
+            buttonLabel = "Add to Favorites"
         }
     }
     
