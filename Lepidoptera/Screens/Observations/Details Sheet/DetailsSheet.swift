@@ -24,15 +24,16 @@ struct DetailsSheet: View {
             ScrollView(.vertical, showsIndicators: true) {
                 
                 VStack(alignment: .leading) {
-                    
-                    DetailField(field: "Species Name: ", value: observation.speciesName)
+                    //Add family
+                    DetailField(field: "Genus: ", value: String(observation.speciesName.split(separator: " ")[0]))
+                    DetailField(field: "Species: ", value: observation.speciesName)
                     DetailField(field: "Confidence: ", value: String(observation.classificationConfidence * 100) + "%")
                     DetailField(field: "Date: ", value: observation.date)
                     DetailField(field: "Time: ", value: observation.time)
                     DetailField(field: "Latitude: ", value: String(observation.location?.coordinate.latitude.description ?? "Location is unavailable"))
                     DetailField(field: "Longitude: ", value: String(observation.location?.coordinate.longitude.description ?? "Location is unavailable"))
-                    DetailField(field: "Image Height: ", value: String(observation.imageHeight) + "pixels")
-                    DetailField(field: "Image Width: ", value: String(observation.imageWidth) + "pixels")
+                    DetailField(field: "Image Height: ", value: String(observation.imageHeight) + " pixels")
+                    DetailField(field: "Image Width: ", value: String(observation.imageWidth) + " pixels")
                     DetailField(field: "Image Source: ", value: observation.imageSource)
                 }
                 .padding(.top, 25)
