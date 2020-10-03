@@ -17,6 +17,8 @@ struct RecordsListView: View {
     ///Controls which obsrvations are showed in the list based on being a favorite or not.
     @State var showFavoritesOnly = false
     
+    @State var reloadView = true
+    
     var body: some View {
         
         NavigationView {
@@ -34,7 +36,7 @@ struct RecordsListView: View {
                     ForEach(self.records.record) { record in
                         
                         if !self.showFavoritesOnly || record.isFavorite {
-                            NavigationLink(destination: ObservationDetails(dismissModalView: .constant(false), observation: record)) {
+                            NavigationLink(destination: ObservationDetails(dismissModalView: $reloadView, observation: record)) {
                                 
                                 HStack {
                                     
@@ -75,6 +77,9 @@ struct RecordsListView: View {
             .navigationBarTitle(Text("Observations"))
             .navigationBarItems(trailing: EditButton())
             .listStyle(GroupedListStyle())
+        }
+        .onAppear() {
+            self.reloadView.toggle()
         }
     }
     

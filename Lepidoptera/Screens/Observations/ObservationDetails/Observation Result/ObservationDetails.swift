@@ -38,25 +38,26 @@ struct ObservationDetails: View {
                         
                         ObservationImage(image: observation.image)
                             .frame(width: geometry.size.height / 4.3, height: geometry.size.height / 4.3, alignment: .center)
-                            .offset(x: 0, y: geometry.size.height / 4.7)
+                            .offset(x: 0, y: geometry.size.height / 4.9)
                     }
                     
                     HStack() {
 
                         VStack(alignment: .leading) {
-                            Text(self.observation.speciesName)
-                                .font(.system(size: geometry.size.height / 17, weight: .semibold))
+                            Text(formatSpaciesName(name: self.observation.speciesName))
+                                .font(.system(size: geometry.size.height / 22, weight: .semibold))
+                                .lineLimit(2)
 
                             Text(self.observation.date.description)
-                                .font(.system(size: geometry.size.height / 45, weight: .medium))
+                                .font(.system(size: geometry.size.height / 51, weight: .medium))
                         }
-                        .padding(.leading, 10)
+                        .padding(.leading, 13)
 
                         Spacer()
 
                         ConfidenceCircleResults(confidence: self.observation.classificationConfidence)
-                            .frame(width: geometry.size.width / 4.2, height: geometry.size.width / 4.2, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .padding(.trailing, 10)
+                            .frame(width: geometry.size.width / 4.4, height: geometry.size.width / 4.4, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .padding(.trailing, 13)
 
                     }
                     .frame(width: geometry.size.width)
@@ -73,5 +74,15 @@ struct ObservationDetails: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
+    }
+    
+    func formatSpaciesName(name: String) -> String {
+        
+        let nameArray = name.split(separator: " ")
+        if nameArray[0].count >= 10 {
+            return nameArray[0] + "\n" + nameArray[1]
+        }
+        
+        return name
     }
 }
