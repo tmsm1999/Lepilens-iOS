@@ -24,7 +24,12 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch CLLocationManager.authorizationStatus() {
+        
+        guard let locationManager = self.locationManager else {
+            return
+        }
+        
+        switch locationManager.authorizationStatus {
         case .authorizedAlways:
             UserDefaults.standard.set(true, forKey: "include_location")
         case .authorizedWhenInUse:

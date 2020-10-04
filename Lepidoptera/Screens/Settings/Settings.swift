@@ -166,7 +166,9 @@ struct Settings: View {
                         })
                     
                     Button(action: {
-                        SKStoreReviewController.requestReview()
+                        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                            SKStoreReviewController.requestReview(in: scene)
+                        }
                     }) {
                         HStack {
                             Image(systemName: "star.square.fill")
