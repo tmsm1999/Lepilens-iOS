@@ -45,6 +45,7 @@
 		CF16BDE825276C2C004E9D9D /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF16BDE725276C2C004E9D9D /* ShareSheet.swift */; };
 		CF9892D1252205EF003BF22C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9892D0252205EF003BF22C /* Settings.swift */; };
 		CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */; };
+		CFC50E5C252A23B100217E68 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFC50E5A252A23B100217E68 /* CoreDataModel.xcdatamodeld */; };
 		CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */; };
 		CFC728AE2521F9350047631D /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC728AD2521F9350047631D /* UserLocation.swift */; };
 		CFD122072526279900895E47 /* SendEmailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD122062526279900895E47 /* SendEmailSheet.swift */; };
@@ -96,6 +97,7 @@
 		CF16BDE725276C2C004E9D9D /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		CF9892D0252205EF003BF22C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker_iOS14.swift; sourceTree = "<group>"; };
+		CFC50E5B252A23B100217E68 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedLibraryPicker.swift; sourceTree = "<group>"; };
 		CFC728AD2521F9350047631D /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		CFD122062526279900895E47 /* SendEmailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailSheet.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				7EACEF3E24E6C42200D9715A /* Preview Content */,
 				7EACEF4A24E6C46000D9715A /* Observation.swift */,
 				7EACEF4C24E6C59500D9715A /* ObservationRecords.swift */,
+				CFC50E5A252A23B100217E68 /* CoreDataModel.xcdatamodeld */,
 			);
 			path = Lepidoptera;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				7EACEF6824E94CD500D9715A /* ObservationActionButtons.swift in Sources */,
 				7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */,
 				CF9892D1252205EF003BF22C /* Settings.swift in Sources */,
+				CFC50E5C252A23B100217E68 /* CoreDataModel.xcdatamodeld in Sources */,
 				7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */,
 				7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */,
 				7EACEF5424E6E61B00D9715A /* ObservationDetails.swift in Sources */,
@@ -682,6 +686,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CFC50E5A252A23B100217E68 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CFC50E5B252A23B100217E68 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = CFC50E5B252A23B100217E68 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7EACEF2B24E6C41E00D9715A /* Project object */;
 }
