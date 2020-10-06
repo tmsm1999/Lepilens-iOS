@@ -11,16 +11,18 @@ import Photos
 
 struct NewClassificationController: View {
     
-    @EnvironmentObject var records: ObservationRecords
-    //@Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) var managedObjectContext
     
-    @Binding var isPresented: Bool //Sheet atual
+    ///Controls whether we want to open camera or library picker.
+    var importFromPhotos: Bool
     
-    @State var observation: Observation?
-    @State var pickerIsVisible = true
-    @State var dismissModalView: Bool = false
+    ///Controls what view should appear - Sheet or result.
+    @State var classificationWasSuccessful = false
+    ///Current observation.
+    @State var observation = Observation()
     
-    var importImageFromPhotos: Bool
+    ///Controls if current sheet is visible or not.
+    @Binding var isPresented: Bool
     
     var body: some View {
         
@@ -28,20 +30,28 @@ struct NewClassificationController: View {
             
             VStack(alignment: .center) {
                 
-                if self.observation == nil {
-                    SheetImagePicker(sheetIsPresented: self.$isPresented, observation: self.$observation, imageWillBeImportedFromPhotos: self.importImageFromPhotos)
+                if classificationWasSuccessful == false {
+                    SheetImagePicker(
+                        imageWillBeImportedFromPhotos: self.importFromPhotos,
+                        classificationWasSuccessful: self.$classificationWasSuccessful,
+                        observation: self.$observation,
+                        sheetIsPresented: self.$isPresented
+                    ).environment(\.managedObjectContext, self.managedObjectContext)
                 }
                 else {
-                    ObservationDetails(dismissModalView: self.$isPresented, observation: observation!).environmentObject(self.records)
-                        .transition(.slide)
-                        .animation(.linear(duration: 1))
+                    ObservationDetails(
+                        observation: self.observation
+                    )
+                    .transition(.slide)
+                    .animation(.linear(duration: 1))
+                    .environment(\.managedObjectContext, self.managedObjectContext)
                 }
             }
             
             .navigationBarItems(trailing:
-                                    Button(action: { self.isPresented.toggle() }) {
-                                        Text("Dismiss")
-                                    }
+                Button(action: { self.isPresented.toggle() }) {
+                    Text("Dismiss")
+                }
             )
         }
     }

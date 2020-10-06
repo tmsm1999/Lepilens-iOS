@@ -21,7 +21,7 @@ struct RectangleButton: View {
     ///Controls the child modal view and stores if it is open or closed.
     @State var sheetIsOpen: Bool = false
     
-    @EnvironmentObject var records: ObservationRecords
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     var body: some View {
         
@@ -44,10 +44,12 @@ struct RectangleButton: View {
                     .sheet(isPresented: self.$sheetIsOpen, content: {
                         
                         if self.action == "Photos" {
-                            NewClassificationController(isPresented: self.$sheetIsOpen, importImageFromPhotos: true).environmentObject(self.records)
+                            NewClassificationController(importFromPhotos: true, isPresented: $sheetIsOpen)
+                                .environment(\.managedObjectContext, self.managedObjectContext)
                         }
                         else {
-                            NewClassificationController(isPresented: self.$sheetIsOpen, importImageFromPhotos: false).environmentObject(self.records)
+                            NewClassificationController(importFromPhotos: false, isPresented: $sheetIsOpen)
+                                .environment(\.managedObjectContext, self.managedObjectContext)
                         }
                     })
                     

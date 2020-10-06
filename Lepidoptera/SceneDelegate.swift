@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let rootView = AppView().environment(\.managedObjectContext, context)
             
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: AppView().environmentObject(ObservationRecords()))
+            window.rootViewController = UIHostingController(rootView: rootView)
             self.window = window
             window.makeKeyAndVisible()
         }
@@ -66,7 +66,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     lazy var persistentContainer: NSPersistentContainer = {
         // 2
-        let container = NSPersistentContainer(name: "FaveFlicks")
+        let container = NSPersistentContainer(name: "CoreDataModel")
         // 3
         container.loadPersistentStores { _, error in
             // 4

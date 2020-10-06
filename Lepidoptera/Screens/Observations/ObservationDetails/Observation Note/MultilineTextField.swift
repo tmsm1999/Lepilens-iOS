@@ -59,7 +59,7 @@ struct MultilineTextField: UIViewRepresentable {
         }
         
         func textViewDidBeginEditing(_ textView: UITextView) {
-            self.parent.userNote = observation.userNote //Updates the current note.
+            self.parent.userNote = observation.userNote! //Updates the current note.
             
             textView.text = self.parent.userNote
             textView.textColor = .label

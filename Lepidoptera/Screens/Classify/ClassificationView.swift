@@ -12,7 +12,7 @@ import SwiftUI
 ///In this view the user can choose between importing an image from the Photos app or use the camera.
 struct ClassificationView: View {
     
-    @EnvironmentObject var records: ObservationRecords
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     var body: some View {
         
@@ -21,13 +21,14 @@ struct ClassificationView: View {
                 VStack(spacing: 50) {
                     RectangleButton(buttonString: "Import from Photos", imageTitle: "ImportFromPhotosRect", action: "Photos")
                         .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
-                        .environmentObject(self.records)
                         .shadow(color: Color.gray, radius: 20)
+                        .environment(\.managedObjectContext, self.managedObjectContext)
                     
                     
                     RectangleButton(buttonString: "Take a photo", imageTitle: "taking_photo_camera", action: "Camera")
-                        .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center).environmentObject(self.records)
+                        .frame(width: geometry.size.width * 0.75, height: geometry.size.height * 0.3, alignment: .center)
                         .shadow(color: Color.gray, radius: 20)
+                        .environment(\.managedObjectContext, self.managedObjectContext)
                     
                     Spacer()
                 }

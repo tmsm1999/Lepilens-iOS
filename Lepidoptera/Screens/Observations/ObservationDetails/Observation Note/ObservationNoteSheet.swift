@@ -12,7 +12,7 @@ import SwiftUI
 ///It gets the previous note and allows the user to edit that or create a new one.
 struct ObservationNoteSheet: View {
     
-    @EnvironmentObject var records: ObservationRecords
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     ///Informs the parent view if the sheet that allows to add a new observation is to be shown or not.
     @Binding var isPresented: Bool
@@ -22,11 +22,6 @@ struct ObservationNoteSheet: View {
     
     ///Current observation being shown.
     var observation: Observation
-    
-    ///Gets the current index of the observation in the list of observations.
-    var observationIndex: Int {
-        records.record.firstIndex(where: { $0.id == observation.id})!
-    }
     
     var body: some View {
         
@@ -38,13 +33,14 @@ struct ObservationNoteSheet: View {
                 ///- Parameters:
                 /// - userNote: placeholder to save the note.
                 /// - observation: observation the note is about.
-                MultilineTextField(userNote: $userNote, observation: records.record[observationIndex])
+                MultilineTextField(userNote: $userNote, observation: self.observation)
                     
                     .navigationBarTitle(Text("Observation Note"))
                     .navigationBarItems(trailing:
                                             
                         Button(action: {
-                            self.self.records.record[self.observationIndex].userNote = self.userNote
+                            self.observation.userNote = self.userNote
+                            try? self.managedObjectContext.save()
                             self.isPresented.toggle();
                             
                         }) {

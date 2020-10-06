@@ -25,22 +25,28 @@ struct DetailsSheet: View {
                 
                 VStack(alignment: .leading) {
                     //Add family
-                    DetailField(field: "Genus: ", value: String(observation.speciesName.split(separator: " ")[0]))
-                    DetailField(field: "Species: ", value: observation.speciesName)
-                    DetailField(field: "Confidence: ", value: String(observation.classificationConfidence * 100) + "%")
-                    DetailField(field: "Date: ", value: observation.date)
-                    DetailField(field: "Time: ", value: observation.time)
-                    DetailField(field: "Latitude: ", value: String(observation.location?.coordinate.latitude.description ?? "Location is unavailable"))
-                    DetailField(field: "Longitude: ", value: String(observation.location?.coordinate.longitude.description ?? "Location is unavailable"))
-                    DetailField(field: "Image Height: ", value: String(observation.imageHeight) + " pixels")
-                    DetailField(field: "Image Width: ", value: String(observation.imageWidth) + " pixels")
-                    DetailField(field: "Image Source: ", value: observation.imageSource)
+                    Group {
+                        DetailField(field: "Genus: ", value: String(observation.speciesName!.split(separator: " ")[0]))
+                        DetailField(field: "Species: ", value: observation.speciesName!)
+                        DetailField(field: "Confidence: ", value: String(observation.confidence * 100) + "%")
+                        DetailField(field: "Date: ", value: formatDate(date: observation.observationDate!))
+                        DetailField(field: "Time: ", value: formatTime(date: observation.observationDate!))
+                        DetailField(field: "Latitude: ", value: observation.latitude != -1 ? String(observation.latitude) : "Location is unavailable")
+                        DetailField(field: "Longitude: ", value: observation.longitude != -1 ? String(observation.longitude) : "Location is unavailable")
+                    }
+                    
+                    Group {
+                        DetailField(field: "Image Creation Date: ", value: formatDate(date: observation.imageCreationDate!))
+                        DetailField(field: "Image Height: ", value: String(observation.imageHeight) + " pixels")
+                        DetailField(field: "Image Width: ", value: String(observation.imageWidth) + " pixels")
+                        DetailField(field: "Image Source: ", value: observation.imageSource!)
+                    }
                 }
                 .padding(.top, 25)
                 
                 VStack(alignment: .center) {
                     
-                    Image(uiImage: observation.image)
+                    Image(uiImage: UIImage(data: observation.image!)!)
                         .resizable()
                         .scaledToFit()
                         .cornerRadius(10)

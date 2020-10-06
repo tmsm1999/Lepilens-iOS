@@ -14,19 +14,20 @@ struct MapView: UIViewRepresentable {
     
     private let CLLOcationDegrees = 0.10
     
-    var observationCoordinates: CLLocation?
+    let latitude: Double
+    let longitude: Double
     
     func makeUIView(context: Context) -> MKMapView {
         MKMapView.init(frame: .zero)
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        if let location = observationCoordinates {
+        if latitude != -1, longitude != -1 {
             let span = MKCoordinateSpan(latitudeDelta: CLLOcationDegrees, longitudeDelta: CLLOcationDegrees)
-            let region = MKCoordinateRegion(center: location.coordinate, span: span)
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
             
             let annotation =  MKPointAnnotation()
-            annotation.coordinate = location.coordinate
+            annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             
             uiView.setRegion(region, animated: true)
             uiView.addAnnotation(annotation)

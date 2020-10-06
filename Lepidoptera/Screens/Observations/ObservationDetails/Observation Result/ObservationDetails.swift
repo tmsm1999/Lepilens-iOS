@@ -14,10 +14,8 @@ import MapKit
 ///Also it includes buttons to show details, add to favorites and delete a view.
 struct ObservationDetails: View {
     
-    @EnvironmentObject var records: ObservationRecords
+    @Environment(\.managedObjectContext) var managedObjectContext
     
-    ///Informs the parent view if the model view is being shown or not.
-    @Binding var dismissModalView: Bool
     ///Current observation being shown.
     var observation: Observation
     
@@ -31,12 +29,12 @@ struct ObservationDetails: View {
                     
                     ZStack {
                         
-                        MapView(observationCoordinates: observation.location)
+                        MapView(latitude: observation.latitude, longitude: observation.longitude)
                             .frame(width: geometry.size.width, height: geometry.size.height / 3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             .edgesIgnoringSafeArea(.top)
                         
                         
-                        ObservationImage(image: observation.image)
+                        ObservationImage(image: UIImage(data: observation.image!)!)
                             .frame(width: geometry.size.height / 4.3, height: geometry.size.height / 4.3, alignment: .center)
                             .offset(x: 0, y: geometry.size.height / 4.9)
                     }
@@ -44,18 +42,18 @@ struct ObservationDetails: View {
                     HStack() {
 
                         VStack(alignment: .leading) {
-                            Text(formatSpaciesName(name: self.observation.speciesName))
+                            Text(formatSpaciesName(name: observation.speciesName!))
                                 .font(.system(size: geometry.size.height / 22, weight: .semibold))
                                 .lineLimit(2)
 
-                            Text(self.observation.date.description)
+                            Text(formatDate(date: observation.observationDate!))
                                 .font(.system(size: geometry.size.height / 51, weight: .medium))
                         }
                         .padding(.leading, 13)
 
                         Spacer()
 
-                        ConfidenceCircleResults(confidence: self.observation.classificationConfidence)
+                        ConfidenceCircleResults(confidence: observation.confidence)
                             .frame(width: geometry.size.width / 4.4, height: geometry.size.width / 4.4, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             .padding(.trailing, 13)
 
@@ -64,13 +62,15 @@ struct ObservationDetails: View {
                     .padding(.top, geometry.size.height / 6)
                     
                     Spacer()
+                
+                
+                    ObservationActionButtons(
+                        observation: self.observation
+                    )
+                        .offset(x: 0, y: 20)
+                        .environment(\.managedObjectContext, self.managedObjectContext)
                 }
-                
-                ObservationActionButtons(dismissModalView: self.$dismissModalView, observation: self.observation)
-                                            .offset(x: 0, y: 20)
-                                            .environmentObject(self.records)
-                
-                //Spacer()
+                .navigationBarTitle(Text(""))
             }
         }
         .edgesIgnoringSafeArea(.all)

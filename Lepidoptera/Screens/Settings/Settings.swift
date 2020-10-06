@@ -21,7 +21,8 @@ enum AlertType {
 
 struct Settings: View {
     
-    @EnvironmentObject var records: ObservationRecords
+    @FetchRequest(entity: Observation.entity(), sortDescriptors: []) var observationList: FetchedResults<Observation>
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     @State var availableConfidenceIndex: Int = 0
     @State var showConfidencePicker = false
@@ -218,7 +219,15 @@ struct Settings: View {
         .alert(isPresented: $showAlert) {
             switch activeAlert {
             case .deleteAllData:
-                return Alert(title: Text("Delete all data"), message: Text("Are you sure you want to delete all observations and associated data?"), primaryButton: .destructive(Text("Yes")) { self.records.record.removeAll() }, secondaryButton: .cancel(Text("No")))
+                return Alert(title: Text("Delete all data"), message: Text("Are you sure you want to delete all observations and associated data?"), primaryButton: .destructive(Text("Yes")) {
+                    
+                    for observation in observationList {
+                        self.managedObjectContext.delete(observation)
+                    }
+                    
+                    try? self.managedObjectContext.save()
+                    
+                }, secondaryButton: .cancel(Text("No")))
             case .canNotSendEmail:
                 return Alert(title: Text("Can't send email"), message: Text("Please check your iPhone Settings and make sure you have an active email client."), dismissButton: .default(Text("OK")))
             default:
@@ -228,11 +237,5 @@ struct Settings: View {
         .sheet(isPresented: self.$showEmailComposer) {
             SendEmailSheet(emailError: self.$emailErrorAlert)
         }
-    }
-}
-
-struct More_Previews: PreviewProvider {
-    static var previews: some View {
-        Settings(availableConfidenceIndex: 0)
     }
 }

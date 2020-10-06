@@ -12,8 +12,7 @@ import SwiftUI
 ///The first screen that appears in the TabView is the default screen in the application.
 struct AppView: View {
     
-    ///Variable that stores the user observations recorded in the application.
-    @EnvironmentObject var records: ObservationRecords
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     ///Prompts user to allow or deny acess to the location when the application is launched.
     private let location = UserLocation()
@@ -21,19 +20,19 @@ struct AppView: View {
     var body: some View {
         
         TabView {
-            ClassificationView().environmentObject(self.records)
+            ClassificationView().environment(\.managedObjectContext, self.managedObjectContext)
                 .tabItem {
                     Image(systemName: "camera.fill")
                         .font(.system(size: tabBarItemFontSize))
                     Text("Classify")
                 }
-            RecordsListView().environmentObject(self.records)
+            RecordsListView().environment(\.managedObjectContext, self.managedObjectContext)
                 .tabItem {
                     Image(systemName: "book.fill")
                         .font(.system(size: tabBarItemFontSize))
                     Text("Observations")
                 }
-            Settings().environmentObject(self.records)
+            Settings().environment(\.managedObjectContext, self.managedObjectContext)
                 .tabItem {
                     Image(systemName: "gear")
                         .font(.system(size: tabBarItemFontSize))

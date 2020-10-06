@@ -7,17 +7,17 @@
 //
 
 import SwiftUI
+import CoreData
 
 ///This view lists the observations made by the user.
 ///It includes photos imported from the Photos app and photos taken directly with the camera.
 struct RecordsListView: View {
     
-    @EnvironmentObject var records: ObservationRecords
+    @FetchRequest(entity: Observation.entity(), sortDescriptors: [NSSortDescriptor(key: "observationDate", ascending: false)]) var observationList: FetchedResults<Observation>
+    @Environment(\.managedObjectContext) var managedObjectContext
     
-    ///Controls which obsrvations are showed in the list based on being a favorite or not.
+    ///Controls which obsrvations are showed in the list based on being a favorite or not.ti
     @State var showFavoritesOnly = false
-    
-    @State var reloadView = true
     
     var body: some View {
         
@@ -33,14 +33,14 @@ struct RecordsListView: View {
                 
                 Section {
                     
-                    ForEach(self.records.record) { record in
+                    ForEach(self.observationList, id: \.self) { observation in
                         
-                        if !self.showFavoritesOnly || record.isFavorite {
-                            NavigationLink(destination: ObservationDetails(dismissModalView: $reloadView, observation: record)) {
+                        if !self.showFavoritesOnly || observation.isFavorite {
+                            NavigationLink(destination: ObservationDetails(observation: observation)) {
                                 
                                 HStack {
                                     
-                                    Image(uiImage: record.image)
+                                    Image(uiImage: UIImage(data: observation.image!)!)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 60, height: 60, alignment: .center)
@@ -48,10 +48,10 @@ struct RecordsListView: View {
                                         .cornerRadius(8)
                                     
                                     VStack(alignment: .leading) {
-                                        Text(record.speciesName)
+                                        Text(observation.speciesName!)
                                             .font(.system(size: 20))
                                             .bold()
-                                        Text(record.date.description)
+                                        Text(observation.observationDate != nil ? formatDate(date: observation.observationDate!) : "Date not found")
                                             .font(.system(size: 15))
                                             .foregroundColor(.secondary)
                                     }
@@ -59,7 +59,7 @@ struct RecordsListView: View {
                                     
                                     Spacer()
                                     
-                                    if(record.isFavorite) {
+                                    if(observation.isFavorite) {
                                         Image(systemName: "star.fill")
                                             .imageScale(.medium)
                                             .foregroundColor(.yellow)
@@ -67,37 +67,41 @@ struct RecordsListView: View {
                                     }
                                 }
                             }
-                            .environmentObject(self.records)
+                            .environment(\.managedObjectContext, managedObjectContext)
                         }
                     }
                     .onDelete(perform: delete)
-                    .onMove(perform: move)
+                    //.onMove(perform: move)
                 }
             }
             .navigationBarTitle(Text("Observations"))
             .navigationBarItems(trailing: EditButton())
             .listStyle(GroupedListStyle())
         }
-        .onAppear() {
-            self.reloadView.toggle()
-        }
     }
     
     ///Funtion that removes an observation from the list of observations.
-    func delete(at offset: IndexSet) {
-        records.record.remove(atOffsets: offset)
-        print(records.record.count)
+    func delete(at offsets: IndexSet) {
+        for index in offsets {
+            let observationToRemove = observationList[index]
+            managedObjectContext.delete(observationToRemove)
+        }
+        
+        try? managedObjectContext.save()
     }
     
     ///Allows the user to organize the order in which the observations appear in the list.
-    func move(from source: IndexSet, to destination: Int) {
-        records.record.move(fromOffsets: source, toOffset: destination)
-    }
+//    func move(from source: IndexSet, to destination: Int) {
+//        records.record.move(fromOffsets: source, toOffset: destination)
+//
+//    }
     
     ///Adds an observation to the favorites.
-    func favoriteAction(at offset: IndexSet) {
-        offset.forEach { i in
-            records.record[i].isFavorite = !records.record[i].isFavorite
+    func favoriteAction(at offsets: IndexSet) {
+        offsets.forEach { i in
+            observationList[i].isFavorite = !observationList[i].isFavorite
         }
+        
+        try? managedObjectContext.save()
     }
 }

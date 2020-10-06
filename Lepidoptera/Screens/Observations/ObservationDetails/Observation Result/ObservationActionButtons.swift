@@ -11,7 +11,7 @@ import UIKit
 
 struct ObservationActionButtons: View {
     
-    @EnvironmentObject var records: ObservationRecords
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentationMode
     
     ///Works with child modal view to present the sheet with the details for that observation.
@@ -22,18 +22,12 @@ struct ObservationActionButtons: View {
     @State var showDeleteObservationAlert: Bool = false
     ///Controls when the share sheet is presented.
     @State var isPresentedShareSheet: Bool = false
-    
-    ///Works with parent to dismiss current view.
-    @Binding var dismissModalView: Bool
-    
+    ///Icon name for when observation is favorite.
     @State var imageName: String = "star"
+    ///Icon name for when observation is not favorite.
     @State var buttonLabel: String = "Add to Favorites"
     
     var observation: Observation
-    
-    var observationIndex: Int {
-        records.record.firstIndex(where: { $0.id == observation.id}) ?? -1
-    }
     
     var body: some View {
         
@@ -68,7 +62,7 @@ struct ObservationActionButtons: View {
                 }
                 .sheet(isPresented: $presentAddNoteSheet) {
                     ObservationNoteSheet(isPresented: self.$presentAddNoteSheet, userNote: "", observation: self.observation)
-                        .environmentObject(self.records)
+                        .environment(\.managedObjectContext, managedObjectContext)
                 }
                 .padding(.top, 4.3)
                 .animation(.none)
@@ -97,8 +91,9 @@ struct ObservationActionButtons: View {
                 Divider()
                 
                 Button(action: {
-                    self.records.record[self.observationIndex].isFavorite = !self.records.record[self.observationIndex].isFavorite
+                    observation.isFavorite = !observation.isFavorite
                     changeFavoriteButton()
+                    try? self.managedObjectContext.save()
                 }) {
                     HStack {
                         Image(systemName: imageName).foregroundColor(.yellow)
@@ -133,14 +128,10 @@ struct ObservationActionButtons: View {
         .alert(isPresented: $showDeleteObservationAlert) {
             Alert(title: Text("Delete observation"), message: Text("Are you sure you want to delete this observation and associated data?"), primaryButton: .destructive(Text("Yes")) {
                 
-                if self.observationIndex != -1 {
-                    self.presentationMode.wrappedValue.dismiss()
-                    self.records.record.remove(at: self.observationIndex)
-                    
-                    if self.dismissModalView == true {
-                        self.dismissModalView = false
-                    }
-                }
+                self.managedObjectContext.delete(self.observation)
+                try? self.managedObjectContext.save()
+                self.presentationMode.wrappedValue.dismiss()
+                
             }, secondaryButton: .cancel(Text("No")))
         }
         .onAppear() {
@@ -149,7 +140,7 @@ struct ObservationActionButtons: View {
     }
     
     func changeFavoriteButton() {
-        if records.record[observationIndex].isFavorite {
+        if observation.isFavorite {
             imageName = "star.fill"
             buttonLabel = "Remove from favorites"
         }
@@ -161,21 +152,22 @@ struct ObservationActionButtons: View {
     
     func getItemShareSheet() -> [Any] {
         
-        let species = observation.speciesName
-        let image = observation.image.resized(withPercentage: 0.5)
-        let date = observation.date
+        let species = observation.speciesName ?? "Species not available"
+        let confidence = observation.confidence
+        let image = UIImage(data: observation.image!)!.resized(withPercentage: 0.5)
+        let date = observation.observationDate
         
         var finalText: String = ""
         
-        if let location = observation.location {
+        if let latitude = observation.value(forKey: "latitude") as? Double, let longitude = observation.value(forKey: "longitude") as? Double {
             
-            let latitude = String(format: "%.1f", Double(location.coordinate.latitude))
-            let longitude = String(format: "%.1f", Double(location.coordinate.longitude))
-            
-            finalText = "New observation - \(date)\nSpecies: \(species)\nLatitude: \(latitude)\nLongitude: \(longitude)"
+            let latitude_ = String(format: "%.1f", latitude)
+            let longitude_ = String(format: "%.1f", longitude)
+
+            finalText = "New observation - \(formatDate(date: date!))\nSpecies: \(species)\nConfidence: \(confidence)\nLatitude: \(latitude_)\nLongitude: \(longitude_)"
         }
         else {
-            finalText = "New observation - \(date)\nSpecies: \(species)\n"
+            finalText = "New observation - \(formatDate(date: date!))\nSpecies: \(species)\nConfidence: \(confidence)"
         }
         
         let items: [Any] = [finalText, image!]

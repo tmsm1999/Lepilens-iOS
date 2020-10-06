@@ -15,7 +15,8 @@ enum ActiveAlert {
     case butterflyWasNotDetected,
          noResultsConfidenceThreshold,
          photosAccessDenied,
-         canNotImportPhoto
+         canNotImportPhoto,
+         canNotSaveCoreData
 }
 
 ///This View imports the image and has the buttons to manage the imported image.
@@ -24,13 +25,13 @@ enum ActiveAlert {
 ///At the center of this view a Text Button can be clicked to call the ImagePicker in order to select an image.
 struct SheetImagePicker: View {
     
-    ///Stores the classifications present in the application.
-    @EnvironmentObject var records: ObservationRecords
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) var managedObjectContext
     
+    var imageWillBeImportedFromPhotos: Bool
+       
     ///Stores the image imported by the user.
-    @State var imageToClassify =  UIImage()
-    ///Variable that stores whether the ImagePicker sheet is up or not.
-    @State var imagePickerIsPresented = false
+    @State var imageToClassify = UIImage()
     ///User image metadata - if available stores the date in which the picture was taken.
     @State var imageDate: Date?
     ///User image metadata - if available stores the location where the picture was taken.
@@ -39,40 +40,29 @@ struct SheetImagePicker: View {
     @State var imageHeight: Int = 0
     ///Width in pixels of the imahe imported by the user.
     @State var imageWidth: Int = 0
+    ///Saves the origin of the photo for the observation.
+    @State var imageSource: String = ""
+    
     ///Shows alert if something went wrong this the classification.
     @State var showAlert = false
-    ///Show alert if user denied access to the Photos app.
-    @State var showPhotosAccessDeniedAlert = false
-    ///Shows iOS Limited picker so that the user can add new photos to the selection the app is allowed to access.
-    @State var showLimitedPicker = false
-    ///Controls the appearence of the alert when the user hasn't given access to a photo in limited mode.
-    @State var showCanNotImportPhotoAlert = false
+    ///Controls progress view when ImageIsBeingClassified
+    @State var imageIsBeingClassified = false
     ///Controls if the image placeholder for the image to classify is visible.
     @State var imagePlaceholderIsVisible = false
     ///Boolean variable that tells if the image Placeholder is empty or not.
     @State var imageWasImported = false
-    ///Controls progress view when ImageIsBeingClassified
-    @State var imageIsBeingClassified = false
-    ///Makes alert appear when butterfly was not detected
-    @State var butterflyWasNotDetected = false
-    ///Makes alert appear when there are no results for the confidence threshoold.
-    @State var noResultsConfidenceThreshold = false
-    
+    ///Variable that stores whether the ImagePicker sheet is up or not.
+    @State var imagePickerIsPresented = false
+    ///Controls the type of alert showed to the user.
     @State var activeAlert: ActiveAlert?
     
+    
+    ///Tells the previous control view if it can show the result for the classification or not.
+    @Binding var classificationWasSuccessful: Bool
+    ///Saves the result classification.
+    @Binding var observation: Observation
     ///Variable that controls wheater the classification sheet is open or not.
-    ///Whenever this variable changes the state of the sheet changes - up or down.
     @Binding var sheetIsPresented: Bool
-    ///The fact that this variable contains an observation or not lets the parent view know if
-    ///it should present a new sheet to import an image or to show the result of a classification.
-    @Binding var observation: Observation?
-    
-    
-    ///Value comes from parent view to inform the current view the source of the image:
-    ///Camera ou Photos application.
-    var imageWillBeImportedFromPhotos: Bool
-    ///Where the user imported the image from.
-    @State var imageSource: String = ""
     
     let newInference = ModelInference()
     
@@ -264,8 +254,8 @@ struct SheetImagePicker: View {
                 }
                 .padding(.bottom, 15)
             }
-            .navigationBarTitle(Text("New Observation"))
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+            .navigationBarTitle(Text("New Observation"))
         }
         //TODO: Change to show alert if the classification failed.
         .alert(isPresented: $showAlert) {
@@ -286,9 +276,10 @@ struct SheetImagePicker: View {
                         UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
                     }
                 }, secondaryButton: .default(Text("Ok")))
-                
             case .photosAccessDenied:
                 return Alert(title: Text("Access to Photos was denied"), message: Text("If you want to give this app access to Photos, go to Settings - Lepidoptera - Photos."), dismissButton: .default(Text("Close")))
+            case .canNotSaveCoreData:
+                return Alert(title: Text("Can not save new observation"), message: Text("There was an error will trying to save the new observation. Please, check if your device storage is full."), dismissButton: .default(Text("Close")))
             case .none:
                 return Alert(title: Text("Default alert"))
             }
@@ -319,13 +310,39 @@ struct SheetImagePicker: View {
                 let confidence = topFiveResults[0].confidence
                 
                 if confidence >= chosenConfidenceThreshold {
-                    let date = formatDate(date: Date())
-                    let time = formatTime(date: Date())
+                    //let date = formatDate(date: Date())
+                    //let time = formatTime(date: Date())
                     
-                    let observation = Observation(speciesName: finalLabel, classificationConfidence: confidence, image: self.imageToClassify, imageHeight: self.imageHeight, imageWidth: self.imageWidth, imageSource: self.imageSource, location: self.imageLocation, date: date, isFavorite: false, time: time)
+                    let newObservation = Observation(entity: Observation.entity(), insertInto: managedObjectContext)
+                    newObservation.id = UUID()
+                    newObservation.speciesName = finalLabel
+                    newObservation.confidence = confidence
+                    newObservation.observationDate = Date()
+                    newObservation.imageCreationDate = self.imageDate
+                    newObservation.image = self.imageToClassify.jpegData(compressionQuality: 1.0)
+                    newObservation.imageSource = self.imageSource
+                    newObservation.imageHeight = Int16(self.imageHeight)
+                    newObservation.imageWidth = Int16(self.imageWidth)
+                    newObservation.isFavorite = false
                     
-                    self.observation = observation
-                    self.records.addObservation(self.observation!)
+                    if let latitude = self.imageLocation?.coordinate.latitude, let longitude = self.imageLocation?.coordinate.longitude {
+                        newObservation.latitude = latitude
+                        newObservation.longitude = longitude
+                    }
+                    else {
+                        newObservation.latitude = -1
+                        newObservation.longitude = -1
+                    }
+                    
+                    do {
+                        try self.managedObjectContext.save()
+                        self.observation = newObservation
+                        self.classificationWasSuccessful = true
+                        //self.presentationMode.wrappedValue.dismiss()
+                    } catch {
+                        self.activeAlert = .canNotSaveCoreData
+                        self.showAlert.toggle()
+                    }
                 }
                 else {
                     self.imageIsBeingClassified = false
