@@ -40,7 +40,9 @@ struct RecordsListView: View {
                     ForEach(self.observationList, id: \.self) { observation in
                         
                         if (self.searchText.isEmpty || observation.speciesName!.lowercased().contains(self.searchText.lowercased())) && (!self.showFavoritesOnly || observation.isFavorite) {
-                            NavigationLink(destination: ObservationDetails(observation: observation)) {
+                            NavigationLink(destination: ObservationDetails(observation: observation).onAppear {
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            }) {
                                 
                                 HStack {
                                     
