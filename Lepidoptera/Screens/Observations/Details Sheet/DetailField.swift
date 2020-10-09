@@ -25,7 +25,6 @@ struct DetailField: View {
             .padding(.top, 5)
             .padding(.leading, 25)
             
-            
             Divider()
         }
     }

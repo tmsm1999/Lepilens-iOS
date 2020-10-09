@@ -16,7 +16,6 @@ struct ObservationNoteSheet: View {
     
     ///Informs the parent view if the sheet that allows to add a new observation is to be shown or not.
     @Binding var isPresented: Bool
-    
     ///Local var that saves the current user note to be changed inside the action button.
     @State var userNote: String
     
@@ -34,7 +33,6 @@ struct ObservationNoteSheet: View {
                 /// - userNote: placeholder to save the note.
                 /// - observation: observation the note is about.
                 MultilineTextField(userNote: $userNote, observation: self.observation)
-                    
                     .navigationBarTitle(Text("Observation Note"))
                     .navigationBarItems(trailing:
                                             

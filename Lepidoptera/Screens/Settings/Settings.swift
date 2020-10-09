@@ -66,11 +66,11 @@ struct Settings: View {
                         Spacer()
                         Text(String(format: "%.2f", availableConfidence[self.availableConfidenceIndex])).fontWeight(.regular)
                     }
-                        .onTapGesture {
-                            withAnimation(.easeInOut(duration: 0.5)) {
-                                self.showConfidencePicker.toggle()
-                            }
+                    .onTapGesture {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            self.showConfidencePicker.toggle()
                         }
+                    }
                     
                     if showConfidencePicker {
                         Picker("Minimum Confidence", selection: self.$availableConfidenceIndex) {

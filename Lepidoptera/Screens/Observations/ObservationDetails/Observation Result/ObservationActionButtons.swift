@@ -151,6 +151,7 @@ struct ObservationActionButtons: View {
     }
     
     func getItemShareSheet() -> [Any] {
+        //TODO: Adicionar link para a app na App Store
         
         let species = observation.speciesName ?? "Species not available"
         let confidence = observation.confidence
@@ -163,7 +164,7 @@ struct ObservationActionButtons: View {
             
             let latitude_ = String(format: "%.1f", latitude)
             let longitude_ = String(format: "%.1f", longitude)
-
+            
             finalText = "New observation - \(formatDate(date: date!))\nSpecies: \(species)\nConfidence: \(confidence)\nLatitude: \(latitude_)\nLongitude: \(longitude_)"
         }
         else {
@@ -188,7 +189,7 @@ extension UIImage {
     }
     
     func resized(toWidth width: CGFloat, isOpaque: Bool = true) -> UIImage? {
-       
+        
         let canvas = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
         let format = imageRendererFormat
         

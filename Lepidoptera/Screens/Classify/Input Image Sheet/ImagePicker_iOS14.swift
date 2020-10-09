@@ -65,7 +65,7 @@ struct ImagePicker_iOS14: UIViewControllerRepresentable {
                 
                 if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
                     image.itemProvider.loadObject(ofClass: UIImage.self) { image, error  in
-                       
+                        
                         guard error == nil else {
                             print(error!)
                             return

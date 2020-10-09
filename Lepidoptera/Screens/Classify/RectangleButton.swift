@@ -11,17 +11,16 @@ import SwiftUI
 ///Rectangle View that contains buttons to import image from Photos or open the Camera app to take a picture.
 struct RectangleButton: View {
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     ///String inside the button
     var buttonString: String
     ///Image from the assets folder that is the background for the rectangle.
     var imageTitle: String
     ///There are two different options: Photos or Camera.
     var action: String
-    
     ///Controls the child modal view and stores if it is open or closed.
     @State var sheetIsOpen: Bool = false
-    
-    @Environment(\.managedObjectContext) var managedObjectContext
     
     var body: some View {
         

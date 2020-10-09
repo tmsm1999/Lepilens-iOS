@@ -29,7 +29,7 @@ struct SheetImagePicker: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     var imageWillBeImportedFromPhotos: Bool
-       
+    
     ///Stores the image imported by the user.
     @State var imageToClassify = UIImage()
     ///User image metadata - if available stores the date in which the picture was taken.
@@ -42,7 +42,6 @@ struct SheetImagePicker: View {
     @State var imageWidth: Int = 0
     ///Saves the origin of the photo for the observation.
     @State var imageSource: String = ""
-    
     ///Shows alert if something went wrong this the classification.
     @State var showAlert = false
     ///Controls progress view when ImageIsBeingClassified
@@ -83,10 +82,10 @@ struct SheetImagePicker: View {
                             DispatchQueue.global(qos: .userInteractive).async {
                                 
                                 if #available(iOS 14, *) {
-
+                                    
                                     let accessLevel: PHAccessLevel = .readWrite
                                     let status = PHPhotoLibrary.authorizationStatus(for: accessLevel)
-
+                                    
                                     switch status {
                                     case .authorized:
                                         self.imagePickerIsPresented.toggle()
@@ -200,7 +199,7 @@ struct SheetImagePicker: View {
                 VStack {
                     
                     if !imageIsBeingClassified {
-                    
+                        
                         Button(action: {
                             
                             self.imageIsBeingClassified.toggle()
@@ -210,7 +209,7 @@ struct SheetImagePicker: View {
                             DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
                                 //TODO: What happens if the this is sync. Do I need the semaphore?
                                 
-//                                let newInference = ModelInference()
+                                //                                let newInference = ModelInference()
                                 let butterflyWasDetected = newInference.detectButterfly(receivedImage: self.imageToClassify)
                                 
                                 if butterflyWasDetected {
@@ -324,6 +323,7 @@ struct SheetImagePicker: View {
                     newObservation.imageHeight = Int16(self.imageHeight)
                     newObservation.imageWidth = Int16(self.imageWidth)
                     newObservation.isFavorite = false
+                    newObservation.userNote = ""
                     
                     if let latitude = self.imageLocation?.coordinate.latitude, let longitude = self.imageLocation?.coordinate.longitude {
                         newObservation.latitude = latitude

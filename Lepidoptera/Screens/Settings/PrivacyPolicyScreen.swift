@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PrivacyPolicyScreen: View {
     var body: some View {
-            
+        
         ScrollView(.vertical, showsIndicators: true) {
             
             VStack {
@@ -69,7 +69,7 @@ struct PrivacyPolicyScreen: View {
                         .font(.title)
                         .padding([.leading, .trailing], 20)
                         .padding(.top, 20)
-
+                    
                     Spacer()
                 }
                 
@@ -87,7 +87,7 @@ struct PrivacyPolicyScreen: View {
                         .font(.title)
                         .padding([.leading, .trailing], 20)
                         .padding(.top, 20)
-
+                    
                     Spacer()
                 }
                 
@@ -105,7 +105,7 @@ struct PrivacyPolicyScreen: View {
                         .font(.title)
                         .padding([.leading, .trailing], 20)
                         .padding(.top, 20)
-
+                    
                     Spacer()
                 }
                 

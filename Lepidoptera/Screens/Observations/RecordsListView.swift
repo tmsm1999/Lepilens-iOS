@@ -13,8 +13,8 @@ import CoreData
 ///It includes photos imported from the Photos app and photos taken directly with the camera.
 struct RecordsListView: View {
     
-    @FetchRequest(entity: Observation.entity(), sortDescriptors: [NSSortDescriptor(key: "observationDate", ascending: false)]) var observationList: FetchedResults<Observation>
     @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Observation.entity(), sortDescriptors: [NSSortDescriptor(key: "observationDate", ascending: false)]) var observationList: FetchedResults<Observation>
     
     ///Controls which obsrvations are showed in the list based on being a favorite or not.ti
     @State var showFavoritesOnly = false
@@ -71,7 +71,6 @@ struct RecordsListView: View {
                         }
                     }
                     .onDelete(perform: delete)
-                    //.onMove(perform: move)
                 }
             }
             .navigationBarTitle(Text("Observations"))
@@ -89,12 +88,6 @@ struct RecordsListView: View {
         
         try? managedObjectContext.save()
     }
-    
-    ///Allows the user to organize the order in which the observations appear in the list.
-//    func move(from source: IndexSet, to destination: Int) {
-//        records.record.move(fromOffsets: source, toOffset: destination)
-//
-//    }
     
     ///Adds an observation to the favorites.
     func favoriteAction(at offsets: IndexSet) {

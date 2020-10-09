@@ -49,9 +49,9 @@ struct NewClassificationController: View {
             }
             
             .navigationBarItems(trailing:
-                Button(action: { self.isPresented.toggle() }) {
-                    Text("Dismiss")
-                }
+                                    Button(action: { self.isPresented.toggle() }) {
+                                        Text("Dismiss")
+                                    }
             )
         }
     }

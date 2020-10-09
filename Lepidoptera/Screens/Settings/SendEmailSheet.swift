@@ -32,7 +32,7 @@ struct SendEmailSheet: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: UIViewControllerRepresentableContext<SendEmailSheet>) {
-
+        
     }
     
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
