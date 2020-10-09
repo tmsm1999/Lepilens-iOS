@@ -18,6 +18,8 @@ struct RecordsListView: View {
     
     ///Controls which obsrvations are showed in the list based on being a favorite or not.ti
     @State var showFavoritesOnly = false
+    ///Text that comes from the search bar.
+    @State var searchText: String = ""
     
     var body: some View {
         
@@ -26,6 +28,8 @@ struct RecordsListView: View {
             List {
                 
                 Section {
+                    SearchBar(searchText: self.$searchText)
+                    
                     Toggle(isOn: self.$showFavoritesOnly) {
                         Text("Show Favorites only")
                     }
@@ -35,7 +39,7 @@ struct RecordsListView: View {
                     
                     ForEach(self.observationList, id: \.self) { observation in
                         
-                        if !self.showFavoritesOnly || observation.isFavorite {
+                        if (self.searchText.isEmpty || observation.speciesName!.lowercased().contains(self.searchText.lowercased())) && (!self.showFavoritesOnly || observation.isFavorite) {
                             NavigationLink(destination: ObservationDetails(observation: observation)) {
                                 
                                 HStack {

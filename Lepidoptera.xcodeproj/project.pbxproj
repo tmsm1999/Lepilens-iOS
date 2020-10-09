@@ -48,6 +48,7 @@
 		CFC728AE2521F9350047631D /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC728AD2521F9350047631D /* UserLocation.swift */; };
 		CFD122072526279900895E47 /* SendEmailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD122062526279900895E47 /* SendEmailSheet.swift */; };
 		CFE5673925251A9100C9D341 /* PrivacyPolicyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */; };
+		CFFC69F525309B5B008AE799 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFC69F425309B5B008AE799 /* SearchBar.swift */; };
 		D842820BDAF07B742513D5DF /* Pods_Lepidoptera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		CFC728AD2521F9350047631D /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		CFD122062526279900895E47 /* SendEmailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailSheet.swift; sourceTree = "<group>"; };
 		CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyScreen.swift; sourceTree = "<group>"; };
+		CFFC69F425309B5B008AE799 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 			children = (
 				CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */,
 				CF16BDE725276C2C004E9D9D /* ShareSheet.swift */,
+				CFFC69F425309B5B008AE799 /* SearchBar.swift */,
 			);
 			path = "Auxiliary Views";
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */,
 				CF9892D1252205EF003BF22C /* Settings.swift in Sources */,
 				CFC50E5C252A23B100217E68 /* CoreDataModel.xcdatamodeld in Sources */,
+				CFFC69F525309B5B008AE799 /* SearchBar.swift in Sources */,
 				7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */,
 				7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */,
 				7EACEF5424E6E61B00D9715A /* ObservationDetails.swift in Sources */,
