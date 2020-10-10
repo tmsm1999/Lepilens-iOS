@@ -47,6 +47,7 @@
 		CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */; };
 		CFC728AE2521F9350047631D /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC728AD2521F9350047631D /* UserLocation.swift */; };
 		CFD122072526279900895E47 /* SendEmailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD122062526279900895E47 /* SendEmailSheet.swift */; };
+		CFDECB842531109000ECBFFE /* speciesInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = CFDECB832531109000ECBFFE /* speciesInfo.json */; };
 		CFE5673925251A9100C9D341 /* PrivacyPolicyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */; };
 		CFFC69F525309B5B008AE799 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFC69F425309B5B008AE799 /* SearchBar.swift */; };
 		D842820BDAF07B742513D5DF /* Pods_Lepidoptera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */; };
@@ -98,6 +99,7 @@
 		CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedLibraryPicker.swift; sourceTree = "<group>"; };
 		CFC728AD2521F9350047631D /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		CFD122062526279900895E47 /* SendEmailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailSheet.swift; sourceTree = "<group>"; };
+		CFDECB832531109000ECBFFE /* speciesInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = speciesInfo.json; sourceTree = "<group>"; };
 		CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyScreen.swift; sourceTree = "<group>"; };
 		CFFC69F425309B5B008AE799 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +205,7 @@
 				7EACEF5724E6F70F00D9715A /* mockData.json */,
 				7EACEF6124E707DC00D9715A /* Data.swift */,
 				CFC728AD2521F9350047631D /* UserLocation.swift */,
+				CFDECB832531109000ECBFFE /* speciesInfo.json */,
 			);
 			path = "Other Files";
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				7EACEF5D24E6F9DB00D9715A /* vanessa_atalanta.jpg in Resources */,
 				7E483EC32515692800FF8B6F /* model.tflite in Resources */,
 				7EACEF4024E6C42200D9715A /* Preview Assets.xcassets in Resources */,
+				CFDECB842531109000ECBFFE /* speciesInfo.json in Resources */,
 				7EACEF5F24E6FA1500D9715A /* pieris_napi.jpg in Resources */,
 				7E483EC22515692800FF8B6F /* dict.txt in Resources */,
 				7EACEF3D24E6C42200D9715A /* Assets.xcassets in Resources */,
