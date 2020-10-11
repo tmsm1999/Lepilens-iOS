@@ -41,6 +41,8 @@
 		7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F32505076F00058033 /* ImagePickeriOS13.swift */; };
 		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
 		CF16BDE825276C2C004E9D9D /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF16BDE725276C2C004E9D9D /* ShareSheet.swift */; };
+		CF88A5162533456F0048BDC6 /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88A5152533456F0048BDC6 /* Discover.swift */; };
+		CF88A519253355B10048BDC6 /* MyObservationsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88A518253355B10048BDC6 /* MyObservationsMap.swift */; };
 		CF9892D1252205EF003BF22C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9892D0252205EF003BF22C /* Settings.swift */; };
 		CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */; };
 		CFC50E5C252A23B100217E68 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFC50E5A252A23B100217E68 /* CoreDataModel.xcdatamodeld */; };
@@ -93,6 +95,8 @@
 		7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToClassifyPlaceholder.swift; sourceTree = "<group>"; };
 		A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepidoptera.debug.xcconfig"; path = "Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera.debug.xcconfig"; sourceTree = "<group>"; };
 		CF16BDE725276C2C004E9D9D /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		CF88A5152533456F0048BDC6 /* Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
+		CF88A518253355B10048BDC6 /* MyObservationsMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyObservationsMap.swift; sourceTree = "<group>"; };
 		CF9892D0252205EF003BF22C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker_iOS14.swift; sourceTree = "<group>"; };
 		CFC50E5B252A23B100217E68 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -223,9 +227,19 @@
 			path = "ML Model";
 			sourceTree = "<group>";
 		};
+		CF88A510253344F80048BDC6 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				CF88A5152533456F0048BDC6 /* Discover.swift */,
+				CF88A518253355B10048BDC6 /* MyObservationsMap.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
 		CFC728A12521F4530047631D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CF88A510253344F80048BDC6 /* Discover */,
 				CFC728A22521F47E0047631D /* Classify */,
 				CFC728A32521F48A0047631D /* Observations */,
 				CFC728A42521F49B0047631D /* Settings */,
@@ -464,6 +478,7 @@
 				CFC50E5C252A23B100217E68 /* CoreDataModel.xcdatamodeld in Sources */,
 				CFFC69F525309B5B008AE799 /* SearchBar.swift in Sources */,
 				7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */,
+				CF88A5162533456F0048BDC6 /* Discover.swift in Sources */,
 				7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */,
 				7EACEF5424E6E61B00D9715A /* ObservationDetails.swift in Sources */,
 				7EACEF6624E94C4F00D9715A /* ObservationImage.swift in Sources */,
@@ -482,6 +497,7 @@
 				CFD122072526279900895E47 /* SendEmailSheet.swift in Sources */,
 				7EACEF6424E88EAF00D9715A /* ConfidenceCircleResults.swift in Sources */,
 				CFC728AE2521F9350047631D /* UserLocation.swift in Sources */,
+				CF88A519253355B10048BDC6 /* MyObservationsMap.swift in Sources */,
 				7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */,
 				7EDB974C25114F2F00211118 /* Classification.swift in Sources */,
 				7EDC07F22504FDE000058033 /* NewClassificationController.swift in Sources */,

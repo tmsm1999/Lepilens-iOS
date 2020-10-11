@@ -32,6 +32,12 @@ struct AppView: View {
                         .font(.system(size: tabBarItemFontSize))
                     Text("Observations")
                 }
+            Discover().environment(\.managedObjectContext, self.managedObjectContext)
+                .tabItem {
+                    Image(systemName: "safari.fill")
+                        .font(.system(size: tabBarItemFontSize))
+                    Text("Discover")
+                }
             Settings().environment(\.managedObjectContext, self.managedObjectContext)
                 .tabItem {
                     Image(systemName: "gear")
