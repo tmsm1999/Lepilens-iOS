@@ -46,6 +46,9 @@ struct AppView: View {
                 }
         }
         .font(.headline)
+        .onAppear() {
+            loadSpeciesInfoJSON()
+        }
     }
 }
 

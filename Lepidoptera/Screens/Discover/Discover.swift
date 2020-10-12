@@ -13,11 +13,12 @@ struct Discover: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @FetchRequest(entity: Observation.entity(), sortDescriptors: [NSSortDescriptor(key: "observationDate", ascending: false)]) var observationList: FetchedResults<Observation>
-    
     @State var searchText: String = ""
     @State var searchType: Int = 0 //0 = My Observations | 1 = Find Species
-    @State var occurencesFound = 2
+    @State var occurencesFound = 0
+    @State var occurrencesWithLocation = 0
+    
+    @State var observationList = [Observation]()
     
     var body: some View {
         
@@ -52,7 +53,7 @@ struct Discover: View {
                     Spacer()
                     
                     if self.searchType == 0 {
-                        MyObservationsMap(observationList: fetchRequest(query: self.searchText))
+                        MyObservationsMap(observationList: $observationList, observationsWithLocation: $occurrencesWithLocation, query: $searchText)
                             .frame(width: geometry.size.width, height: geometry.size.height / 1.42, alignment: .center)
                     }
                     else {
@@ -63,17 +64,15 @@ struct Discover: View {
                 }
                 .navigationBarTitle(Text("Discover"))
             }
+            .onAppear() {
+                observationList = fetchRequest(query: searchText)
+            }
         }
     }
     
     func fetchRequest(query: String) -> [Observation] {
         
         let request = NSFetchRequest<Observation>(entityName: "Observation")
-        
-        if query != "" {
-            request.predicate = NSPredicate(format: "speciesName contains[cd] %@", query)
-        }
-        
         request.sortDescriptors = [NSSortDescriptor(key: "observationDate", ascending: false)]
         
         let observations = (try? managedObjectContext.fetch(request)) ?? []

@@ -87,20 +87,26 @@ struct RecordsListView: View {
     
     ///Funtion that removes an observation from the list of observations.
     func delete(at offsets: IndexSet) {
-        for index in offsets {
-            let observationToRemove = observationList[index]
-            managedObjectContext.delete(observationToRemove)
-        }
         
-        try? managedObjectContext.save()
+        DispatchQueue.main.async {
+            for index in offsets {
+                let observationToRemove = observationList[index]
+                managedObjectContext.delete(observationToRemove)
+            }
+            
+            try? managedObjectContext.save()
+        }
     }
     
     ///Adds an observation to the favorites.
     func favoriteAction(at offsets: IndexSet) {
-        offsets.forEach { i in
-            observationList[i].isFavorite = !observationList[i].isFavorite
-        }
         
-        try? managedObjectContext.save()
+        DispatchQueue.main.async {
+            offsets.forEach { i in
+                observationList[i].isFavorite = !observationList[i].isFavorite
+            }
+            
+            try? managedObjectContext.save()
+        }
     }
 }

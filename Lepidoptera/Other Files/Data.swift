@@ -6,38 +6,42 @@
 //  Copyright © 2020 Tomás Santiago. All rights reserved.
 //
 
-//import UIKit
-//
-//let mockRecord: [Observation] = loadData("mockData")
-//
-//func loadData(_ filename: String) -> [Observation] {
-//    
-//    guard let file = Bundle.main.url(forResource: filename, withExtension: "json") else {
-//        fatalError("Can not load file")
-//    }
-//    
-//    let decoder = JSONDecoder()
-//    var decodedData = [Observation]()
-//    
-//    do {
-//        decodedData = try decoder.decode([Observation].self, from: Data(contentsOf: file))
-//    }
-//    catch {
-//        fatalError("Can not decode json")
-//    }
-//    
-//    print(decodedData)
-//    
-//    return decodedData
-//}
+import UIKit
 
-import PhotosUI
+var familyDictionary: [String: String] = [:]
+var iNatLinkDictionary: [String: String] = [:]
+var wikipediaLinkDictionary: [String: String] = [:]
+var secundaryNameDictionary: [String: String] = [:]
 
-@available(iOS 14, *)
-func presentLibrary() {
+struct Species: Codable {
+    
+    let name: String
+    let family: String
+    let iNatLink: String
+    let WikipediaLink: String
+    let otherName: String
+}
 
-    let library = PHPhotoLibrary.shared()
-    let viewController = UIViewController()
-
-    library.presentLimitedLibraryPicker(from: viewController)
+func loadSpeciesInfoJSON() {
+    
+    if let filePath = Bundle.main.url(forResource: "speciesInfo", withExtension: "json") {
+        
+        do {
+            let data = try Data(contentsOf: filePath)
+            let decoder = JSONDecoder()
+            let speciesList = try decoder.decode([Species].self, from: data)
+            
+            for species in speciesList {
+                familyDictionary[species.name] = species.family
+                iNatLinkDictionary[species.name] = species.iNatLink
+                wikipediaLinkDictionary[species.name] = species.WikipediaLink
+                secundaryNameDictionary[species.name] = species.otherName
+            }
+            
+            print(speciesList)
+            
+        } catch {
+            print("Can not load JSON file.")
+        }
+    }
 }

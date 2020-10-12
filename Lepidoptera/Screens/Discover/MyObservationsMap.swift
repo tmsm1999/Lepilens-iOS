@@ -38,7 +38,7 @@ class ObservationAnnotationView: MKAnnotationView {
             return
         }
         
-        let annotationImage = observationAnnotation.image?.resized(toWidth: 40)
+        let annotationImage = observationAnnotation.image?.resized(toWidth: 36)
         image = annotationImage
     }
 }
@@ -46,7 +46,9 @@ class ObservationAnnotationView: MKAnnotationView {
 ///Map view containing the observation location.
 struct MyObservationsMap: UIViewRepresentable {
     
-    var observationList: [Observation]
+    @Binding var observationList: [Observation]
+    @Binding var observationsWithLocation: Int
+    @Binding var query: String
     
     func makeUIView(context: UIViewRepresentableContext<MyObservationsMap>) -> MKMapView {
         MKMapView(frame: .zero)
@@ -56,17 +58,34 @@ struct MyObservationsMap: UIViewRepresentable {
         
         uiView.delegate = context.coordinator
         
+        let allAnnotations = uiView.annotations
+        uiView.removeAnnotations(allAnnotations)
+        
+        var withLocation = 0
+        
         for observation in observationList {
             
-            let annotation = ObservationAnnotation(
-                coordinate: CLLocationCoordinate2D(latitude: observation.latitude, longitude: observation.longitude),
-                species: observation.speciesName!,
-                image: UIImage(data: observation.image!)!,
-                confidence: observation.confidence
-            )
+            if observation.latitude != -1 && observation.longitude != 1 {
+                withLocation += 1
+            }
             
-            uiView.addAnnotation(annotation)
+            if query == "" || observation.speciesName!.lowercased().contains(query.lowercased()) {
+                
+                if let speciesName = observation.speciesName, let imageData = observation.image {
+                    
+                    let annotation = ObservationAnnotation(
+                        coordinate: CLLocationCoordinate2D(latitude: observation.latitude, longitude: observation.longitude),
+                        species: speciesName,
+                        image: UIImage(data: imageData)!,
+                        confidence: observation.confidence
+                    )
+                    
+                    uiView.addAnnotation(annotation)
+                }
+            }
         }
+        
+        observationsWithLocation = withLocation
     }
     
     func makeCoordinator() -> MyObservationsMap.Coordinator {
