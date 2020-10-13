@@ -57,7 +57,7 @@
     },
     {
         "name":"Arethusana arethusa",
-        "family":"https://en.wikipedia.org/wiki/Arethusana",
+        "family":"Nymphalidae",
         "iNatLink":"https://www.inaturalist.org/observations?place_id=any&taxon_id=337856",
         "WikipediaLink":"https://en.wikipedia.org/wiki/Arethusana",
         "otherName":"False Grayling"
@@ -236,6 +236,13 @@
         "iNatLink":"https://www.inaturalist.org/observations?place_id=any&taxon_id=360342",
         "WikipediaLink":"https://en.wikipedia.org/wiki/Coenonympha_dorus",
         "otherName":"Dusky Heath"
+    },
+    {
+        "name":"Coenonympha iphioides",
+        "family":"Nymphalidae",
+        "iNatLink":"https://www.inaturalist.org/observations?place_id=any&taxon_id=349275",
+        "WikipediaLink":"https://en.wikipedia.org/wiki/Coenonympha",
+        "otherName":"Chestnut Heath"
     },
     {
         "name":"Coenonympha pamphilus",

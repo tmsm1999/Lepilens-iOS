@@ -22,44 +22,80 @@ struct Discover: View {
     
     var body: some View {
         
+        
         GeometryReader { geometry in
-                
+            
             NavigationView {
                 
                 VStack {
-                    
-                    SearchBar(searchText: self.$searchText)
-                        .padding(.leading, 20)
-                        .padding(.trailing, 20)
-                        .padding(.top, 80)
                     
                     Picker(selection: self.$searchType, label: Text("Mode")) {
                         Text("My Observations").tag(0)
                         Text("Find Species").tag(1)
                     }
                         .pickerStyle(SegmentedPickerStyle())
-                        .padding(.top, 10)
-                        .padding(.leading, 20)
-                        .padding(.trailing, 20)
+                        .padding(.top, 15)
+                        .padding(.leading, 15)
+                        .padding(.trailing, 15)
                     
-                    HStack {
-                        Text("Occurrences found: \(self.occurencesFound)")
-                        Spacer()
-                    }
-                    .padding(.leading, 20)
-                    .padding(.top, 15)
-                    .padding(.bottom, 10)
-                    
-                    Spacer()
                     
                     if self.searchType == 0 {
-                        MyObservationsMap(observationList: $observationList, observationsWithLocation: $occurrencesWithLocation, query: $searchText)
-                            .frame(width: geometry.size.width, height: geometry.size.height / 1.42, alignment: .center)
+                        
+                        HStack {
+                            Text("Occurrences with location: \(self.occurencesFound)")
+                            Spacer()
+                        }
+                        .padding(15)
+                        
+                        SearchBar(searchText: self.$searchText)
+                            .padding(.leading, 15)
+                            .padding(.trailing, 15)
+                        
+                        Spacer()
+                        
+                        MyObservationsMap(observationList: $observationList, observationsWithLocation: $occurencesFound, query: $searchText)
+                            .frame(width: geometry.size.width, height: geometry.size.height / 1.50, alignment: .center)
+                            .position(x: geometry.size.width / 2, y: geometry.size.height - (geometry.size.height / 1.50))
                     }
                     else {
-                        MapView(latitude: -15.369974, longitude: 28.315628999999998)
-                            .frame(width: geometry.size.width, height: geometry.size.height / 1.42, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            //.edgesIgnoringSafeArea(.top)
+                        List {
+                            
+                            Section {
+                                ForEach(iNatLinkDictionary.sorted(by: <), id: \.key) { key, value in
+                                    
+                                    Button(action: {
+                                        UIApplication.shared.open(URL(string: iNatLinkDictionary[key]!)!)
+                                    }) {
+                                        HStack {
+                                            
+                                            Image(key)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 70, height: 70, alignment: .center)
+                                                .clipped()
+                                                .cornerRadius(8)
+                                            
+                                            VStack(alignment: .leading) {
+                                                Text(key)
+                                                    .font(.system(size: 20))
+                                                    .bold()
+                                                Text(secundaryNameDictionary[key]!)
+                                                    .font(.system(size: 15))
+                                                    .foregroundColor(.secondary)
+                                            }
+                                            .padding(.leading, 10)
+                                            
+                                            Spacer()
+                                            
+                                            Image(systemName: "chevron.right")
+                                                .padding(.trailing, 5)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .listStyle(PlainListStyle())
+                        .padding(.top, 10)
                     }
                 }
                 .navigationBarTitle(Text("Discover"))

@@ -13,6 +13,7 @@ var iNatLinkDictionary: [String: String] = [:]
 var wikipediaLinkDictionary: [String: String] = [:]
 var secundaryNameDictionary: [String: String] = [:]
 
+
 struct Species: Codable {
     
     let name: String
@@ -38,7 +39,8 @@ func loadSpeciesInfoJSON() {
                 secundaryNameDictionary[species.name] = species.otherName
             }
             
-            print(speciesList)
+            print(familyDictionary.count)
+            //familyDictionary.sorted(by: {$0.key > $1.key})
             
         } catch {
             print("Can not load JSON file.")

@@ -46,6 +46,7 @@
 		CF88A519253355B10048BDC6 /* MyObservationsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88A518253355B10048BDC6 /* MyObservationsMap.swift */; };
 		CF9892D1252205EF003BF22C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9892D0252205EF003BF22C /* Settings.swift */; };
 		CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */; };
+		CFA34D2725365E6900A371E0 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA34D2625365E6900A371E0 /* WebView.swift */; };
 		CFC50E5C252A23B100217E68 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFC50E5A252A23B100217E68 /* CoreDataModel.xcdatamodeld */; };
 		CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */; };
 		CFC728AE2521F9350047631D /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC728AD2521F9350047631D /* UserLocation.swift */; };
@@ -101,6 +102,7 @@
 		CF88A518253355B10048BDC6 /* MyObservationsMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyObservationsMap.swift; sourceTree = "<group>"; };
 		CF9892D0252205EF003BF22C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker_iOS14.swift; sourceTree = "<group>"; };
+		CFA34D2625365E6900A371E0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		CFC50E5B252A23B100217E68 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedLibraryPicker.swift; sourceTree = "<group>"; };
 		CFC728AD2521F9350047631D /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */,
 				CF16BDE725276C2C004E9D9D /* ShareSheet.swift */,
 				CFFC69F425309B5B008AE799 /* SearchBar.swift */,
+				CFA34D2625365E6900A371E0 /* WebView.swift */,
 			);
 			path = "Auxiliary Views";
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				CF88A5162533456F0048BDC6 /* Discover.swift in Sources */,
 				7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */,
 				7EACEF5424E6E61B00D9715A /* ObservationDetails.swift in Sources */,
+				CFA34D2725365E6900A371E0 /* WebView.swift in Sources */,
 				7EACEF6624E94C4F00D9715A /* ObservationImage.swift in Sources */,
 				CFE5673925251A9100C9D341 /* PrivacyPolicyScreen.swift in Sources */,
 				7EACEF6E24E99D2C00D9715A /* ObservationNoteSheet.swift in Sources */,

@@ -30,8 +30,8 @@ struct DetailsSheet: View {
                         DetailField(field: "Confidence: ", value: String(observation.confidence * 100) + "%")
                         DetailField(field: "Date: ", value: formatDate(date: observation.observationDate!))
                         DetailField(field: "Time: ", value: formatTime(date: observation.observationDate!))
-                        DetailField(field: "Latitude: ", value: observation.latitude != -1 ? String(observation.latitude) : "Location is unavailable")
-                        DetailField(field: "Longitude: ", value: observation.longitude != -1 ? String(observation.longitude) : "Location is unavailable")
+                        DetailField(field: "Latitude: ", value: observation.latitude != -999 ? String(observation.latitude) : "Location is unavailable")
+                        DetailField(field: "Longitude: ", value: observation.longitude != -999 ? String(observation.longitude) : "Location is unavailable")
                     }
                     
                     Group {

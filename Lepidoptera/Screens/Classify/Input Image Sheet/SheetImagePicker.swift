@@ -330,8 +330,8 @@ struct SheetImagePicker: View {
                         newObservation.longitude = longitude
                     }
                     else {
-                        newObservation.latitude = -1
-                        newObservation.longitude = -1
+                        newObservation.latitude = -999
+                        newObservation.longitude = -999
                     }
                     
                     do {
