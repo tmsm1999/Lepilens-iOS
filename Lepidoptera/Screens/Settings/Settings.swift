@@ -9,6 +9,7 @@
 import SwiftUI
 import MessageUI
 import StoreKit
+import UniformTypeIdentifiers
 
 let availableConfidence = [0.1, 0.25, 0.5, 0.75, 1]
 let precision = [70.98, 85.82, 94.06, 97.66, 100]
@@ -40,6 +41,7 @@ struct Settings: View {
     @State var showEmailComposer: Bool = false
     
     @State var activeAlert: AlertType?
+    @State var presentExportCSV: Bool = false
     
     var body: some View {
         
@@ -97,7 +99,7 @@ struct Settings: View {
                 
                 Section(header: Text("Observation Data"), footer: Text("Your data is yours. It never leaves your device or your iCloud account.")) {
                     Button(action: {
-                        
+                        self.presentExportCSV.toggle()
                     }) {
                         HStack {
                             Image(systemName: "square.and.arrow.down.fill")
@@ -237,5 +239,107 @@ struct Settings: View {
         .sheet(isPresented: self.$showEmailComposer) {
             SendEmailSheet(emailError: self.$emailErrorAlert)
         }
+        .fileMover(isPresented: self.$presentExportCSV, file: createFolderURL()!) { res in
+            switch res {
+            case .success(let url):
+                print(url)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func createFolderURL() -> URL? {
+            
+        let fileManager = FileManager.default
+        //Get apps document directory
+        let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        
+        //Create folder with obseravtion data
+        let folderName = "Observations Data"
+        let dataDirectory = path[0].appendingPathComponent("\(folderName)", isDirectory: true)
+        try? fileManager.createDirectory(at: dataDirectory.absoluteURL, withIntermediateDirectories: true, attributes: nil)
+        
+        //Create folder with all images
+        let imagesFolder = "Observation Images"
+        let imagesDirectory = dataDirectory.appendingPathComponent("\(imagesFolder)", isDirectory: true)
+        try? fileManager.createDirectory(at: imagesDirectory.absoluteURL, withIntermediateDirectories: true, attributes: nil)
+        
+        for observation in observationList {
+            
+            let image = UIImage(data: observation.image!)
+            
+            do {
+                let imageName = observation.id!.description
+                let imageURL = imagesDirectory.appendingPathComponent("\(imageName)" + ".jpeg")
+                try image?.jpegData(compressionQuality: 1.0)?.write(to: imageURL)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+        let csvFileURL = dataDirectory.appendingPathComponent("Observation data.csv")
+        let csvFile = createCSVFile()
+        
+        do {
+            try csvFile?.write(to: csvFileURL, atomically: true, encoding: .utf16)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        return dataDirectory
+    }
+    
+    func createCSVFile() -> String? {
+        
+        var csvString = "Observation ID;Date;Time;Latitude;Longitude;Family;Genus;Species;Confidence;Image Creation Date;Image Height;Image Width;Image Source;User Note"
+        
+        for observation in observationList {
+            
+            csvString.append("\n")
+            
+            let observationID = observation.id!
+            let date = formatDate(date: observation.observationDate!)
+            let time = formatTime(date: observation.observationDate!)
+            let latitude = observation.latitude != -999 ? String(observation.latitude) : "Location not available"
+            let longitude = observation.longitude != -999 ? String(observation.longitude) : "Location not available"
+            let family = observation.family ?? "Not found"
+            let genus = observation.genus ?? "Not found"
+            let species = observation.speciesName!
+            let confidence = String(observation.confidence)
+            let imageCreationDate = formatDate(date: observation.imageCreationDate!)
+            let imageHeight = observation.imageHeight
+            let imageWidth = observation.imageWidth
+            let imageSource = observation.imageSource!
+            let userNote = observation.userNote
+
+            let row = "\(observationID);\(date);\(time);\(latitude);\(longitude);\(family);\(genus);\(species);\(confidence);\(imageCreationDate);\(imageHeight);\(imageWidth);\(imageSource);\(userNote ?? "")"
+            
+            csvString.append(row)
+        }
+        
+        return csvString
     }
 }
+
+//struct FolderExport: FileDocument {
+//
+//    var url: URL
+//
+//    static var readableContentTypes: [UTType] {[.folder]}
+//
+//    init(url: URL) {
+//        self.url = url
+//    }
+//
+//    init(configuration: ReadConfiguration) throws {
+//        url = URL(string: "")!
+//    }
+//
+//    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+//
+//        print("Aqui: \(url)")
+//        let file = try! FileWrapper(url: url, options: .immediate)
+//        return file
+//    }
+//}

@@ -41,6 +41,7 @@
 		7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F32505076F00058033 /* ImagePickeriOS13.swift */; };
 		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
 		CF16BDE825276C2C004E9D9D /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF16BDE725276C2C004E9D9D /* ShareSheet.swift */; };
+		CF5EBF9C253B3D1600654767 /* Classifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CF5EBF9B253B3D1600654767 /* Classifier.mlmodel */; };
 		CF8307212534ABC70071E7E7 /* secondJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = CF8307202534ABC70071E7E7 /* secondJSON.json */; };
 		CF88A5162533456F0048BDC6 /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88A5152533456F0048BDC6 /* Discover.swift */; };
 		CF88A519253355B10048BDC6 /* MyObservationsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88A518253355B10048BDC6 /* MyObservationsMap.swift */; };
@@ -97,6 +98,7 @@
 		7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToClassifyPlaceholder.swift; sourceTree = "<group>"; };
 		A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepidoptera.debug.xcconfig"; path = "Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera.debug.xcconfig"; sourceTree = "<group>"; };
 		CF16BDE725276C2C004E9D9D /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		CF5EBF9B253B3D1600654767 /* Classifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Classifier.mlmodel; sourceTree = "<group>"; };
 		CF8307202534ABC70071E7E7 /* secondJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = secondJSON.json; sourceTree = "<group>"; };
 		CF88A5152533456F0048BDC6 /* Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		CF88A518253355B10048BDC6 /* MyObservationsMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyObservationsMap.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				7EDB974B25114F2F00211118 /* Classification.swift */,
+				CF5EBF9B253B3D1600654767 /* Classifier.mlmodel */,
 				7E483EC02515692800FF8B6F /* dict.txt */,
 				7E483EC12515692800FF8B6F /* model.tflite */,
 				7E8B589A2517B8AE00D158F7 /* genero.tflite */,
@@ -483,6 +486,7 @@
 				7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */,
 				CF9892D1252205EF003BF22C /* Settings.swift in Sources */,
 				CFC50E5C252A23B100217E68 /* CoreDataModel.xcdatamodeld in Sources */,
+				CF5EBF9C253B3D1600654767 /* Classifier.mlmodel in Sources */,
 				CFFC69F525309B5B008AE799 /* SearchBar.swift in Sources */,
 				7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */,
 				CF88A5162533456F0048BDC6 /* Discover.swift in Sources */,
@@ -659,10 +663,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = up.fc.cs.tsmamede.Lepidoptera;
+				PRODUCT_BUNDLE_IDENTIFIER = up.fc.cs.tsmamede.Lepilens;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -681,10 +685,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = up.fc.cs.tsmamede.Lepidoptera;
+				PRODUCT_BUNDLE_IDENTIFIER = up.fc.cs.tsmamede.Lepilens;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

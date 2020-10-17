@@ -64,7 +64,7 @@ struct ObservationDetails: View {
                     Spacer()
                     
                     ObservationActionButtons(observation: self.observation)
-                        .offset(x: 0, y: 20)
+                        .offset(x: 0, y: 30)
                         .environment(\.managedObjectContext, self.managedObjectContext)
                 }
                 .navigationBarTitle(Text(""))

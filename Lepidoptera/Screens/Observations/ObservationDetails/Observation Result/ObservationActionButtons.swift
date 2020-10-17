@@ -71,13 +71,29 @@ struct ObservationActionButtons: View {
                 
                 Button(action: { self.isPresentedShareSheet.toggle() }) {
                     HStack() {
-                        Image(systemName: "square.and.arrow.up")
+                        Image(systemName: "square.and.arrow.up.fill")
                         Text("Share Observation").bold()
                     }
                     .padding(.leading, 15)
                 }
                 .sheet(isPresented: $isPresentedShareSheet) {
                     ShareSheet(items: getItemShareSheet())
+                }
+                .padding(.top, 4.3)
+                .animation(.none)
+                
+                Divider()
+                
+                Button(action: {
+                    if let url = URL(string: wikipediaLinkDictionary[observation.speciesName!]!) {
+                        UIApplication.shared.open(url)
+                    }
+                }) {
+                    HStack() {
+                        Image(systemName: "info.circle.fill")
+                        Text("More Information").bold()
+                    }
+                    .padding(.leading, 15)
                 }
                 .padding(.top, 4.3)
                 .animation(.none)
@@ -153,7 +169,7 @@ struct ObservationActionButtons: View {
     func getItemShareSheet() -> [Any] {
         //TODO: Adicionar link para a app na App Store
         
-        let species = observation.speciesName ?? "Species not available"
+        let species = observation.speciesName!.appending(" by Lepilens iOS")
         let confidence = observation.confidence
         let image = UIImage(data: observation.image!)!.resized(withPercentage: 0.5)
         let date = observation.observationDate
@@ -162,8 +178,17 @@ struct ObservationActionButtons: View {
         
         if let latitude = observation.value(forKey: "latitude") as? Double, let longitude = observation.value(forKey: "longitude") as? Double {
             
-            let latitude_ = String(format: "%.1f", latitude)
-            let longitude_ = String(format: "%.1f", longitude)
+            var latitude_ = ""
+            var longitude_ = ""
+            
+            if latitude != -999 && longitude != -999 {
+                latitude_ = String(format: "%.1f", latitude)
+                longitude_ = String(format: "%.1f", longitude)
+            }
+            else {
+                latitude_ = "Not available"
+                longitude_ = "Not available"
+            }
             
             finalText = "New observation - \(formatDate(date: date!))\nSpecies: \(species)\nConfidence: \(confidence)\nLatitude: \(latitude_)\nLongitude: \(longitude_)"
         }

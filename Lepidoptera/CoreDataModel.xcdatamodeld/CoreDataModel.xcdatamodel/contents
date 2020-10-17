@@ -2,6 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Observation" representedClassName="Observation" syncable="YES" codeGenerationType="class">
         <attribute name="confidence" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="family" optional="YES" attributeType="String"/>
+        <attribute name="genus" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="imageCreationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -16,6 +18,6 @@
         <attribute name="userNote" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Observation" positionX="-63" positionY="-18" width="128" height="238"/>
+        <element name="Observation" positionX="-63" positionY="-18" width="128" height="268"/>
     </elements>
 </model>

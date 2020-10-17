@@ -87,6 +87,53 @@ class ModelInference {
         return nil
     }
     
+//    func coreMLModelInference(receivedImage: UIImage) {
+//        guard let cgImage = receivedImage.cgImage else {
+//            return
+//        }
+//        
+//        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+//        let request = ClassificationRequest
+//        
+//        try? handler.perform([request])
+//        
+//        guard let results = request.results as? [VNClassificationObservation] else {
+//            print("Error with classifier results")
+//            return
+//        }
+//        
+//        for species in results {
+//            print("Aqui")
+//            print(species.identifier)
+//            print(species.confidence)
+//        }
+//        print("Aqui")
+//        
+//        //print(results)
+//    }
+//    
+//    private lazy var ClassificationRequest: VNCoreMLRequest = {
+//        do {
+//
+//            //let classificationModel = try VNCoreMLModel(for: Classifier().model)
+//            let request = VNCoreMLRequest(model: classificationModel, completionHandler: { [weak self] request, error in
+//                //let res = request.results as? [VNClassificationObservation]
+////                for species in request.results as! [VNClassificationObservation] {
+////                    print("Aqui")
+////                    print(species.identifier)
+////                    print(species.confidence)
+////                }
+////                print("Aqui")
+//            })
+//
+//            request.imageCropAndScaleOption = .scaleFit
+//            return request
+//        }
+//        catch {
+//            fatalError("Error! Can't use Model.")
+//        }
+//    }()
+    
     func detectButterfly(receivedImage: UIImage) -> Bool {
         
         guard let cgImage = receivedImage.cgImage else {

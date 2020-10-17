@@ -25,16 +25,17 @@ struct DetailsSheet: View {
                 VStack(alignment: .leading) {
                     //Add family
                     Group {
-                        DetailField(field: "Genus: ", value: String(observation.speciesName!.split(separator: " ")[0]))
+                        DetailField(field: "Family: ", value: observation.family ?? "Not found")
+                        DetailField(field: "Genus: ", value: observation.genus ?? "Not found")
                         DetailField(field: "Species: ", value: observation.speciesName!)
                         DetailField(field: "Confidence: ", value: String(observation.confidence * 100) + "%")
+                    }
+                    
+                    Group {
                         DetailField(field: "Date: ", value: formatDate(date: observation.observationDate!))
                         DetailField(field: "Time: ", value: formatTime(date: observation.observationDate!))
                         DetailField(field: "Latitude: ", value: observation.latitude != -999 ? String(observation.latitude) : "Location is unavailable")
                         DetailField(field: "Longitude: ", value: observation.longitude != -999 ? String(observation.longitude) : "Location is unavailable")
-                    }
-                    
-                    Group {
                         DetailField(field: "Image Creation Date: ", value: formatDate(date: observation.imageCreationDate!))
                         DetailField(field: "Image Height: ", value: String(observation.imageHeight) + " pixels")
                         DetailField(field: "Image Width: ", value: String(observation.imageWidth) + " pixels")

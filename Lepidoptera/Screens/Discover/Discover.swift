@@ -58,9 +58,8 @@ struct Discover: View {
                             .position(x: geometry.size.width / 2, y: geometry.size.height - (geometry.size.height / 1.50))
                     }
                     else {
-                        List {
-                            
-                            Section {
+                        Section {
+                            List {
                                 ForEach(iNatLinkDictionary.sorted(by: <), id: \.key) { key, value in
                                     
                                     Button(action: {
@@ -71,7 +70,7 @@ struct Discover: View {
                                             Image(key)
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
-                                                .frame(width: 70, height: 70, alignment: .center)
+                                                .frame(width: 60, height: 60, alignment: .center)
                                                 .clipped()
                                                 .cornerRadius(8)
                                             
@@ -93,9 +92,9 @@ struct Discover: View {
                                     }
                                 }
                             }
+                            .padding(.top, 10)
                         }
                         .listStyle(PlainListStyle())
-                        .padding(.top, 10)
                     }
                 }
                 .navigationBarTitle(Text("Discover"))

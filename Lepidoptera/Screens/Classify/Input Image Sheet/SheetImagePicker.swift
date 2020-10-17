@@ -287,6 +287,7 @@ struct SheetImagePicker: View {
     
     func runInference() {
         
+        //newInference.coreMLModelInference(receivedImage: self.imageToClassify)
         newInference.runInference(image: self.imageToClassify)
         
         DispatchQueue.main.async {
@@ -315,6 +316,8 @@ struct SheetImagePicker: View {
                     let newObservation = Observation(entity: Observation.entity(), insertInto: managedObjectContext)
                     newObservation.id = UUID()
                     newObservation.speciesName = finalLabel
+                    newObservation.genus = String(finalLabel.split(separator: " ")[0])
+                    newObservation.family = familyDictionary[finalLabel]
                     newObservation.confidence = confidence
                     newObservation.observationDate = Date()
                     newObservation.imageCreationDate = self.imageDate
