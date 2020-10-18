@@ -42,6 +42,7 @@
 		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
 		CF16BDE825276C2C004E9D9D /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF16BDE725276C2C004E9D9D /* ShareSheet.swift */; };
 		CF5EBF9C253B3D1600654767 /* Classifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CF5EBF9B253B3D1600654767 /* Classifier.mlmodel */; };
+		CF5EBFC6253C923D00654767 /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5EBFC5253C923D00654767 /* AboutScreen.swift */; };
 		CF8307212534ABC70071E7E7 /* secondJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = CF8307202534ABC70071E7E7 /* secondJSON.json */; };
 		CF88A5162533456F0048BDC6 /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88A5152533456F0048BDC6 /* Discover.swift */; };
 		CF88A519253355B10048BDC6 /* MyObservationsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF88A518253355B10048BDC6 /* MyObservationsMap.swift */; };
@@ -99,6 +100,7 @@
 		A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepidoptera.debug.xcconfig"; path = "Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera.debug.xcconfig"; sourceTree = "<group>"; };
 		CF16BDE725276C2C004E9D9D /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		CF5EBF9B253B3D1600654767 /* Classifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Classifier.mlmodel; sourceTree = "<group>"; };
+		CF5EBFC5253C923D00654767 /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
 		CF8307202534ABC70071E7E7 /* secondJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = secondJSON.json; sourceTree = "<group>"; };
 		CF88A5152533456F0048BDC6 /* Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
 		CF88A518253355B10048BDC6 /* MyObservationsMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyObservationsMap.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				CF9892D0252205EF003BF22C /* Settings.swift */,
 				CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */,
 				CFD122062526279900895E47 /* SendEmailSheet.swift */,
+				CF5EBFC5253C923D00654767 /* AboutScreen.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */,
 				7EDB974525114A1B00211118 /* SheetImagePicker.swift in Sources */,
 				7EACEF4F24E6D02800D9715A /* ClassificationView.swift in Sources */,
+				CF5EBFC6253C923D00654767 /* AboutScreen.swift in Sources */,
 				7EACEF6224E707DC00D9715A /* Data.swift in Sources */,
 				7E8B589425178D2E00D158F7 /* ModelInference.swift in Sources */,
 				7EC9DD9C24FD7B14005F110A /* RectangleButton.swift in Sources */,

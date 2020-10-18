@@ -157,7 +157,7 @@ struct Settings: View {
                 Section(header: Text("This application")) {
                     
                     NavigationLink(
-                        destination: PrivacyPolicyScreen(),
+                        destination: AboutScreen(),
                         label: {
                             Text("About")
                         })
