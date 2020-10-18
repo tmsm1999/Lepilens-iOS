@@ -166,6 +166,10 @@ struct MyObservationsMap: UIViewRepresentable {
         
         for observation in observationList {
             
+            guard let _ = observation.speciesName else {
+                continue
+            }
+            
             if observation.latitude != -999 && observation.longitude != -999 {
                 withLocation += 1
             }

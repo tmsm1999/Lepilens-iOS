@@ -69,21 +69,6 @@ struct ObservationActionButtons: View {
                 
                 Divider()
                 
-                Button(action: { self.isPresentedShareSheet.toggle() }) {
-                    HStack() {
-                        Image(systemName: "square.and.arrow.up.fill")
-                        Text("Share Observation").bold()
-                    }
-                    .padding(.leading, 15)
-                }
-                .sheet(isPresented: $isPresentedShareSheet) {
-                    ShareSheet(items: getItemShareSheet())
-                }
-                .padding(.top, 4.3)
-                .animation(.none)
-                
-                Divider()
-                
                 Button(action: {
                     if let url = URL(string: wikipediaLinkDictionary[observation.speciesName!]!) {
                         UIApplication.shared.open(url)
@@ -94,6 +79,21 @@ struct ObservationActionButtons: View {
                         Text("More Information").bold()
                     }
                     .padding(.leading, 15)
+                }
+                .padding(.top, 4.3)
+                .animation(.none)
+
+                Divider()
+                
+                Button(action: { self.isPresentedShareSheet.toggle() }) {
+                    HStack() {
+                        Image(systemName: "square.and.arrow.up.fill")
+                        Text("Share Observation").bold()
+                    }
+                    .padding(.leading, 15)
+                }
+                .sheet(isPresented: $isPresentedShareSheet) {
+                    ShareSheet(items: getItemShareSheet())
                 }
                 .padding(.top, 4.3)
                 .animation(.none)

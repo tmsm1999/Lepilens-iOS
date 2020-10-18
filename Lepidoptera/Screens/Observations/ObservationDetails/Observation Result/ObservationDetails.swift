@@ -58,13 +58,14 @@ struct ObservationDetails: View {
                             .padding(.trailing, 13)
                         
                     }
-                    .frame(width: geometry.size.width)
-                    .padding(.top, geometry.size.height / 6)
+                    .frame(width: geometry.size.width, height: geometry.size.height / 7)
+                    .padding(.top, geometry.size.height / 6.5)
+                    //.padding(.bottom, 30)
                     
                     Spacer()
                     
                     ObservationActionButtons(observation: self.observation)
-                        .offset(x: 0, y: 30)
+                        .offset(x: 0, y: 15)
                         .environment(\.managedObjectContext, self.managedObjectContext)
                 }
                 .navigationBarTitle(Text(""))
@@ -81,5 +82,6 @@ struct ObservationDetails: View {
         }
         
         return name
+        //return nameArray[0] + "\n" + nameArray[1]
     }
 }
