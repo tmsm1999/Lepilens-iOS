@@ -57,12 +57,7 @@ struct AboutScreen: View {
                         .padding(.top, 10)
                 }
                 
-                Text("From March to June I worked with Professor Luís B. Lopes and Professor Eduardo R. B. Marques from the Department of Computer Science of the Faculty of Sciences of the University of Porto. I could not have asked for better supervisors. In our many meetings I always felt confortable to ask questions and I understood I was in the perfect environment to do great work. They guided, encouraged and were always available to help me. I could not have asked for a better experience!")
-                    .fontWeight(.regular)
-                    .padding([.leading, .trailing], 20)
-                    .padding(.top, 10)
-                
-                Text("In the end I wrote a report with the title of “On using Deep Learning for Automatic Taxonomic Identification of Butterflies” where I cover the state of the art in Deep Learning and Convolutional Neural Networks and I go through the process of training and deploying a Classifier in a Web application that was able to classify different images of butterflies that can be found in Portugal.")
+                Text("From March to June I worked with Professor Luís B. Lopes and Professor Eduardo R. B. Marques from the Department of Computer Science of the Faculty of Sciences of the University of Porto. I wrote a report with the title of “On using Deep Learning for Automatic Taxonomic Identification of Butterflies” where I cover the state of the art in Deep Learning and Convolutional Neural Networks and I go through the process of training and deploying a Classifier in a Web application that was able to classify different images of butterflies that can be found in Portugal.")
                     .fontWeight(.regular)
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
@@ -130,6 +125,16 @@ struct AboutScreen: View {
                     
                     Spacer()
                 }
+                
+                Text("I want to give a very special thanks to Professor Luís B. Lopes and Professor Eduardo R. B. Marques whose guidance and valuable feedback encouraged me throughout the development process of this app.")
+                    .fontWeight(.regular)
+                    .padding([.leading, .trailing], 20)
+                    .padding(.top, 10)
+                
+                Text("Also, a very special thanks to my friend and colleague Vasco Cruz who designed the icon for Lepilens. I will never forget.")
+                    .fontWeight(.regular)
+                    .padding([.leading, .trailing], 20)
+                    .padding(.top, 10)
                 
                 Text("In order to build this app and train the Machine Learning model that performs the classification I used images from different sources which are hereby acknowledged: iNaturalist, pyrgus.de, euroButterflies, Lepidoptera Mundi, Lepiforum, Naturdata, Butterflies of France, LEPIDOPTERA (Borboletas) em Portugal Facebook group.")
                     .fontWeight(.regular)

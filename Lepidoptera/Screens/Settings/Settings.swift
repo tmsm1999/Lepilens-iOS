@@ -203,17 +203,17 @@ struct Settings: View {
                         Text("0.1").fontWeight(.regular)
                     }
                     
-                    Button(action: {
-                        if let url = URL(string: "https://github.com/tmsm1999/lepidoptera-ios-project") {
-                            UIApplication.shared.open(url)
-                        }
-                    }) {
-                        HStack {
-                            Image(systemName: "chevron.left.slash.chevron.right")
-                            Text("View Source Code")
-                            
-                        }
-                    }
+//                    Button(action: {
+//                        if let url = URL(string: "https://github.com/tmsm1999/lepidoptera-ios-project") {
+//                            UIApplication.shared.open(url)
+//                        }
+//                    }) {
+//                        HStack {
+//                            Image(systemName: "chevron.left.slash.chevron.right")
+//                            Text("View Source Code")
+//                            
+//                        }
+//                    }
                 }
             }
             .navigationBarTitle(Text("Settings"))
