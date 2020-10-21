@@ -28,7 +28,7 @@ struct SheetImagePicker: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    var imageWillBeImportedFromPhotos: Bool
+    //var imageWillBeImportedFromPhotos: Bool
     
     ///Stores the image imported by the user.
     @State var imageToClassify = UIImage()
@@ -73,9 +73,13 @@ struct SheetImagePicker: View {
                 
                 if !self.imageWasImported {
                     
-                    if self.imageWillBeImportedFromPhotos {
-                        
+                    //if self.imageWillBeImportedFromPhotos {
+                    //Spacer()
+                    
+                    HStack {
                         ///Handle Photos app acess.
+                        //Spacer()
+                    
                         Button(action: {
                             
                             self.imageSource = "iOS Photo Library"
@@ -138,9 +142,15 @@ struct SheetImagePicker: View {
                                 }
                             }
                         }) {
-                            Text(openPhotosAppTextString).bold()
+                            VStack {
+                                Image(systemName: "photo.fill.on.rectangle.fill")
+                                    .resizable()
+                                    .frame(width: 40, height: 32, alignment: .center)
+                                    .padding(.bottom, 10)
+                                Text(openPhotosAppTextString).bold()
+                            }
                         }
-                        .padding(.top, geometry.size.height / rectanglePaddingDivisor)
+                        .padding(.leading, geometry.size.width / 6)
                         .sheet(isPresented: self.$imagePickerIsPresented, content: {
                             
                             if #available(iOS 14, *) {
@@ -150,17 +160,25 @@ struct SheetImagePicker: View {
                                 ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth, sourceType: "Photos") //FIXME: Change the way the source type is handled.
                             }
                         })
-                    }
-                    else {
+                        
+                        Spacer()
+                    //}
+                    //else {
                         //Handle Camera access.
                         if #available(iOS 14.0, *) {
                             Button(action: {
                                 self.imageSource = "iPhone Camera"
                                 self.imagePickerIsPresented.toggle()
                             }) {
-                                Text(openCameraAppTextString).bold()
+                                VStack {
+                                    Image(systemName: "camera.on.rectangle.fill")
+                                        .resizable()
+                                        .frame(width: 40, height: 32, alignment: .center)
+                                        .padding(.bottom, 10)
+                                    Text(openCameraAppTextString).bold()
+                                }
                             }
-                            .padding(.top, geometry.size.height / rectanglePaddingDivisor)
+                            .padding(.trailing, geometry.size.width / 6)
                             .fullScreenCover(isPresented: self.$imagePickerIsPresented, content: {
                                 ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth, sourceType: "Camera").edgesIgnoringSafeArea(.all) //FIXME: Change the way the source type is handled.
                             })
@@ -169,14 +187,22 @@ struct SheetImagePicker: View {
                                 self.imageSource = "iPhone Camera"
                                 self.imagePickerIsPresented.toggle()
                             }) {
-                                Text(openCameraAppTextString)
+                                VStack {
+                                    Image(systemName: "camera.on.rectangle.fill")
+                                        .resizable()
+                                        .frame(width: 40, height: 32, alignment: .center)
+                                    Text(openCameraAppTextString).bold()
+                                }
                             }
-                            .padding(.top, geometry.size.height / rectanglePaddingDivisor)
+                            .padding(.trailing, geometry.size.width / 4)
                             .sheet(isPresented: self.$imagePickerIsPresented, content: {
                                 ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth, sourceType: "Camera") //FIXME: Change the way the source type is handled.
                             })
                         }
                     }
+                    .padding(.top, geometry.size.height / 2.5)
+                    
+                    //Spacer()
                 }
                 else {
                     
@@ -358,7 +384,7 @@ struct SheetImagePicker: View {
     }
 }
 
-private let openPhotosAppTextString: String = "Import from Photos"
+private let openPhotosAppTextString: String = "Import Photo"
 private let openCameraAppTextString: String = "Open Camera"
 private let rectanglePaddingDivisor: CGFloat = 2.5 //FIXME: Is it possible to change this?
 

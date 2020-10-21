@@ -20,6 +20,8 @@ struct RecordsListView: View {
     @State var showFavoritesOnly = false
     ///Text that comes from the search bar.
     @State var searchText: String = ""
+    ///Controls the appearence of the sheet in the list view.
+    @State var sheetIsOpen: Bool = false
     
     var body: some View {
         
@@ -80,9 +82,32 @@ struct RecordsListView: View {
                 }
             }
             .navigationBarTitle(Text("Observations"))
-            .navigationBarItems(trailing: EditButton())
+            .navigationBarItems(
+                leading: EditButton(),
+                trailing: Button(action: {
+                    self.sheetIsOpen.toggle()
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .resizable()
+                        .frame(width: 25, height: 25, alignment: .center)
+                }
+            )
             .listStyle(GroupedListStyle())
         }
+        .sheet(isPresented: self.$sheetIsOpen, content: {
+            
+            NewClassificationController(isPresented: $sheetIsOpen)
+                .environment(\.managedObjectContext, self.managedObjectContext)
+            
+//            if self.action == "Photos" {
+//                NewClassificationController(importFromPhotos: true, isPresented: $sheetIsOpen)
+//                    .environment(\.managedObjectContext, self.managedObjectContext)
+//            }
+//            else {
+//                NewClassificationController(importFromPhotos: false, isPresented: $sheetIsOpen)
+//                    .environment(\.managedObjectContext, self.managedObjectContext)
+//            }
+        })
     }
     
     ///Funtion that removes an observation from the list of observations.

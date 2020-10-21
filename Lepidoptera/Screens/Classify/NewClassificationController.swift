@@ -14,13 +14,12 @@ struct NewClassificationController: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     ///Controls whether we want to open camera or library picker.
-    var importFromPhotos: Bool
+    //var importFromPhotos: Bool
     
     ///Controls what view should appear - Sheet or result.
     @State var classificationWasSuccessful = false
     ///Current observation.
     @State var observation = Observation()
-    
     ///Controls if current sheet is visible or not.
     @Binding var isPresented: Bool
     
@@ -32,18 +31,19 @@ struct NewClassificationController: View {
                 
                 if classificationWasSuccessful == false {
                     SheetImagePicker(
-                        imageWillBeImportedFromPhotos: self.importFromPhotos,
+                        //imageWillBeImportedFromPhotos: self.importFromPhotos,
                         classificationWasSuccessful: self.$classificationWasSuccessful,
                         observation: self.$observation,
                         sheetIsPresented: self.$isPresented
-                    ).environment(\.managedObjectContext, self.managedObjectContext)
+                    )
+                    .environment(\.managedObjectContext, self.managedObjectContext)
                 }
                 else {
                     ObservationDetails(
                         observation: self.observation
                     )
                     .transition(.slide)
-                    .animation(.linear(duration: 1))
+                    .animation(.linear(duration: 1.5))
                     .environment(\.managedObjectContext, self.managedObjectContext)
                 }
             }

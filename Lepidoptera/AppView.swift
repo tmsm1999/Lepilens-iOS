@@ -20,12 +20,12 @@ struct AppView: View {
     var body: some View {
         
         TabView {
-            ClassificationView().environment(\.managedObjectContext, self.managedObjectContext)
-                .tabItem {
-                    Image(systemName: "camera.fill")
-                        .font(.system(size: tabBarItemFontSize))
-                    Text("Classify")
-                }
+//            ClassificationView().environment(\.managedObjectContext, self.managedObjectContext)
+//                .tabItem {
+//                    Image(systemName: "camera.fill")
+//                        .font(.system(size: tabBarItemFontSize))
+//                    Text("Classify")
+//                }
             RecordsListView().environment(\.managedObjectContext, self.managedObjectContext)
                 .tabItem {
                     Image(systemName: "book.fill")

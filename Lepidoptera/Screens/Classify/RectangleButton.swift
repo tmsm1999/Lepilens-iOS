@@ -42,14 +42,14 @@ struct RectangleButton: View {
                     }
                     .sheet(isPresented: self.$sheetIsOpen, content: {
                         
-                        if self.action == "Photos" {
-                            NewClassificationController(importFromPhotos: true, isPresented: $sheetIsOpen)
-                                .environment(\.managedObjectContext, self.managedObjectContext)
-                        }
-                        else {
-                            NewClassificationController(importFromPhotos: false, isPresented: $sheetIsOpen)
-                                .environment(\.managedObjectContext, self.managedObjectContext)
-                        }
+//                        if self.action == "Photos" {
+//                            NewClassificationController(importFromPhotos: true, isPresented: $sheetIsOpen)
+//                                .environment(\.managedObjectContext, self.managedObjectContext)
+//                        }
+//                        else {
+//                            NewClassificationController(importFromPhotos: false, isPresented: $sheetIsOpen)
+//                                .environment(\.managedObjectContext, self.managedObjectContext)
+//                        }
                     })
                     
                     Spacer()
