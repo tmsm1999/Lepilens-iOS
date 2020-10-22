@@ -36,6 +36,7 @@ struct RecordsListView: View {
                         Text("Show Favorites only")
                     }
                 }
+                //.offset(x: 0, y: 0)
                 
                 Section {
                     
@@ -89,7 +90,7 @@ struct RecordsListView: View {
                 }) {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
-                        .frame(width: 25, height: 25, alignment: .center)
+                        .frame(width: 28.5, height: 28.5, alignment: .center)
                 }
             )
             .listStyle(GroupedListStyle())

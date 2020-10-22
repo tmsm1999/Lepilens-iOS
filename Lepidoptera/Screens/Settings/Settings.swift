@@ -307,7 +307,7 @@ struct Settings: View {
             let genus = observation.genus ?? "Not found"
             let species = observation.speciesName!
             let confidence = String(observation.confidence)
-            let imageCreationDate = formatDate(date: observation.imageCreationDate!)
+            let imageCreationDate = observation.imageCreationDate!
             let imageHeight = observation.imageHeight
             let imageWidth = observation.imageWidth
             let imageSource = observation.imageSource!

@@ -7,21 +7,21 @@
 //
 
 import SwiftUI
-import WebKit
+import SafariServices
 
-struct WebView: UIViewRepresentable {
+struct WebView: UIViewControllerRepresentable {
     
-    var webLink: String
+    var webLink: URL
     
-    func makeUIView(context: UIViewRepresentableContext<WebView>) -> WKWebView {
+    func makeUIViewController(context: Context) -> SFSafariViewController {
         
-        let webView = WKWebView()
-        let pageURL = URL(string: webLink)
-        webView.load(URLRequest(url: pageURL!))
-        webView.allowsBackForwardNavigationGestures = true
-        
-        return webView
+        let controller = SFSafariViewController(url: webLink)
+        controller.modalPresentationCapturesStatusBarAppearance = true
+        controller.edgesForExtendedLayout = .all
+        return controller
     }
     
-    func updateUIView(_ uiView: WKWebView, context: UIViewRepresentableContext<WebView>) {}
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {
+        uiViewController.dismissButtonStyle = .close
+    }
 }

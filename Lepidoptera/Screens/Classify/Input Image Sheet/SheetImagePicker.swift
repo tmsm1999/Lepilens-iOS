@@ -10,6 +10,7 @@ import SwiftUI
 import Photos
 import PhotosUI
 import CoreImage
+import UniformTypeIdentifiers
 
 enum ActiveAlert {
     case butterflyWasNotDetected,
@@ -52,6 +53,10 @@ struct SheetImagePicker: View {
     @State var imageWasImported = false
     ///Variable that stores whether the ImagePicker sheet is up or not.
     @State var imagePickerIsPresented = false
+    ///Variable that controls when camera turns on
+    @State var cameraIsPresented = false
+    ///Variable that controls when file picker shows up
+    @State var filePickerIsPresented = false
     ///Controls the type of alert showed to the user.
     @State var activeAlert: ActiveAlert?
     
@@ -162,47 +167,63 @@ struct SheetImagePicker: View {
                         })
                         
                         Spacer()
-                    //}
-                    //else {
-                        //Handle Camera access.
-                        if #available(iOS 14.0, *) {
-                            Button(action: {
-                                self.imageSource = "iPhone Camera"
-                                self.imagePickerIsPresented.toggle()
-                            }) {
-                                VStack {
-                                    Image(systemName: "camera.on.rectangle.fill")
-                                        .resizable()
-                                        .frame(width: 40, height: 32, alignment: .center)
-                                        .padding(.bottom, 10)
-                                    Text(openCameraAppTextString).bold()
-                                }
+                        
+                        Button(action: {
+                            self.imageSource = "iPhone Files app"
+                            self.filePickerIsPresented.toggle()
+                        }) {
+                            VStack {
+                                Image(systemName: "folder.fill")
+                                    .resizable()
+                                    .frame(width: 40, height: 32, alignment: .center)
+                                    .padding(.bottom, 10)
+                                Text("Open Files").bold()
                             }
-                            .padding(.trailing, geometry.size.width / 6)
-                            .fullScreenCover(isPresented: self.$imagePickerIsPresented, content: {
-                                ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth, sourceType: "Camera").edgesIgnoringSafeArea(.all) //FIXME: Change the way the source type is handled.
-                            })
-                        } else {
-                            Button(action: {
-                                self.imageSource = "iPhone Camera"
-                                self.imagePickerIsPresented.toggle()
-                            }) {
-                                VStack {
-                                    Image(systemName: "camera.on.rectangle.fill")
-                                        .resizable()
-                                        .frame(width: 40, height: 32, alignment: .center)
-                                    Text(openCameraAppTextString).bold()
-                                }
-                            }
-                            .padding(.trailing, geometry.size.width / 4)
-                            .sheet(isPresented: self.$imagePickerIsPresented, content: {
-                                ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth, sourceType: "Camera") //FIXME: Change the way the source type is handled.
-                            })
                         }
+                        .fileImporter(isPresented: self.$filePickerIsPresented, allowedContentTypes: [.jpeg, .png]) { res in
+                            
+                            do {
+                                let selectedFile: URL = try res.get()
+                                
+                                if selectedFile.startAccessingSecurityScopedResource() {
+                                    let imageData = try Data(contentsOf: res.get())
+                                    self.imageToClassify = UIImage(data: imageData)!
+                                    self.imageWasImported = true
+                                    
+                                    do { selectedFile.stopAccessingSecurityScopedResource() }
+                                }
+                                
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }
+                        .padding(.trailing, geometry.size.width / 6)
                     }
-                    .padding(.top, geometry.size.height / 2.5)
+                    .padding(.top, geometry.size.height / 3)
                     
-                    //Spacer()
+                    HStack {
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            self.imageSource = "iPhone Camera"
+                            self.cameraIsPresented.toggle()
+                        }) {
+                            VStack {
+                                Image(systemName: "camera.on.rectangle.fill")
+                                    .resizable()
+                                    .frame(width: 40, height: 32, alignment: .center)
+                                    .padding(.bottom, 10)
+                                Text(openCameraAppTextString).bold()
+                            }
+                        }
+                        .padding(.top, 25)
+                        .fullScreenCover(isPresented: self.$cameraIsPresented, content: {
+                            ImagePickeriOS13(isPresented: self.$cameraIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth, sourceType: "Camera").edgesIgnoringSafeArea(.all) //FIXME: Change the way the source type is handled.
+                        })
+                        
+                        Spacer()
+                    }
                 }
                 else {
                     
@@ -384,7 +405,7 @@ struct SheetImagePicker: View {
     }
 }
 
-private let openPhotosAppTextString: String = "Import Photo"
+private let openPhotosAppTextString: String = "Open Photos"
 private let openCameraAppTextString: String = "Open Camera"
 private let rectanglePaddingDivisor: CGFloat = 2.5 //FIXME: Is it possible to change this?
 

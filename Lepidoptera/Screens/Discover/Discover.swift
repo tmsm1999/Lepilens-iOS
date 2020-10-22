@@ -62,9 +62,9 @@ struct Discover: View {
                             List {
                                 ForEach(iNatLinkDictionary.sorted(by: <), id: \.key) { key, value in
                                     
-                                    Button(action: {
-                                        UIApplication.shared.open(URL(string: iNatLinkDictionary[key]!)!)
-                                    }) {
+                                    
+                                    NavigationLink(destination: WebView(webLink: URL(string: iNatLinkDictionary[key]!)!).navigationBarTitle("", displayMode: .inline)) {
+                                        
                                         HStack {
                                             
                                             Image(key)
@@ -86,8 +86,8 @@ struct Discover: View {
                                             
                                             Spacer()
                                             
-                                            Image(systemName: "chevron.right")
-                                                .padding(.trailing, 5)
+//                                            Image(systemName: "chevron.right")
+//                                                .padding(.trailing, 5)
                                         }
                                     }
                                 }

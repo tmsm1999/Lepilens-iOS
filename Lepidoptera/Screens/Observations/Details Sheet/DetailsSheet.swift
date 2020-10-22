@@ -36,9 +36,16 @@ struct DetailsSheet: View {
                         DetailField(field: "Time: ", value: formatTime(date: observation.observationDate!))
                         DetailField(field: "Latitude: ", value: observation.latitude != -999 ? String(observation.latitude) : "Location is unavailable")
                         DetailField(field: "Longitude: ", value: observation.longitude != -999 ? String(observation.longitude) : "Location is unavailable")
-                        DetailField(field: "Image Creation Date: ", value: formatDate(date: observation.imageCreationDate!))
-                        DetailField(field: "Image Height: ", value: String(observation.imageHeight) + " pixels")
-                        DetailField(field: "Image Width: ", value: String(observation.imageWidth) + " pixels")
+                        
+                        if observation.imageCreationDate != nil {
+                            DetailField(field: "Image Creation Date: ", value: formatDate(date: observation.imageCreationDate!))
+                        }
+                        
+                        if observation.imageHeight != 0 {
+                            DetailField(field: "Image Height: ", value: String(observation.imageHeight) + " pixels")
+                            DetailField(field: "Image Width: ", value: String(observation.imageWidth) + " pixels")
+                        }
+                        
                         DetailField(field: "Image Source: ", value: observation.imageSource!)
                     }
                 }

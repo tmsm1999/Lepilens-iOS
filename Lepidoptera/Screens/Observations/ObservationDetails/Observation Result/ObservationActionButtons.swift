@@ -27,6 +27,8 @@ struct ObservationActionButtons: View {
     ///Icon name for when observation is not favorite.
     @State var buttonLabel: String = "Add to Favorites"
     
+    @State var showInformationSheet: Bool = false
+    
     var observation: Observation
     
     var body: some View {
@@ -70,9 +72,7 @@ struct ObservationActionButtons: View {
                 Divider()
                 
                 Button(action: {
-                    if let url = URL(string: wikipediaLinkDictionary[observation.speciesName!]!) {
-                        UIApplication.shared.open(url)
-                    }
+                    self.showInformationSheet.toggle()
                 }) {
                     HStack() {
                         Image(systemName: "info.circle.fill")
@@ -82,6 +82,9 @@ struct ObservationActionButtons: View {
                 }
                 .padding(.top, 4.3)
                 .animation(.none)
+                .sheet(isPresented: self.$showInformationSheet) {
+                    WebView(webLink: URL(string: wikipediaLinkDictionary[observation.speciesName!]!)!)
+                }
 
                 Divider()
                 
