@@ -41,6 +41,7 @@
 		7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F32505076F00058033 /* ImagePickeriOS13.swift */; };
 		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
 		CF16BDE825276C2C004E9D9D /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF16BDE725276C2C004E9D9D /* ShareSheet.swift */; };
+		CF41A5BC25445B0F00A613FE /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41A5BB25445B0F00A613FE /* Persistence.swift */; };
 		CF5EBF9C253B3D1600654767 /* Classifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CF5EBF9B253B3D1600654767 /* Classifier.mlmodel */; };
 		CF5EBFC6253C923D00654767 /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5EBFC5253C923D00654767 /* AboutScreen.swift */; };
 		CF8307212534ABC70071E7E7 /* secondJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = CF8307202534ABC70071E7E7 /* secondJSON.json */; };
@@ -99,6 +100,7 @@
 		7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToClassifyPlaceholder.swift; sourceTree = "<group>"; };
 		A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepidoptera.debug.xcconfig"; path = "Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera.debug.xcconfig"; sourceTree = "<group>"; };
 		CF16BDE725276C2C004E9D9D /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		CF41A5BB25445B0F00A613FE /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		CF5EBF9B253B3D1600654767 /* Classifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Classifier.mlmodel; sourceTree = "<group>"; };
 		CF5EBFC5253C923D00654767 /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
 		CF8307202534ABC70071E7E7 /* secondJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = secondJSON.json; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				7EACEF4424E6C42200D9715A /* Info.plist */,
 				7EACEF3E24E6C42200D9715A /* Preview Content */,
 				CFC50E5A252A23B100217E68 /* CoreDataModel.xcdatamodeld */,
+				CF41A5BB25445B0F00A613FE /* Persistence.swift */,
 			);
 			path = Lepidoptera;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				7EACEF5424E6E61B00D9715A /* ObservationDetails.swift in Sources */,
 				CFA34D2725365E6900A371E0 /* WebView.swift in Sources */,
 				7EACEF6624E94C4F00D9715A /* ObservationImage.swift in Sources */,
+				CF41A5BC25445B0F00A613FE /* Persistence.swift in Sources */,
 				CFE5673925251A9100C9D341 /* PrivacyPolicyScreen.swift in Sources */,
 				7EACEF6E24E99D2C00D9715A /* ObservationNoteSheet.swift in Sources */,
 				7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */,

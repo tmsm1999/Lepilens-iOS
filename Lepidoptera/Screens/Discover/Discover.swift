@@ -6,6 +6,15 @@
 //  Copyright © 2020 Tomás Santiago. All rights reserved.
 //
 
+//
+//  Discover.swift
+//  Lepilens
+//
+//  Created by Tomás Mamede on 23/10/2020.
+//
+
+import SwiftUI
+
 import SwiftUI
 import CoreData
 
@@ -17,6 +26,8 @@ struct Discover: View {
     @State var searchType: Int = 0 //0 = My Observations | 1 = Find Species
     @State var occurencesFound = 0
     @State var occurrencesWithLocation = 0
+    @State var safaryModalIsVisible: Bool = false
+    @State var iNaturalistLink: String = ""
     
     @State var observationList = [Observation]()
     
@@ -29,7 +40,7 @@ struct Discover: View {
                 
                 VStack {
                     
-                    Picker(selection: self.$searchType, label: Text("Mode")) {
+                    Picker(selection: $searchType, label: Text("Mode")) {
                         Text("My Observations").tag(0)
                         Text("Find Species").tag(1)
                     }
@@ -39,15 +50,15 @@ struct Discover: View {
                         .padding(.trailing, 15)
                     
                     
-                    if self.searchType == 0 {
+                    if searchType == 0 {
                         
                         HStack {
-                            Text("Occurrences with location: \(self.occurencesFound)")
+                            Text("Occurrences with location: \(occurencesFound)")
                             Spacer()
                         }
                         .padding(15)
                         
-                        SearchBar(searchText: self.$searchText)
+                        SearchBar(searchText: $searchText)
                             .padding(.leading, 15)
                             .padding(.trailing, 15)
                         
@@ -61,9 +72,11 @@ struct Discover: View {
                         Section {
                             List {
                                 ForEach(iNatLinkDictionary.sorted(by: <), id: \.key) { key, value in
-                                    
-                                    
-                                    NavigationLink(destination: WebView(webLink: URL(string: iNatLinkDictionary[key]!)!).navigationBarTitle("", displayMode: .inline)) {
+                                        
+                                    Button(action: {
+                                        iNaturalistLink = iNatLinkDictionary[key]!
+                                        safaryModalIsVisible.toggle()
+                                    }) {
                                         
                                         HStack {
                                             
@@ -86,15 +99,19 @@ struct Discover: View {
                                             
                                             Spacer()
                                             
-//                                            Image(systemName: "chevron.right")
-//                                                .padding(.trailing, 5)
+                                            Image(systemName: "arrow.up.forward.app.fill")
+                                                .padding(.trailing, 5)
+                                            
                                         }
+                                    }
+                                    .sheet(isPresented: $safaryModalIsVisible) {
+                                        WebView(webLink: URL(string: iNatLinkDictionary[key]!)!)
                                     }
                                 }
                             }
                             .padding(.top, 10)
+                            .listStyle(PlainListStyle())
                         }
-                        .listStyle(PlainListStyle())
                     }
                 }
                 .navigationBarTitle(Text("Discover"))
@@ -112,10 +129,11 @@ struct Discover: View {
         
         let observations = (try? managedObjectContext.fetch(request)) ?? []
         if !observations.isEmpty {
-            self.occurencesFound = observations.count
+            occurencesFound = observations.count
             return observations
         }
         self.occurencesFound = 0
         return observations
     }
 }
+

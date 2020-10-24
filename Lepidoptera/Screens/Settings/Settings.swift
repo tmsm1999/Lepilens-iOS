@@ -22,7 +22,8 @@ enum AlertType {
 
 struct Settings: View {
     
-    @FetchRequest(entity: Observation.entity(), sortDescriptors: []) var observationList: FetchedResults<Observation>
+//    @FetchRequest(entity: Observation.entity(), sortDescriptors: []) var observationList: FetchedResults<Observation>
+    @FetchRequest(entity: Observation.entity(), sortDescriptors: [NSSortDescriptor(key: "observationDate", ascending: false)]) var observationList: FetchedResults<Observation>
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State var availableConfidenceIndex: Int = 0
@@ -54,28 +55,28 @@ struct Settings: View {
                     HStack {
                         Text("Precision")
                         Spacer()
-                        Text(String(format: "%.2f", precision[self.availableConfidenceIndex])).fontWeight(.regular)
+                        Text(String(format: "%.2f", precision[availableConfidenceIndex])).fontWeight(.regular)
                     }
                     
                     HStack {
                         Text("Recall")
                         Spacer()
-                        Text(String(format: "%.2f", recall[self.availableConfidenceIndex])).fontWeight(.regular)
+                        Text(String(format: "%.2f", recall[availableConfidenceIndex])).fontWeight(.regular)
                     }
                     
                     HStack {
                         Text("Confidence threshold")
                         Spacer()
-                        Text(String(format: "%.2f", availableConfidence[self.availableConfidenceIndex])).fontWeight(.regular)
+                        Text(String(format: "%.2f", availableConfidence[availableConfidenceIndex])).fontWeight(.regular)
                     }
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.5)) {
-                            self.showConfidencePicker.toggle()
+                            showConfidencePicker.toggle()
                         }
                     }
                     
                     if showConfidencePicker {
-                        Picker("Minimum Confidence", selection: self.$availableConfidenceIndex) {
+                        Picker("Minimum Confidence", selection: $availableConfidenceIndex) {
                             
                             ForEach(0 ..< availableConfidence.count) {
                                 Text(String(format: "%.2f", availableConfidence[$0]))
@@ -94,12 +95,12 @@ struct Settings: View {
                         return
                     }
                     
-                    self.availableConfidenceIndex = confidenceThresholdIndex
+                    availableConfidenceIndex = confidenceThresholdIndex
                 }
                 
                 Section(header: Text("Observation Data"), footer: Text("Your data is yours. It never leaves your device or your iCloud account.")) {
                     Button(action: {
-                        self.presentExportCSV.toggle()
+                        presentExportCSV.toggle()
                     }) {
                         HStack {
                             Image(systemName: "square.and.arrow.down.fill")
@@ -108,8 +109,8 @@ struct Settings: View {
                     }
                     
                     Button(action: {
-                        self.activeAlert = .deleteAllData
-                        self.showAlert.toggle()
+                        activeAlert = .deleteAllData
+                        showAlert.toggle()
                         
                     }) {
                         HStack {
@@ -119,6 +120,7 @@ struct Settings: View {
                         }
                     }
                 }
+                .accentColor(.blue)
                 
                 Section(header: Text("Location"), footer: Text("Pressing the toggle does not change your location settings. It only tells the app whether you want to include location in the next observation. The app uses your current location or the location metadata in photos only when performing a classification.")) {
                     
@@ -138,6 +140,7 @@ struct Settings: View {
                         Text("Include Location")
                     }
                 }
+                .accentColor(.blue)
                 
                 Section(header: Text("Photos"), footer: Text("Every classification requires a photo. You can manage the type of access the app has to your photos.")) {
                     
@@ -153,6 +156,7 @@ struct Settings: View {
                         }
                     }
                 }
+                .accentColor(.blue)
                 
                 Section(header: Text("This application")) {
                     
@@ -182,11 +186,11 @@ struct Settings: View {
                     
                     Button(action: {
                         if MFMailComposeViewController.canSendMail() {
-                            self.showEmailComposer.toggle()
+                            showEmailComposer.toggle()
                         }
                         else {
-                            self.activeAlert = .canNotSendEmail
-                            self.showAlert.toggle()
+                            activeAlert = .canNotSendEmail
+                            showAlert.toggle()
                         }
                     }) {
                         HStack {
@@ -195,6 +199,7 @@ struct Settings: View {
                         }
                     }
                 }
+                .accentColor(.blue)
                 
                 Section {
                     HStack {
@@ -211,10 +216,11 @@ struct Settings: View {
 //                        HStack {
 //                            Image(systemName: "chevron.left.slash.chevron.right")
 //                            Text("View Source Code")
-//                            
+//
 //                        }
 //                    }
                 }
+                .accentColor(.blue)
             }
             .navigationBarTitle(Text("Settings"))
         }
@@ -224,11 +230,14 @@ struct Settings: View {
                 return Alert(title: Text("Delete all data"), message: Text("Are you sure you want to delete all observations and associated data?"), primaryButton: .destructive(Text("Yes")) {
                     
                     for observation in observationList {
-                        self.managedObjectContext.delete(observation)
+                        managedObjectContext.delete(observation)
+                        
+                        do {
+                            try managedObjectContext.save()
+                        } catch {
+                            print("Can't delete from Core Data.")
+                        }
                     }
-                    
-                    try? self.managedObjectContext.save()
-                    
                 }, secondaryButton: .cancel(Text("No")))
             case .canNotSendEmail:
                 return Alert(title: Text("Can't send email"), message: Text("Please check your iPhone Settings and make sure you have an active email client."), dismissButton: .default(Text("OK")))
@@ -236,10 +245,10 @@ struct Settings: View {
                 return Alert(title: Text(""))
             }
         }
-        .sheet(isPresented: self.$showEmailComposer) {
-            SendEmailSheet(emailError: self.$emailErrorAlert)
+        .sheet(isPresented: $showEmailComposer) {
+            SendEmailSheet(emailError: $emailErrorAlert)
         }
-        .fileMover(isPresented: self.$presentExportCSV, file: createFolderURL()!) { res in
+        .fileMover(isPresented: $presentExportCSV, file: createFolderURL()!) { res in
             switch res {
             case .success(let url):
                 print(url)
@@ -307,7 +316,7 @@ struct Settings: View {
             let genus = observation.genus ?? "Not found"
             let species = observation.speciesName!
             let confidence = String(observation.confidence)
-            let imageCreationDate = observation.imageCreationDate!
+            let imageCreationDate = observation.imageCreationDate != nil ? formatDate(date: observation.imageCreationDate!) : "Not available"
             let imageHeight = observation.imageHeight
             let imageWidth = observation.imageWidth
             let imageSource = observation.imageSource!
