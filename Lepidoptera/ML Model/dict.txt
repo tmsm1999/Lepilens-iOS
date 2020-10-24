@@ -1,100 +1,134 @@
-Danaus_plexippus
-Vanessa_virginiensis
-Melanargia_lachesis
-Zerynthia_rumina
-Maniola_jurtina
-Hesperia_comma
-Celastrina_argiolus
-Limenitis_camilla
-Lycaena_tityrus
-Euphydryas_aurinia
-Melitaea_nevadensis
-Papilio_machaon
-Aglais_urticae
-Anthocharis_euphenoides
-Libythea_celtis
-Melitaea_deione
-Lampides_boeticus
-Vanessa_cardui
-Hipparchia_semele
-Hipparchia_fidia
-Gegenes_nostrodamus
-Gonepteryx_rhamni
-Cyaniris_semiargus
-Thymelicus_sylvestris
-Satyrium_spini
-Aricia_cramera
-Anthocharis_cardamines
-Leptidea_sinapis
-Melanargia_occitanica
-Iphiclides_feisthamelii
-Euphydryas_desfontainii
-Nymphalis_antiopa
-Ochlodes_sylvanus
-Lasiommata_megera
-Satyrium_esculi
-Pyronia_cecilia
-Boloria_selene
-Cupido_minimus
-Pieris_rapae
-Argynnis_adippe
-Callophrys_rubi
-Argynnis_aglaja
-Apatura_ilia
-Tomares_ballus
-Colias_alfacariensis
-Hipparchia_statilinus
-Lycaena_bleusei
-Euchloe_crameri
-Melitaea_didyma
-Thymelicus_acteon
-Zizeeria_knysna
-Brenthis_daphne
-Boloria_euphrosyne
-Pieris_brassicae
-Pyronia_bathseba
-Melitaea_parthenoides
-Colias_croceus
-Lycaena_phlaeas
-Leptotes_pirithous
-Vanessa_atalanta
-Euchloe_belemia
-Lycaena_virgaureae
-Nymphalis_polychloros
-Argynnis_pandora
-Satyrus_actaea
-Pontia_daplidice
-Glaucopsyche_alexis
-Danaus_chrysippus
-Lasiommata_maera
-Melitaea_phoebe
-Plebejus_argus
-Muschampia_proto
-Coenonympha_pamphilus
-Pyronia_tithonus
-Melitaea_cinxia
-Polyommatus_thersites
-Melitaea_trivia
-Coenonympha_arcania
-Lycaena_alciphron
-Polygonia_c-album
-Polyommatus_celina
-Boloria_dia
-Hipparchia_hermione
-Argynnis_paphia
-Spialia_sertorius
-Pseudophilotes_panoptes
-Coenonympha_dorus
-Polyommatus_icarus
-Charaxes_jasius
-Issoria_lathonia
-Glaucopsyche_melanops
-Brintesia_circe
-Carcharodus_alceae
-Pararge_aegeria
-Aglais_io
-Melanargia_ines
-Gonepteryx_cleopatra
-Aporia_crataegi
-Hamearis_lucina
-Pieris_napi
+Pseudophilotes panoptes
+Melanargia ines
+Polyommatus celina
+Hipparchia semele
+Argynnis niobe
+Pyrgus onopordi
+Nymphalis antiopa
+Melitaea didyma
+Vanessa virginiensis
+Muschampia proto
+Thymelicus acteon
+Limenitis camilla
+Colias croceus
+Phengaris alcon
+Iphiclides feisthamelii
+Danaus plexippus
+Melitaea diamina
+Gegenes nostrodamus
+Colias alfacariensis
+Pieris napi
+Argynnis pandora
+Boloria selene
+Cyaniris semiargus
+Satyrus actaea
+Plebejus argus
+Melitaea phoebe
+Argynnis paphia
+Vanessa atalanta
+Leptidea sinapis
+Carcharodus alceae
+Cupido minimus
+Pseudophilotes abencerragus
+Lampides boeticus
+Libythea celtis
+Cupido lorquinii
+Cacyreus marshalli
+Celastrina argiolus
+Pontia daplidice
+Euchloe crameri
+Argynnis adippe
+Zizeeria knysna
+Melanargia occitanica
+Tomares ballus
+Pieris rapae
+Callophrys avis
+Euphydryas aurinia
+Lycaena tityrus
+Erynnis tages
+Lycaena bleusei
+Hyponephele lupinus
+Aglais io
+Hipparchia hermione
+Pyronia tithonus
+Ochlodes sylvanus
+Aricia eumedon
+Anthocharis cardamines
+Melanargia russiae
+Coenonympha arcania
+Aricia montensis
+Carcharodus baeticus
+Pyrgus serratulae
+Polyommatus bellargus
+Brenthis ino
+Laeosopis roboris
+Polyommatus thersites
+Carcharodus tripolina
+Glaucopsyche alexis
+Pyrgus malvoides
+Gonepteryx rhamni
+Pseudophilotes baton
+Favonius quercus
+Pyronia cecilia
+Lycaena virgaureae
+Arethusana arethusa
+Zerynthia rumina
+Pyronia bathseba
+Coenonympha pamphilus
+Euchloe tagis
+Lasiommata maera
+Polygonia c-album
+Hipparchia fidia
+Melitaea cinxia
+Hipparchia statilinus
+Melanargia lachesis
+Papilio machaon
+Thymelicus sylvestris
+Pararge aegeria
+Apatura ilia
+Lasiommata megera
+Nymphalis polychloros
+Hesperia comma
+Limenitis reducta
+Brintesia circe
+Aphantopus hyperantus
+Hyponephele lycaon
+Melitaea aetherie
+Gonepteryx cleopatra
+Vanessa cardui
+Satyrium spini
+Issoria lathonia
+Aglais urticae
+Euphydryas desfontainii
+Aporia crataegi
+Callophrys rubi
+Erebia triarius
+Satyrium ilicis
+Satyrium esculi
+Melitaea parthenoides
+Anthocharis euphenoides
+Boloria dia
+Argynnis aglaja
+Lycaena phlaeas
+Glaucopsyche melanops
+Polyommatus icarus
+Melitaea deione
+Euchloe belemia
+Thecla betulae
+Lycaena alciphron
+Coenonympha dorus
+Brenthis hecate
+Thymelicus lineola
+Boloria euphrosyne
+Brenthis daphne
+Pieris brassicae
+Spialia sertorius
+Melitaea trivia
+Pyrgus armoricanus
+Charaxes jasius
+Hamearis lucina
+Melitaea nevadensis
+Maniola jurtina
+Apatura iris
+Aricia cramera
+Leptotes pirithous

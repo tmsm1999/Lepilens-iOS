@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		7E3405FE24F5690A00BE3AA3 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */; };
 		7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */; };
-		7E483EC22515692800FF8B6F /* dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E483EC02515692800FF8B6F /* dict.txt */; };
-		7E483EC32515692800FF8B6F /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 7E483EC12515692800FF8B6F /* model.tflite */; };
 		7E8B589425178D2E00D158F7 /* ModelInference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B589325178D2E00D158F7 /* ModelInference.swift */; };
 		7E8B589C2517B8AF00D158F7 /* genero.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B589A2517B8AE00D158F7 /* genero.tflite */; };
 		7E8B589D2517B8AF00D158F7 /* generodict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B589B2517B8AF00D158F7 /* generodict.txt */; };
@@ -37,11 +35,12 @@
 		7EC9DD9C24FD7B14005F110A /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9DD9B24FD7B14005F110A /* RectangleButton.swift */; };
 		7EDB974525114A1B00211118 /* SheetImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB974425114A1B00211118 /* SheetImagePicker.swift */; };
 		7EDB974C25114F2F00211118 /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB974B25114F2F00211118 /* Classification.swift */; };
-		7EDC07F22504FDE000058033 /* NewClassificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F12504FDE000058033 /* NewClassificationController.swift */; };
 		7EDC07F42505076F00058033 /* ImagePickeriOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F32505076F00058033 /* ImagePickeriOS13.swift */; };
 		7EDC07F6250533F200058033 /* ImageToClassifyPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC07F5250533F200058033 /* ImageToClassifyPlaceholder.swift */; };
 		CF16BDE825276C2C004E9D9D /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF16BDE725276C2C004E9D9D /* ShareSheet.swift */; };
 		CF41A5BC25445B0F00A613FE /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41A5BB25445B0F00A613FE /* Persistence.swift */; };
+		CF41A5C225445E6E00A613FE /* dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = CF41A5C125445E6E00A613FE /* dict.txt */; };
+		CF41A5C625445FDC00A613FE /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CF41A5C025445E5B00A613FE /* model.tflite */; };
 		CF5EBF9C253B3D1600654767 /* Classifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CF5EBF9B253B3D1600654767 /* Classifier.mlmodel */; };
 		CF5EBFC6253C923D00654767 /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5EBFC5253C923D00654767 /* AboutScreen.swift */; };
 		CF8307212534ABC70071E7E7 /* secondJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = CF8307202534ABC70071E7E7 /* secondJSON.json */; };
@@ -65,8 +64,6 @@
 		52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lepidoptera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E3405FD24F5690A00BE3AA3 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		7E3405FF24F5A50A00BE3AA3 /* RecordsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListView.swift; sourceTree = "<group>"; };
-		7E483EC02515692800FF8B6F /* dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dict.txt; sourceTree = "<group>"; };
-		7E483EC12515692800FF8B6F /* model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
 		7E8B589325178D2E00D158F7 /* ModelInference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInference.swift; sourceTree = "<group>"; };
 		7E8B589A2517B8AE00D158F7 /* genero.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = genero.tflite; sourceTree = "<group>"; };
 		7E8B589B2517B8AF00D158F7 /* generodict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generodict.txt; sourceTree = "<group>"; };
@@ -101,6 +98,8 @@
 		A0CC37C55669069ACF345C07 /* Pods-Lepidoptera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lepidoptera.debug.xcconfig"; path = "Target Support Files/Pods-Lepidoptera/Pods-Lepidoptera.debug.xcconfig"; sourceTree = "<group>"; };
 		CF16BDE725276C2C004E9D9D /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		CF41A5BB25445B0F00A613FE /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		CF41A5C025445E5B00A613FE /* model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
+		CF41A5C125445E6E00A613FE /* dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dict.txt; sourceTree = "<group>"; };
 		CF5EBF9B253B3D1600654767 /* Classifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Classifier.mlmodel; sourceTree = "<group>"; };
 		CF5EBFC5253C923D00654767 /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
 		CF8307202534ABC70071E7E7 /* secondJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = secondJSON.json; sourceTree = "<group>"; };
@@ -232,8 +231,8 @@
 			children = (
 				7EDB974B25114F2F00211118 /* Classification.swift */,
 				CF5EBF9B253B3D1600654767 /* Classifier.mlmodel */,
-				7E483EC02515692800FF8B6F /* dict.txt */,
-				7E483EC12515692800FF8B6F /* model.tflite */,
+				CF41A5C025445E5B00A613FE /* model.tflite */,
+				CF41A5C125445E6E00A613FE /* dict.txt */,
 				7E8B589A2517B8AE00D158F7 /* genero.tflite */,
 				7E8B589B2517B8AF00D158F7 /* generodict.txt */,
 				7E8B589325178D2E00D158F7 /* ModelInference.swift */,
@@ -405,18 +404,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EACEF4324E6C42200D9715A /* LaunchScreen.storyboard in Resources */,
+				CF41A5C625445FDC00A613FE /* model.tflite in Resources */,
 				7EACEF5B24E6F95F00D9715A /* aglais_io.jpg in Resources */,
 				7E8B589C2517B8AF00D158F7 /* genero.tflite in Resources */,
 				7EACEF5824E6F70F00D9715A /* mockData.json in Resources */,
 				7E8B589D2517B8AF00D158F7 /* generodict.txt in Resources */,
 				7EACEF5D24E6F9DB00D9715A /* vanessa_atalanta.jpg in Resources */,
-				7E483EC32515692800FF8B6F /* model.tflite in Resources */,
 				7EACEF4024E6C42200D9715A /* Preview Assets.xcassets in Resources */,
 				CFDECB842531109000ECBFFE /* speciesInfo.json in Resources */,
 				7EACEF5F24E6FA1500D9715A /* pieris_napi.jpg in Resources */,
 				CF8307212534ABC70071E7E7 /* secondJSON.json in Resources */,
-				7E483EC22515692800FF8B6F /* dict.txt in Resources */,
 				7EACEF3D24E6C42200D9715A /* Assets.xcassets in Resources */,
+				CF41A5C225445E6E00A613FE /* dict.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +519,6 @@
 				CF88A519253355B10048BDC6 /* MyObservationsMap.swift in Sources */,
 				7EACEF3B24E6C41E00D9715A /* AppView.swift in Sources */,
 				7EDB974C25114F2F00211118 /* Classification.swift in Sources */,
-				7EDC07F22504FDE000058033 /* NewClassificationController.swift in Sources */,
 				7EACEF6C24E956FA00D9715A /* DetailsSheet.swift in Sources */,
 				7E3405FE24F5690A00BE3AA3 /* MultilineTextField.swift in Sources */,
 			);

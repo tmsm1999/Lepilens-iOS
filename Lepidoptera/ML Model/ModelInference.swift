@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MLKit
 import Vision
+import CoreData
 
 /**
 A struct that represents a label in an observaation.
@@ -91,27 +92,27 @@ class ModelInference {
 //        guard let cgImage = receivedImage.cgImage else {
 //            return
 //        }
-//        
+//
 //        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
 //        let request = ClassificationRequest
-//        
+//
 //        try? handler.perform([request])
-//        
+//
 //        guard let results = request.results as? [VNClassificationObservation] else {
 //            print("Error with classifier results")
 //            return
 //        }
-//        
+//
 //        for species in results {
 //            print("Aqui")
 //            print(species.identifier)
 //            print(species.confidence)
 //        }
 //        print("Aqui")
-//        
+//
 //        //print(results)
 //    }
-//    
+//
 //    private lazy var ClassificationRequest: VNCoreMLRequest = {
 //        do {
 //
@@ -156,7 +157,7 @@ class ModelInference {
         
         if let butterflyConfidence = categoriesDictionary["butterfly"] {
             print(butterflyConfidence)
-            if butterflyConfidence > 0.4 {
+            if butterflyConfidence > 0.1 {
                 return true
             }
         }
@@ -164,3 +165,4 @@ class ModelInference {
         return false
     }
 }
+

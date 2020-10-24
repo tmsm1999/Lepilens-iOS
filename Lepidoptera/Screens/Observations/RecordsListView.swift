@@ -27,112 +27,129 @@ struct RecordsListView: View {
         
         NavigationView {
             
-            List {
+            ZStack {
                 
-                Section {
-                    SearchBar(searchText: self.$searchText)
+                List {
                     
-                    Toggle(isOn: self.$showFavoritesOnly) {
-                        Text("Show Favorites only")
-                    }
-                }
-                //.offset(x: 0, y: 0)
-                
-                Section {
-                    
-                    ForEach(self.observationList, id: \.self) { observation in
+                    Section {
+                        SearchBar(searchText: self.$searchText)
                         
-                        if (self.searchText.isEmpty || observation.speciesName!.lowercased().contains(self.searchText.lowercased())) && (!self.showFavoritesOnly || observation.isFavorite) {
-                            NavigationLink(destination: ObservationDetails(observation: observation).onAppear {
-                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                            }) {
-                                
-                                HStack {
-                                    
-                                    Image(uiImage: UIImage(data: observation.image!)!)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 60, height: 60, alignment: .center)
-                                        .clipped()
-                                        .cornerRadius(8)
-                                    
-                                    VStack(alignment: .leading) {
-                                        Text(observation.speciesName!)
-                                            .font(.system(size: 20))
-                                            .bold()
-                                        Text(observation.observationDate != nil ? formatDate(date: observation.observationDate!) : "Date not found")
-                                            .font(.system(size: 15))
-                                            .foregroundColor(.secondary)
-                                    }
-                                    .padding(.leading, 10)
-                                    
-                                    Spacer()
-                                    
-                                    if(observation.isFavorite) {
-                                        Image(systemName: "star.fill")
-                                            .imageScale(.medium)
-                                            .foregroundColor(.yellow)
-                                            .padding(.trailing, 8)
-                                    }
-                                }
-                            }
-                            .environment(\.managedObjectContext, managedObjectContext)
+                        Toggle(isOn: self.$showFavoritesOnly) {
+                            Text("Show Favorites only")
                         }
                     }
-                    .onDelete(perform: delete)
+                    
+                    Section {
+                        
+                        ForEach(self.observationList, id: \.self) { observation in
+                            
+                            if (self.searchText.isEmpty || observation.speciesName!.lowercased().contains(self.searchText.lowercased())) && (!self.showFavoritesOnly || observation.isFavorite) {
+                                
+                                NavigationLink(destination: ObservationDetails(sheetIsOpen: Binding.constant(false), observation: observation).onAppear {
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                }) {
+                                    
+                                    HStack {
+                                        
+                                        Image(uiImage: UIImage(data: observation.image!)!)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 60, height: 60, alignment: .center)
+                                            .clipped()
+                                            .cornerRadius(8)
+                                        
+                                        VStack(alignment: .leading) {
+                                            Text(observation.speciesName!)
+                                                .font(.system(size: 20))
+                                                .bold()
+                                            Text(observation.observationDate != nil ? formatDate(date: observation.observationDate!) : "Date not found")
+                                                .font(.system(size: 15))
+                                                .foregroundColor(.secondary)
+                                        }
+                                        .padding(.leading, 10)
+                                        
+                                        Spacer()
+                                        
+                                        if(observation.isFavorite) {
+                                            Image(systemName: "star.fill")
+                                                .imageScale(.medium)
+                                                .foregroundColor(.yellow)
+                                                .padding(.trailing, 8)
+                                        }
+                                    }
+                                }
+                                //.environment(\.managedObjectContext, managedObjectContext)
+                            }
+                        }
+                        .onDelete(perform: delete)
+                    }
                 }
+                .navigationBarTitle(Text("Observations"))
+                .navigationBarItems(
+                    leading: EditButton(),
+                    trailing: Button(action: {
+                        self.sheetIsOpen.toggle()
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .frame(width: 28.5, height: 28.5, alignment: .center)
+                    }
+                )
+                .listStyle(GroupedListStyle())
+                
+                Spacer()
+                if observationList.count < 1 {
+                    HStack(alignment: .center) {
+                        VStack(alignment: .center) {
+                            Text("You don't have any observations yet.")
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                            Text("Press + to start.")
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                }
+                Spacer()
             }
-            .navigationBarTitle(Text("Observations"))
-            .navigationBarItems(
-                leading: EditButton(),
-                trailing: Button(action: {
-                    self.sheetIsOpen.toggle()
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: 28.5, height: 28.5, alignment: .center)
-                }
-            )
-            .listStyle(GroupedListStyle())
         }
         .sheet(isPresented: self.$sheetIsOpen, content: {
             
-            NewClassificationController(isPresented: $sheetIsOpen)
+            SheetImagePicker(sheetIsPresented: $sheetIsOpen)
                 .environment(\.managedObjectContext, self.managedObjectContext)
-            
-//            if self.action == "Photos" {
-//                NewClassificationController(importFromPhotos: true, isPresented: $sheetIsOpen)
-//                    .environment(\.managedObjectContext, self.managedObjectContext)
-//            }
-//            else {
-//                NewClassificationController(importFromPhotos: false, isPresented: $sheetIsOpen)
-//                    .environment(\.managedObjectContext, self.managedObjectContext)
-//            }
         })
     }
     
     ///Funtion that removes an observation from the list of observations.
     func delete(at offsets: IndexSet) {
         
-        DispatchQueue.main.async {
-            for index in offsets {
-                let observationToRemove = observationList[index]
-                managedObjectContext.delete(observationToRemove)
-            }
-            
-            try? managedObjectContext.save()
+        //DispatchQueue.main.async {
+        for index in offsets {
+            let observationToRemove = observationList[index]
+            managedObjectContext.delete(observationToRemove)
         }
+        
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Can't delete from Core Data")
+        }
+        //}
     }
     
     ///Adds an observation to the favorites.
     func favoriteAction(at offsets: IndexSet) {
         
-        DispatchQueue.main.async {
-            offsets.forEach { i in
-                observationList[i].isFavorite = !observationList[i].isFavorite
-            }
-            
-            try? managedObjectContext.save()
+        //DispatchQueue.main.async {
+        offsets.forEach { i in
+            observationList[i].isFavorite = !observationList[i].isFavorite
         }
+        
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Can't change Core Data object.")
+        }
+        //}
     }
 }

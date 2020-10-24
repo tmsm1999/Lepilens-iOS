@@ -16,6 +16,8 @@ struct ObservationDetails: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    @Binding var sheetIsOpen: Bool
+    
     ///Current observation being shown.
     var observation: Observation
     
@@ -64,9 +66,9 @@ struct ObservationDetails: View {
                     
                     Spacer()
                     
-                    ObservationActionButtons(observation: self.observation)
+                    ObservationActionButtons(observation: self.observation, sheetIsOpen: self.$sheetIsOpen)
                         .offset(x: 0, y: 15)
-                        .environment(\.managedObjectContext, self.managedObjectContext)
+                        //.environment(\.managedObjectContext, self.managedObjectContext)
                 }
                 .navigationBarTitle(Text(""))
             }

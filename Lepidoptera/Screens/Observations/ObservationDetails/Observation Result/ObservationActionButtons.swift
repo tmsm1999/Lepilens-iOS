@@ -31,6 +31,8 @@ struct ObservationActionButtons: View {
     
     var observation: Observation
     
+    @Binding var sheetIsOpen: Bool
+    
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -64,7 +66,7 @@ struct ObservationActionButtons: View {
                 }
                 .sheet(isPresented: $presentAddNoteSheet) {
                     ObservationNoteSheet(isPresented: self.$presentAddNoteSheet, userNote: "", observation: self.observation)
-                        .environment(\.managedObjectContext, managedObjectContext)
+                        //.environment(\.managedObjectContext, managedObjectContext)
                 }
                 .padding(.top, 4.3)
                 .animation(.none)
@@ -147,15 +149,22 @@ struct ObservationActionButtons: View {
         .alert(isPresented: $showDeleteObservationAlert) {
             Alert(title: Text("Delete observation"), message: Text("Are you sure you want to delete this observation and associated data?"), primaryButton: .destructive(Text("Yes")) {
                 
-                self.managedObjectContext.delete(self.observation)
-                try? self.managedObjectContext.save()
+                self.sheetIsOpen = false
                 self.presentationMode.wrappedValue.dismiss()
+                
+                do {
+                    self.managedObjectContext.delete(observation)
+                    try self.managedObjectContext.save()
+                } catch {
+                    print(error.localizedDescription)
+                }
                 
             }, secondaryButton: .cancel(Text("No")))
         }
         .onAppear() {
             changeFavoriteButton()
         }
+        .accentColor(.none)
     }
     
     func changeFavoriteButton() {
