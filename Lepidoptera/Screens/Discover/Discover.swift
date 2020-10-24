@@ -132,7 +132,7 @@ struct Discover: View {
             occurencesFound = observations.count
             return observations
         }
-        self.occurencesFound = 0
+        occurencesFound = 0
         return observations
     }
 }

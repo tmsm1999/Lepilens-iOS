@@ -78,6 +78,8 @@ class ModelInference {
         print("Aqui 4")
         semaphore.wait()
         print("Aqui 5")
+        
+        
     }
     
     func getResults() -> [PairLabelConfidence]? {

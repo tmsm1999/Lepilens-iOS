@@ -41,7 +41,7 @@ struct ObservationActionButtons: View {
                 
                 Divider()
                 
-                Button(action: { self.presentObservationDetailsSheet.toggle() }) {
+                Button(action: { presentObservationDetailsSheet.toggle() }) {
                     HStack {
                         Image(systemName: "plus.square.fill")
                         Text("Observation Details").bold()
@@ -49,7 +49,7 @@ struct ObservationActionButtons: View {
                     .padding(.leading, 15)
                 }
                 .sheet(isPresented: $presentObservationDetailsSheet) {
-                    DetailsSheet(isPresented: self.$presentObservationDetailsSheet, observation: self.observation)
+                    DetailsSheet(isPresented: $presentObservationDetailsSheet, observation: observation)
                         .edgesIgnoringSafeArea(.bottom)
                 }
                 .padding(.top, 4.3)
@@ -57,7 +57,7 @@ struct ObservationActionButtons: View {
                 
                 Divider()
                 
-                Button(action: { self.presentAddNoteSheet.toggle() }) {
+                Button(action: { presentAddNoteSheet.toggle() }) {
                     HStack() {
                         Image(systemName: "square.and.pencil")
                         Text("Add Note").bold()
@@ -65,7 +65,7 @@ struct ObservationActionButtons: View {
                     .padding(.leading, 15)
                 }
                 .sheet(isPresented: $presentAddNoteSheet) {
-                    ObservationNoteSheet(isPresented: self.$presentAddNoteSheet, userNote: "", observation: self.observation)
+                    ObservationNoteSheet(isPresented: $presentAddNoteSheet, userNote: "", observation: observation)
                         //.environment(\.managedObjectContext, managedObjectContext)
                 }
                 .padding(.top, 4.3)
@@ -74,7 +74,7 @@ struct ObservationActionButtons: View {
                 Divider()
                 
                 Button(action: {
-                    self.showInformationSheet.toggle()
+                    showInformationSheet.toggle()
                 }) {
                     HStack() {
                         Image(systemName: "info.circle.fill")
@@ -84,13 +84,13 @@ struct ObservationActionButtons: View {
                 }
                 .padding(.top, 4.3)
                 .animation(.none)
-                .sheet(isPresented: self.$showInformationSheet) {
+                .sheet(isPresented: $showInformationSheet) {
                     WebView(webLink: URL(string: wikipediaLinkDictionary[observation.speciesName!]!)!)
                 }
 
                 Divider()
                 
-                Button(action: { self.isPresentedShareSheet.toggle() }) {
+                Button(action: { isPresentedShareSheet.toggle() }) {
                     HStack() {
                         Image(systemName: "square.and.arrow.up.fill")
                         Text("Share Observation").bold()
@@ -114,7 +114,7 @@ struct ObservationActionButtons: View {
                 Button(action: {
                     observation.isFavorite = !observation.isFavorite
                     changeFavoriteButton()
-                    try? self.managedObjectContext.save()
+                    try? managedObjectContext.save()
                 }) {
                     HStack {
                         Image(systemName: imageName).foregroundColor(.yellow)
@@ -129,7 +129,7 @@ struct ObservationActionButtons: View {
                 Divider()
                 
                 Button(action: {
-                    self.showDeleteObservationAlert.toggle()
+                    showDeleteObservationAlert.toggle()
                 }) {
                     HStack {
                         Image(systemName: "trash.fill")
@@ -149,12 +149,12 @@ struct ObservationActionButtons: View {
         .alert(isPresented: $showDeleteObservationAlert) {
             Alert(title: Text("Delete observation"), message: Text("Are you sure you want to delete this observation and associated data?"), primaryButton: .destructive(Text("Yes")) {
                 
-                self.sheetIsOpen = false
-                self.presentationMode.wrappedValue.dismiss()
+                sheetIsOpen = false
+                presentationMode.wrappedValue.dismiss()
                 
                 do {
-                    self.managedObjectContext.delete(observation)
-                    try self.managedObjectContext.save()
+                    managedObjectContext.delete(observation)
+                    try managedObjectContext.save()
                 } catch {
                     print(error.localizedDescription)
                 }

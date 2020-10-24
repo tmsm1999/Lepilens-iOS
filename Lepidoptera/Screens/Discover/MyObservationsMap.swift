@@ -125,8 +125,8 @@ class ObservationAnnotation: NSObject, MKAnnotation {
     
     init(coordinate: CLLocationCoordinate2D, species: String, image: UIImage, confidence: Double) {
         self.coordinate = coordinate
-        self.title = species
-        self.subtitle = "Confidence: \(confidence)"
+        title = species
+        subtitle = "Confidence: \(confidence)"
         self.image = image
     }
 }

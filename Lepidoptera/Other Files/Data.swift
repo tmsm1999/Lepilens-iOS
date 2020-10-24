@@ -39,7 +39,7 @@ func loadSpeciesInfoJSON() {
                 secundaryNameDictionary[species.name] = species.otherName
             }
             
-            print(familyDictionary.count)
+            //print(familyDictionary.count)
             //familyDictionary.sorted(by: {$0.key > $1.key})
             
         } catch {
