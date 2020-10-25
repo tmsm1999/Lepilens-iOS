@@ -62,6 +62,10 @@ struct SheetImagePicker: View {
     @State var activeAlert: ActiveAlert?
     ///Tells the previous control view if it can show the result for the classification or not.
     @State var classificationWasSuccessful: Bool = false
+    
+    @State var buttonsFirstRowAreVisible: Bool = false
+    
+    @State var buttonsSecondRowAreVisible: Bool = false
     ///Saves the result classification.
     @State var viewTitle = "New Observation"
     
@@ -590,6 +594,11 @@ struct SheetImagePicker: View {
                                     .padding(.trailing, geometry.size.width / 6)
                                 }
                                 .padding(.top, geometry.size.height / 3)
+                                .onDisappear() {
+                                    withAnimation(.linear(duration: 0.8)) {
+                                        buttonsFirstRowAreVisible.toggle()
+                                    }
+                                }
 
                                 HStack {
 
@@ -614,10 +623,15 @@ struct SheetImagePicker: View {
 
                                     Spacer()
                                 }
+                                .onDisappear() {
+                                    withAnimation(.linear(duration: 0.8)) {
+                                        buttonsSecondRowAreVisible.toggle()
+                                    }
+                                }
                             }
                             else {
 
-                                Spacer()
+                                //Spacer()
 
                                 ImageToClassifyPlaceholder(image: imageToClassify)
                                     .opacity(imagePlaceholderIsVisible ? 1 : 0)
@@ -627,7 +641,7 @@ struct SheetImagePicker: View {
                                             imagePlaceholderIsVisible.toggle()
                                         }
                                     }
-                                    .position(x: geometry.size.width / 2.5, y: geometry.size.height / 4)
+                                    .position(x: geometry.size.width / 2.5, y: geometry.size.height / 2.5)
                                     .frame(width: geometry.size.width * 0.80, height: geometry.size.height * 0.55, alignment: .center)
 
                             }

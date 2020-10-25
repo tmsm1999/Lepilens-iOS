@@ -54,6 +54,7 @@
 		CFD122072526279900895E47 /* SendEmailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD122062526279900895E47 /* SendEmailSheet.swift */; };
 		CFDECB842531109000ECBFFE /* speciesInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = CFDECB832531109000ECBFFE /* speciesInfo.json */; };
 		CFE5673925251A9100C9D341 /* PrivacyPolicyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE5673825251A9100C9D341 /* PrivacyPolicyScreen.swift */; };
+		CFEAB6A825450FBB00FEA2B9 /* ObservationActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6724E94CD500D9715A /* ObservationActionButtons.swift */; };
 		CFFC69F525309B5B008AE799 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFC69F425309B5B008AE799 /* SearchBar.swift */; };
 		D842820BDAF07B742513D5DF /* Pods_Lepidoptera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52382BDB4870F4E9916FD45F /* Pods_Lepidoptera.framework */; };
 /* End PBXBuildFile section */
@@ -510,6 +511,7 @@
 				CF5EBFC6253C923D00654767 /* AboutScreen.swift in Sources */,
 				7EACEF6224E707DC00D9715A /* Data.swift in Sources */,
 				7E8B589425178D2E00D158F7 /* ModelInference.swift in Sources */,
+				CFEAB6A825450FBB00FEA2B9 /* ObservationActionButtons.swift in Sources */,
 				7EC9DD9C24FD7B14005F110A /* RectangleButton.swift in Sources */,
 				CFD122072526279900895E47 /* SendEmailSheet.swift in Sources */,
 				7EACEF6424E88EAF00D9715A /* ConfidenceCircleResults.swift in Sources */,
