@@ -46,7 +46,7 @@ struct RecordsListView: View {
                                 
                                 if (self.searchText.isEmpty || observation.speciesName!.lowercased().contains(self.searchText.lowercased())) && (!self.showFavoritesOnly || observation.isFavorite) {
                                     
-                                    NavigationLink(destination: ObservationDetails(sheetIsOpen: Binding.constant(true), observation: observation).environment(\.managedObjectContext, self.managedObjectContext)
+                                    NavigationLink(destination: ObservationDetails(sheetIsOpen: Binding.constant(false), observation: observation).environment(\.managedObjectContext, self.managedObjectContext)
                                                     .onAppear {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                     }) {
@@ -89,7 +89,7 @@ struct RecordsListView: View {
                     .listStyle(GroupedListStyle())
                     .sheet(isPresented: self.$sheetIsOpen, content: {
                         SheetImagePicker(sheetIsPresented: $sheetIsOpen)
-                            //.environment(\.managedObjectContext, self.managedObjectContext)
+                            .environment(\.managedObjectContext, self.managedObjectContext)
                     })
                     
                     Spacer()

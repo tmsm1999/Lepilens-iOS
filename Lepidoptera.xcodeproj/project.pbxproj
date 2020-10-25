@@ -27,7 +27,6 @@
 		7EACEF6224E707DC00D9715A /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6124E707DC00D9715A /* Data.swift */; };
 		7EACEF6424E88EAF00D9715A /* ConfidenceCircleResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6324E88EAF00D9715A /* ConfidenceCircleResults.swift */; };
 		7EACEF6624E94C4F00D9715A /* ObservationImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6524E94C4F00D9715A /* ObservationImage.swift */; };
-		7EACEF6824E94CD500D9715A /* ObservationActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6724E94CD500D9715A /* ObservationActionButtons.swift */; };
 		7EACEF6A24E94F4500D9715A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6924E94F4500D9715A /* MapView.swift */; };
 		7EACEF6C24E956FA00D9715A /* DetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6B24E956FA00D9715A /* DetailsSheet.swift */; };
 		7EACEF6E24E99D2C00D9715A /* ObservationNoteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACEF6D24E99D2C00D9715A /* ObservationNoteSheet.swift */; };
@@ -487,7 +486,6 @@
 			files = (
 				7EACEF6A24E94F4500D9715A /* MapView.swift in Sources */,
 				CF16BDE825276C2C004E9D9D /* ShareSheet.swift in Sources */,
-				7EACEF6824E94CD500D9715A /* ObservationActionButtons.swift in Sources */,
 				7EACEF3724E6C41E00D9715A /* AppDelegate.swift in Sources */,
 				CF9892D1252205EF003BF22C /* Settings.swift in Sources */,
 				CFC50E5C252A23B100217E68 /* CoreDataModel.xcdatamodeld in Sources */,

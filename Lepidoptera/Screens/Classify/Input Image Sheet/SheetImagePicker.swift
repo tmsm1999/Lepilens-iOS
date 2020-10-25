@@ -63,11 +63,12 @@ struct SheetImagePicker: View {
     ///Tells the previous control view if it can show the result for the classification or not.
     @State var classificationWasSuccessful: Bool = false
     ///Saves the result classification.
-    @State var observation: Observation?
-    
     @State var viewTitle = "New Observation"
     
-    let newInference = ModelInference()
+    @State var newInference = ModelInference()
+    
+    @State var observation: Observation?
+    
     
 //    @ViewBuilder var body: some View {
 //
@@ -622,11 +623,12 @@ struct SheetImagePicker: View {
                                     .opacity(imagePlaceholderIsVisible ? 1 : 0)
                                     .scaleEffect(imagePlaceholderIsVisible ? 1 : 0)
                                     .onAppear() {
-                                        withAnimation(.easeIn(duration: 1)) {
+                                        withAnimation(.easeInOut(duration: 1)) {
                                             imagePlaceholderIsVisible.toggle()
                                         }
                                     }
-                                    .frame(width: geometry.size.width * 0.80, height: geometry.size.height * 0.4, alignment: .center)
+                                    .position(x: geometry.size.width / 2.5, y: geometry.size.height / 4)
+                                    .frame(width: geometry.size.width * 0.80, height: geometry.size.height * 0.55, alignment: .center)
 
                             }
 
@@ -671,6 +673,10 @@ struct SheetImagePicker: View {
                                     Button(action: {
 
                                         imageWasImported = false
+                                        imageDate = nil
+                                        imageLocation = nil
+                                        imageHeight = 0
+                                        imageWidth = 0
                                         imagePlaceholderIsVisible.toggle()
                                     }) {
                                         Text("Clear")
@@ -730,12 +736,9 @@ struct SheetImagePicker: View {
                     VStack {
                         ObservationDetails(sheetIsOpen: $sheetIsPresented, observation: observation!)
                             .environment(\.managedObjectContext, managedObjectContext)
-                            .onAppear() {
-                                print(classificationWasSuccessful)
-                            }
                     }
                     .transition(.slide)
-                    .animation(.easeInOut(duration: 1.5))
+                    .animation(.easeInOut(duration: 1.2))
                 }
             }
             .navigationTitle(Text(viewTitle))
@@ -753,7 +756,6 @@ struct SheetImagePicker: View {
         newInference.runInference(image: imageToClassify)
 
         DispatchQueue.main.async {
-            print("DispathcQueue")
 
             if let topFiveResults = newInference.getResults() {
 

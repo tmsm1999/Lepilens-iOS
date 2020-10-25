@@ -14,7 +14,7 @@ struct DetailsSheet: View {
     ///Informs the parent view whether the sheet is open or not.
     @Binding var isPresented: Bool
     ///Current observation whose details are being shown.
-    @State var observation: Observation
+    var observation: Observation
     
     var body: some View {
         

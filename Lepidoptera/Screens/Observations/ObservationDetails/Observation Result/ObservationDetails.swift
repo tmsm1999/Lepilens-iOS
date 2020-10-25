@@ -35,9 +35,11 @@ struct ObservationDetails: View {
     @Binding var sheetIsOpen: Bool
     
     ///Current observation being shown.
-    @State var observation: Observation
+    @State var observation: Observation?
     
     @ViewBuilder var body: some View {
+        
+        if observation != nil {
         
         GeometryReader { geometry in
             
@@ -47,7 +49,7 @@ struct ObservationDetails: View {
                     
                     ZStack {
                         
-                        MapView(latitude: observation.latitude, longitude: observation.longitude)
+                        MapView(latitude: observation!.latitude, longitude: observation!.longitude)
                             .frame(width: geometry.size.width, height: geometry.size.height / 3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             .edgesIgnoringSafeArea(.top)
                             .onAppear() {
@@ -55,7 +57,7 @@ struct ObservationDetails: View {
                             }
                         
                         
-                        ObservationImage(image: UIImage(data: observation.image!)!)
+                        ObservationImage(image: UIImage(data: observation!.image!)!)
                             .frame(width: geometry.size.height / 4.3, height: geometry.size.height / 4.3, alignment: .center)
                             .offset(x: 0, y: geometry.size.height / 4.9)
                             .onAppear() {
@@ -66,11 +68,11 @@ struct ObservationDetails: View {
                     HStack() {
                         
                         VStack(alignment: .leading) {
-                            Text(formatSpaciesName(name: observation.speciesName!))
+                            Text(formatSpaciesName(name: observation!.speciesName!))
                                 .font(.system(size: geometry.size.height / 22, weight: .semibold))
                                 .lineLimit(2)
                             
-                            Text(formatDate(date: observation.observationDate!))
+                            Text(formatDate(date: observation!.observationDate!))
                                 .font(.system(size: geometry.size.height / 51, weight: .medium))
                         }
                         .padding(.leading, 13)
@@ -80,7 +82,7 @@ struct ObservationDetails: View {
                         
                         Spacer()
                         
-                        ConfidenceCircleResults(confidence: observation.confidence)
+                        ConfidenceCircleResults(confidence: observation!.confidence)
                             .frame(width: geometry.size.width / 4.4, height: geometry.size.width / 4.4, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             .padding(.trailing, 13)
                         
@@ -105,7 +107,7 @@ struct ObservationDetails: View {
                                 .padding(.leading, 15)
                             }
                             .sheet(isPresented: $presentObservationDetailsSheet) {
-                                DetailsSheet(isPresented: $presentObservationDetailsSheet, observation: observation)
+                                DetailsSheet(isPresented: $presentObservationDetailsSheet, observation: observation!)
                                     .edgesIgnoringSafeArea(.bottom)
                             }
                             .padding(.top, 4.3)
@@ -121,7 +123,7 @@ struct ObservationDetails: View {
                                 .padding(.leading, 15)
                             }
                             .sheet(isPresented: $presentAddNoteSheet) {
-                                ObservationNoteSheet(isPresented: $presentAddNoteSheet, userNote: "", observation: observation)
+                                ObservationNoteSheet(isPresented: $presentAddNoteSheet, userNote: "", observation: observation!)
                                     //.environment(\.managedObjectContext, managedObjectContext)
                             }
                             .padding(.top, 4.3)
@@ -141,7 +143,7 @@ struct ObservationDetails: View {
                             .padding(.top, 4.3)
                             .animation(.none)
                             .sheet(isPresented: $showInformationSheet) {
-                                WebView(webLink: URL(string: wikipediaLinkDictionary[observation.speciesName!]!)!)
+                                WebView(webLink: URL(string: wikipediaLinkDictionary[observation!.speciesName!]!)!)
                             }
 
                             Divider()
@@ -168,7 +170,7 @@ struct ObservationDetails: View {
                             Divider()
                             
                             Button(action: {
-                                observation.isFavorite = !observation.isFavorite
+                                observation!.isFavorite = !observation!.isFavorite
                                 changeFavoriteButton()
                                 try? managedObjectContext.save()
                             }) {
@@ -209,14 +211,25 @@ struct ObservationDetails: View {
                     .alert(isPresented: $showDeleteObservationAlert) {
                         Alert(title: Text("Delete observation"), message: Text("Are you sure you want to delete this observation and associated data?"), primaryButton: .destructive(Text("Yes")) {
                             
-                            do {
+                            //presentationMode.wrappedValue.dismiss()
+                            managedObjectContext.delete(observation!)
+                            observation = nil
+                            try? managedObjectContext.save()
+                            
+                            if sheetIsOpen == true {
                                 sheetIsOpen = false
-                                presentationMode.wrappedValue.dismiss()
-                                managedObjectContext.delete(observation)
-                                try managedObjectContext.save()
-                            } catch {
-                                print(error.localizedDescription)
                             }
+                            else {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                            
+//                            do {
+//                                managedObjectContext.delete(observation)
+//                                try managedObjectContext.save()
+//                                presentationMode.wrappedValue.dismiss()
+//                            } catch {
+//                                print(error.localizedDescription)
+//                            }
                             
                         }, secondaryButton: .cancel(Text("No")))
                     }
@@ -231,10 +244,11 @@ struct ObservationDetails: View {
              }
         }
         .edgesIgnoringSafeArea(.all)
+        }
     }
     
     func changeFavoriteButton() {
-        if observation.isFavorite {
+        if observation!.isFavorite {
             imageName = "star.fill"
             buttonLabel = "Remove from favorites"
         }
@@ -247,14 +261,14 @@ struct ObservationDetails: View {
     func getItemShareSheet() -> [Any] {
         //TODO: Adicionar link para a app na App Store
 
-        let species = observation.speciesName!.appending(" by Lepilens iOS")
-        let confidence = observation.confidence
-        let image = UIImage(data: observation.image!)!.resized(withPercentage: 0.5)
-        let date = observation.observationDate
+        let species = observation!.speciesName!.appending(" by Lepilens iOS")
+        let confidence = observation!.confidence
+        let image = UIImage(data: observation!.image!)!.resized(withPercentage: 0.5)
+        let date = observation!.observationDate
 
         var finalText: String = ""
 
-        if let latitude = observation.value(forKey: "latitude") as? Double, let longitude = observation.value(forKey: "longitude") as? Double {
+        if let latitude = observation!.value(forKey: "latitude") as? Double, let longitude = observation!.value(forKey: "longitude") as? Double {
 
             var latitude_ = ""
             var longitude_ = ""
