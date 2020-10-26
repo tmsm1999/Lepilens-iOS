@@ -19,6 +19,8 @@ struct ObservationNoteSheet: View {
     ///Local var that saves the current user note to be changed inside the action button.
     @State var userNote: String
     
+    @State var presentPopOver: Bool = false
+    
     ///Current observation being shown.
     var observation: Observation
     
@@ -37,6 +39,8 @@ struct ObservationNoteSheet: View {
                     .navigationBarItems(trailing:
                                             
                         Button(action: {
+                            presentPopOver.toggle()
+                            print("User note = \(self.userNote)")
                             self.observation.userNote = self.userNote
                             try? self.managedObjectContext.save()
                             self.isPresented.toggle();
@@ -45,6 +49,7 @@ struct ObservationNoteSheet: View {
                             Text("Save")
                         }
                     )
+                
             }
             .padding(20)
         }

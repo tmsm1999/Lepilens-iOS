@@ -53,7 +53,7 @@ struct Discover: View {
                     if searchType == 0 {
                         
                         HStack {
-                            Text("Occurrences with location: \(occurencesFound)")
+                            Text("Observations with Location: \(occurencesFound)")
                             Spacer()
                         }
                         .padding(15)

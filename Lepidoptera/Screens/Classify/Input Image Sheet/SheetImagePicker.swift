@@ -458,6 +458,7 @@ struct SheetImagePicker: View {
 //        }
 //    }
     
+    
     var body: some View {
 
         NavigationView {
@@ -800,7 +801,7 @@ struct SheetImagePicker: View {
                     newObservation.confidence = confidence
                     newObservation.observationDate = Date()
                     newObservation.imageCreationDate = imageDate
-                    newObservation.image = imageToClassify.jpegData(compressionQuality: 1.0)
+                    newObservation.image = imageToClassify.jpegData(compressionQuality: 0.5)
                     newObservation.imageSource = imageSource
                     newObservation.imageHeight = Int16(imageHeight)
                     newObservation.imageWidth = Int16(imageWidth)

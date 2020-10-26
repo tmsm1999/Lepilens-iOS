@@ -236,11 +236,11 @@ struct ObservationDetails: View {
                     .accentColor(.none)
                 }
                 .navigationBarTitle(Text(""))
-                .navigationBarItems(trailing:
-                    Button(action: { sheetIsOpen.toggle() }) {
-                        Text("Dismiss")
-                    }
-                )
+//                .navigationBarItems(trailing:
+//                    Button(action: { sheetIsOpen.toggle() }) {
+//                        Text("Dismiss")
+//                    }
+//                )
              }
         }
         .edgesIgnoringSafeArea(.all)
