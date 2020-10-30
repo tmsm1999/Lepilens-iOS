@@ -51,7 +51,7 @@ struct AboutScreen: View {
                 
                 VStack {
                     
-                    Text("In March 2020, in the final semester of my Computer Science Degree I enrolled in a course called Project, which can be thought as an Introduction to Scientific Research. Since the very beginning it was my desire to work in Artificial Intelligence and I was very fortunate in finding a project proposal that I loved. It had the title of “Classification of images of butterflies using Deep Learning”.")
+                    Text("In March 2020, in the final semester of my Computer Science Degree I enrolled in a course called Project, which can be thought as an Introduction to Scientific Research. Since the very beginning it was my desire to work in Artificial Intelligence and I was very fortunate in finding a project proposal that I loved.")
                         .fontWeight(.regular)
                         .padding([.leading, .trailing], 20)
                         .padding(.top, 10)
@@ -62,7 +62,7 @@ struct AboutScreen: View {
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
                 
-                Text("In June 2020 I was one of the 350 worldwide winners of the Apple WWDC Student Challenge. As part of the prize I won one year of individual membership in the Apple Developer Program. I wanted to make good use of it and develop an app. The Butterfly Classification project I worked on during the last semester of my Bachelor's Degree in Computer Science provided the perfect theme for my app. And this is how Lepilens came to be...")
+                Text("On a completely unrelated note, in June 2020 I was one of the 350 worldwide winners of the Apple WWDC Student Challenge. As part of the prize I won one year of individual membership in the Apple Developer Program. I wanted to make good use of it and develop an app. The Butterfly Classification project I worked on during the last semester of my Bachelor's Degree in Computer Science provided the perfect theme for my app. And this is how Lepilens came to be...")
                     .fontWeight(.regular)
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
@@ -131,7 +131,7 @@ struct AboutScreen: View {
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
                 
-                Text("Also, a very special thanks to my friend and colleague Vasco Cruz who designed the icon for Lepilens. I will never forget.")
+                Text("Also, a very special thanks to my friend and colleague Vasco Cruz who designed the icon for Lepilens.")
                     .fontWeight(.regular)
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)

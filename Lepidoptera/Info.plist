@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSExtensionFileProviderOnlyVisibleInParentApplication</key>
-	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -26,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Lepilens needs to use your iPhone camera to capure an image for the current observation.</string>
+	<key>NSExtensionFileProviderOnlyVisibleInParentApplication</key>
+	<false/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Lepilens needs to use your location to know the place where the observation took place.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

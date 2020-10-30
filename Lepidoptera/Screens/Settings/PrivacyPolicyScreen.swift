@@ -30,7 +30,7 @@ struct PrivacyPolicyScreen: View {
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
                 
-                Text("Lepilens can only access personal data that you allow access to. This includes photos from your Photo Library and associated metadata, photos you take while using the app and associated metadata and your location while using the app. The only photo metadata used is creation date of the photo and the location where the photo was captured - if available.")
+                Text("Lepilens can only access personal data that you allow access to. This includes photos from your Photo Library or the Files app and associated metadata, photos you take while using the app and associated metadata and your location while using the app. The only photo metadata used is creation date of the photo and the location where the photo was captured - if available.")
                     .fontWeight(.regular)
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
@@ -40,7 +40,7 @@ struct PrivacyPolicyScreen: View {
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
                 
-                Text("To perform a classification a photo is always required. You can choose to import the photo from your Photos Library or to take a photo from within the app using your camera. If the photo was imported from your Photo Library the app will use the creation date of the photo and the location if these are available. If the photo is taken from the app using your camera the app will use your current location if you allow it.")
+                Text("To perform a classification a photo is always required. You can choose to import the photo from your Photos Library, the Files app or to take a photo from within the app using your camera. If the photo was imported from your Photo Library or the Files app the app will use the creation date of the photo and the location matadata if these are available. If the photo is taken from the app using your camera the app will use your current location if you allow it.")
                     .fontWeight(.regular)
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)

@@ -86,6 +86,7 @@ struct RecordsListView: View {
                             .onDelete(perform: delete)
                         }
                     }
+                    .padding(.top, -30)
                     .listStyle(GroupedListStyle())
                     .sheet(isPresented: self.$sheetIsOpen, content: {
                         SheetImagePicker(sheetIsPresented: $sheetIsOpen)
@@ -97,10 +98,14 @@ struct RecordsListView: View {
                         HStack(alignment: .center) {
                             VStack(alignment: .center) {
                                 Text("You don't have any observations yet.")
-                                    .font(.footnote)
+                                    .font(.callout)
+                                    .bold()
+                                    //.font(.footnote)
                                     .foregroundColor(.gray)
                                 Text("Press + to start.")
-                                    .font(.footnote)
+                                    .font(.callout)
+                                    .bold()
+                                    //.font(.footnote)
                                     .foregroundColor(.gray)
                             }
                         }

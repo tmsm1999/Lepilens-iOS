@@ -123,10 +123,10 @@ class ObservationAnnotation: NSObject, MKAnnotation {
     let subtitle: String?
     var image: UIImage?
     
-    init(coordinate: CLLocationCoordinate2D, species: String, image: UIImage, confidence: Double) {
+    init(coordinate: CLLocationCoordinate2D, species: String, image: UIImage, confidence: String) {
         self.coordinate = coordinate
         title = species
-        subtitle = "Confidence: \(confidence)"
+        subtitle = "Confidence: " + confidence
         self.image = image
     }
 }
@@ -181,7 +181,7 @@ struct MyObservationsMap: UIViewRepresentable {
                     coordinate: CLLocationCoordinate2D(latitude: observation.latitude, longitude: observation.longitude),
                     species: observation.speciesName!,
                     image: UIImage(data: observation.image!)!,
-                    confidence: observation.confidence
+                    confidence: String(format: "%.1f", observation.confidence * 100).appending("%")
                 )
                 
                 uiView.addAnnotation(annotation)

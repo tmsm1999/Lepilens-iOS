@@ -11,9 +11,9 @@ import MessageUI
 import StoreKit
 import UniformTypeIdentifiers
 
-let availableConfidence = [0.1, 0.25, 0.5, 0.75, 1]
-let precision = [70.98, 85.82, 94.06, 97.66, 100]
-let recall = [89.29, 81.65, 72.22, 57.94, 0.69]
+let availableConfidence = [0.00, 0.10, 0.25, 0.50, 0.75, 1.00]
+let precision = [2.38, 75.30, 88.15, 94.57, 97.55, 100]
+let recall = [98.99, 87.53, 81.69, 72.21, 52.71, 0.71]
 
 enum AlertType {
     case deleteAllData,
@@ -26,7 +26,7 @@ struct Settings: View {
     @FetchRequest(entity: Observation.entity(), sortDescriptors: [NSSortDescriptor(key: "observationDate", ascending: false)]) var observationList: FetchedResults<Observation>
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @State var availableConfidenceIndex: Int = 0
+    @State var availableConfidenceIndex: Int = 1
     @State var showConfidencePicker = false
     
     @State var showDeleteDataAlert: Bool = false
@@ -98,7 +98,7 @@ struct Settings: View {
                     availableConfidenceIndex = confidenceThresholdIndex
                 }
                 
-                Section(header: Text("Observation Data"), footer: Text("Your data is yours. It never leaves your device or your iCloud account.")) {
+                Section(header: Text("Observation Data"), footer: Text("Your data is yours. It never leaves your device.")) {
                     Button(action: {
                         presentExportCSV.toggle()
                     }) {
@@ -205,7 +205,7 @@ struct Settings: View {
                     HStack {
                         Text("Version")
                         Spacer()
-                        Text("0.1").fontWeight(.regular)
+                        Text("0.3").fontWeight(.regular)
                     }
                     
 //                    Button(action: {
@@ -274,18 +274,23 @@ struct Settings: View {
         let imagesDirectory = dataDirectory.appendingPathComponent("\(imagesFolder)", isDirectory: true)
         try? fileManager.createDirectory(at: imagesDirectory.absoluteURL, withIntermediateDirectories: true, attributes: nil)
         
+        var nImages = 0
         for observation in observationList {
             
             let image = UIImage(data: observation.image!)
             
             do {
-                let imageName = observation.id!.description
+                let imageName = observation.speciesName! + "_" + observation.id!.description
                 let imageURL = imagesDirectory.appendingPathComponent("\(imageName)" + ".jpeg")
                 try image?.jpegData(compressionQuality: 1.0)?.write(to: imageURL)
             } catch {
                 print(error.localizedDescription)
             }
+            
+            nImages += 1
         }
+        
+        print(nImages)
         
         let csvFileURL = dataDirectory.appendingPathComponent("Observation data.csv")
         let csvFile = createCSVFile()
