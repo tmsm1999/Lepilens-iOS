@@ -49,7 +49,6 @@ struct ObservationNoteSheet: View {
                             Text("Save")
                         }
                     )
-                
             }
             .padding(20)
         }

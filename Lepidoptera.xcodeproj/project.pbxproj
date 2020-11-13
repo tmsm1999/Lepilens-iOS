@@ -48,7 +48,6 @@
 		CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */; };
 		CFA34D2725365E6900A371E0 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA34D2625365E6900A371E0 /* WebView.swift */; };
 		CFC50E5C252A23B100217E68 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFC50E5A252A23B100217E68 /* CoreDataModel.xcdatamodeld */; };
-		CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */; };
 		CFC728AE2521F9350047631D /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC728AD2521F9350047631D /* UserLocation.swift */; };
 		CFD122072526279900895E47 /* SendEmailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD122062526279900895E47 /* SendEmailSheet.swift */; };
 		CFDECB842531109000ECBFFE /* speciesInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = CFDECB832531109000ECBFFE /* speciesInfo.json */; };
@@ -105,7 +104,6 @@
 		CFA1D630251F9DE00066064C /* ImagePicker_iOS14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker_iOS14.swift; sourceTree = "<group>"; };
 		CFA34D2625365E6900A371E0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		CFC50E5B252A23B100217E68 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedLibraryPicker.swift; sourceTree = "<group>"; };
 		CFC728AD2521F9350047631D /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		CFD122062526279900895E47 /* SendEmailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailSheet.swift; sourceTree = "<group>"; };
 		CFDECB832531109000ECBFFE /* speciesInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = speciesInfo.json; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 		7EACEF5224E6E5CD00D9715A /* Auxiliary Views */ = {
 			isa = PBXGroup;
 			children = (
-				CFC7289A252129AE0047631D /* LimitedLibraryPicker.swift */,
 				CF16BDE725276C2C004E9D9D /* ShareSheet.swift */,
 				CFFC69F425309B5B008AE799 /* SearchBar.swift */,
 				CFA34D2625365E6900A371E0 /* WebView.swift */,
@@ -494,7 +491,6 @@
 				CFE5673925251A9100C9D341 /* PrivacyPolicyScreen.swift in Sources */,
 				7EACEF6E24E99D2C00D9715A /* ObservationNoteSheet.swift in Sources */,
 				7E34060024F5A50A00BE3AA3 /* RecordsListView.swift in Sources */,
-				CFC7289B252129AE0047631D /* LimitedLibraryPicker.swift in Sources */,
 				7EACEF3924E6C41E00D9715A /* SceneDelegate.swift in Sources */,
 				7EACEF7024E9A4DE00D9715A /* DetailField.swift in Sources */,
 				CFA1D631251F9DE00066064C /* ImagePicker_iOS14.swift in Sources */,

@@ -88,16 +88,16 @@ struct ImagePicker_iOS14: UIViewControllerRepresentable {
                                 
                                 if let location = imageMetadata.location, UserDefaults.standard.bool(forKey: "include_location") {
                                     self.parent.location = location
-                                    print("Tem localização.")
+                                    //print("Tem localização.")
                                 }
                                 else {
-                                    print("No location.")
+                                    //print("No location.")
                                 }
                                 
                                 self.parent.imageHeight = imageMetadata.pixelHeight
                                 self.parent.imageWidth = imageMetadata.pixelWidth
                                 
-                                print("Image impoted.")
+                                //print("Image impoted.")
                                 self.parent.imageToImport = image as! UIImage
                                 self.parent.imageWasImported.toggle()
                             }

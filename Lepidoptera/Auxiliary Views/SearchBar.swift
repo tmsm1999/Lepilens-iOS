@@ -47,7 +47,6 @@ struct SearchBar: UIViewRepresentable {
         func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
             self.parent.searchText = ""
             searchBar.resignFirstResponder()
-            //searchBar.showsCancelButton = false
             searchBar.endEditing(true)
         }
     }

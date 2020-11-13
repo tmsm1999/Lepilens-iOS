@@ -36,14 +36,12 @@ struct ImagePickeriOS13: UIViewControllerRepresentable {
         let controller = UIImagePickerController()
         
         if sourceType == "Photos" {
-            //let library = PHPhotoLibrary.shared()
             controller.sourceType = .photoLibrary
         }
         else {
             controller.sourceType = .camera
             controller.allowsEditing = false
             controller.cameraDevice = .rear
-            //controller.cameraCaptureMode = .photo
         }
         
         controller.delegate = context.coordinator

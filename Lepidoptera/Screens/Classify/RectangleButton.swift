@@ -40,8 +40,8 @@ struct RectangleButton: View {
                             .foregroundColor(.white)
                             .background(RoundedRectangle(cornerRadius: 60, style: .continuous))
                     }
-                    .sheet(isPresented: self.$sheetIsOpen, content: {
-                        
+//                    .sheet(isPresented: self.$sheetIsOpen, content: {
+//                        
 //                        if self.action == "Photos" {
 //                            NewClassificationController(importFromPhotos: true, isPresented: $sheetIsOpen)
 //                                .environment(\.managedObjectContext, self.managedObjectContext)
@@ -50,7 +50,7 @@ struct RectangleButton: View {
 //                            NewClassificationController(importFromPhotos: false, isPresented: $sheetIsOpen)
 //                                .environment(\.managedObjectContext, self.managedObjectContext)
 //                        }
-                    })
+//                    })
                     
                     Spacer()
                 }

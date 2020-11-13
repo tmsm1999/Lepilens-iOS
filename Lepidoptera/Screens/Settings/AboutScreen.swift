@@ -126,17 +126,22 @@ struct AboutScreen: View {
                     Spacer()
                 }
                 
-                Text("I want to give a very special thanks to Professor Luís B. Lopes and Professor Eduardo R. B. Marques whose guidance and valuable feedback encouraged me throughout the development process of this app.")
+                Text("I want to express my deep and sincere gratitude to Professor Luís B. Lopes and Professor Eduardo R. B. Marques whose caring supervision, thoughtful guidance, deep knowledge and valuable feedback encouraged me throughout the development process of Lepilens iOS.")
                     .fontWeight(.regular)
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
                 
-                Text("Also, a very special thanks to my friend and colleague Vasco Cruz who designed the icon for Lepilens.")
+                Text("Second, a very special thanks to my friend and colleague Vasco Cruz who designed the icon for Lepilens and created the App Store previews for the iOS version of Lepilens.")
                     .fontWeight(.regular)
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
                 
-                Text("In order to build this app and train the Machine Learning model that performs the classification I used images from different sources which are hereby acknowledged: iNaturalist, pyrgus.de, euroButterflies, Lepidoptera Mundi, Lepiforum, Naturdata, Butterflies of France, LEPIDOPTERA (Borboletas) em Portugal Facebook group.")
+                Text("Also, I want to acknoledge the work of all my very thoughtful and encouraging beta testers for the iOS version of Lepilens, specially Pedro Gomes, Pedro Carrasco, Ken Kocienda and Fábio Reis.")
+                    .fontWeight(.regular)
+                    .padding([.leading, .trailing], 20)
+                    .padding(.top, 10)
+                
+                Text("Last but not least, I want to thank my family for their support and always very honest feedback.")
                     .fontWeight(.regular)
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)

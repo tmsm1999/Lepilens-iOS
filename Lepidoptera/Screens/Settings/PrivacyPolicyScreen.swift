@@ -40,12 +40,12 @@ struct PrivacyPolicyScreen: View {
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
                 
-                Text("To perform a classification a photo is always required. You can choose to import the photo from your Photos Library, the Files app or to take a photo from within the app using your camera. If the photo was imported from your Photo Library or the Files app the app will use the creation date of the photo and the location matadata if these are available. If the photo is taken from the app using your camera the app will use your current location if you allow it.")
+                Text("To perform a classification a photo is always required. You can choose to import the photo from your Photos Library, the Files app or to take a photo from within the app using your iPhone camera. If the photo was imported from your Photo Library or the Files app Lepilens will use the creation date of the photo and the location matadata if these are available. If the photo is taken from the app using your camera the app will use your current location if you allow it.")
                     .fontWeight(.regular)
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)
                 
-                Text("The photo is passed to a Machine Learning Classifier trained and generate using Google Cloud Platform and AutoML Vision that runs only on your device and without requiring Internet access. Lepilens uses the Google's GoogleMLKit/ImageLabelingAutoML CocoaPod to run inference on the model. After your photo is processed by the model the results associated to the operation do not leave your device. ")
+                Text("The photo is then passed to a Machine Learning Classifier trained and generate using Google Cloud Platform and AutoML Vision that runs only on your device and without requiring Internet access. Lepilens uses Google's GoogleMLKit/ImageLabelingAutoML CocoaPod to run inference on the model. After your photo is processed by the model the results associated to the operation do not leave your device. ")
                     .fontWeight(.regular)
                     .padding([.leading, .trailing], 20)
                     .padding(.top, 10)

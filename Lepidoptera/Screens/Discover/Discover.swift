@@ -6,15 +6,6 @@
 //  Copyright © 2020 Tomás Santiago. All rights reserved.
 //
 
-//
-//  Discover.swift
-//  Lepilens
-//
-//  Created by Tomás Mamede on 23/10/2020.
-//
-
-import SwiftUI
-
 import SwiftUI
 import CoreData
 

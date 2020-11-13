@@ -81,7 +81,6 @@ struct ObservationDetails: View {
                         }
                         .frame(width: geometry.size.width, height: geometry.size.height / 7)
                         .padding(.top, geometry.size.height / 6.5)
-                        //.padding(.bottom, 30)
                         
                         Spacer()
                         
@@ -116,7 +115,6 @@ struct ObservationDetails: View {
                                 }
                                 .sheet(isPresented: $presentAddNoteSheet) {
                                     ObservationNoteSheet(isPresented: $presentAddNoteSheet, userNote: "", observation: observation!)
-                                        //.environment(\.managedObjectContext, managedObjectContext)
                                 }
                                 .padding(.top, 4.3)
                                 .animation(.none)
@@ -203,7 +201,6 @@ struct ObservationDetails: View {
                         .alert(isPresented: $showDeleteObservationAlert) {
                             Alert(title: Text("Delete observation"), message: Text("Are you sure you want to delete this observation and associated data?"), primaryButton: .destructive(Text("Yes")) {
                                 
-                                //presentationMode.wrappedValue.dismiss()
                                 managedObjectContext.delete(observation!)
                                 observation = nil
                                 try? managedObjectContext.save()
@@ -279,6 +276,5 @@ struct ObservationDetails: View {
         }
         
         return name
-        //return nameArray[0] + "\n" + nameArray[1]
     }
 }

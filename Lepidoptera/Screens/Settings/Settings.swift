@@ -22,7 +22,6 @@ enum AlertType {
 
 struct Settings: View {
     
-//    @FetchRequest(entity: Observation.entity(), sortDescriptors: []) var observationList: FetchedResults<Observation>
     @FetchRequest(entity: Observation.entity(), sortDescriptors: [NSSortDescriptor(key: "observationDate", ascending: false)]) var observationList: FetchedResults<Observation>
     @Environment(\.managedObjectContext) var managedObjectContext
     
@@ -205,7 +204,7 @@ struct Settings: View {
                     HStack {
                         Text("Version")
                         Spacer()
-                        Text("0.3").fontWeight(.regular)
+                        Text("1.0").fontWeight(.regular)
                     }
                     
 //                    Button(action: {
@@ -290,7 +289,7 @@ struct Settings: View {
             nImages += 1
         }
         
-        print(nImages)
+        //print(nImages)
         
         let csvFileURL = dataDirectory.appendingPathComponent("Observation data.csv")
         let csvFile = createCSVFile()
@@ -335,25 +334,3 @@ struct Settings: View {
         return csvString
     }
 }
-
-//struct FolderExport: FileDocument {
-//
-//    var url: URL
-//
-//    static var readableContentTypes: [UTType] {[.folder]}
-//
-//    init(url: URL) {
-//        self.url = url
-//    }
-//
-//    init(configuration: ReadConfiguration) throws {
-//        url = URL(string: "")!
-//    }
-//
-//    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-//
-//        print("Aqui: \(url)")
-//        let file = try! FileWrapper(url: url, options: .immediate)
-//        return file
-//    }
-//}

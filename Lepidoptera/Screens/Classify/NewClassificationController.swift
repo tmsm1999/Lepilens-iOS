@@ -13,9 +13,6 @@ struct NewClassificationController: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    ///Controls whether we want to open camera or library picker.
-    //var importFromPhotos: Bool
-    
     ///Controls what view should appear - Sheet or result.
     @State var classificationWasSuccessful = false
     ///Current observation.
@@ -31,7 +28,6 @@ struct NewClassificationController: View {
                 
                 if classificationWasSuccessful == false {
                     SheetImagePicker(
-                        //imageWillBeImportedFromPhotos: self.importFromPhotos,
                         classificationWasSuccessful: self.$classificationWasSuccessful,
                         observation: self.$observation,
                         sheetIsPresented: self.$isPresented

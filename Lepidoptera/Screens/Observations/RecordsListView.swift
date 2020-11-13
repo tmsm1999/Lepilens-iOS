@@ -80,7 +80,6 @@ struct RecordsListView: View {
                                             }
                                         }
                                     }
-                                    //.environment(\.managedObjectContext, managedObjectContext)
                                 }
                             }
                             .onDelete(perform: delete)
@@ -125,16 +124,11 @@ struct RecordsListView: View {
                 )
             }
         }
-//        .sheet(isPresented: self.$sheetIsOpen, content: {
-//            NewClassificationController(importFromPhotos: true, isPresented: $sheetIsOpen)
-//                //.environment(\.managedObjectContext, self.managedObjectContext)
-//        })
     }
     
     ///Funtion that removes an observation from the list of observations.
     func delete(at offsets: IndexSet) {
         
-        //DispatchQueue.main.async {
         for index in offsets {
             let observationToRemove = observationList[index]
             managedObjectContext.delete(observationToRemove)
@@ -145,13 +139,11 @@ struct RecordsListView: View {
         } catch {
             print("Can't delete from Core Data")
         }
-        //}
     }
     
     ///Adds an observation to the favorites.
     func favoriteAction(at offsets: IndexSet) {
         
-        //DispatchQueue.main.async {
         offsets.forEach { i in
             observationList[i].isFavorite = !observationList[i].isFavorite
         }
@@ -161,6 +153,5 @@ struct RecordsListView: View {
         } catch {
             print("Can't change Core Data object.")
         }
-        //}
     }
 }

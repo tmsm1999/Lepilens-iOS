@@ -88,13 +88,8 @@ struct SheetImagePicker: View {
 
                             if !imageWasImported {
 
-                                //if self.imageWillBeImportedFromPhotos {
-                                //Spacer()
-
                                 HStack {
                                     ///Handle Photos app acess.
-                                    //Spacer()
-
                                     Button(action: {
 
                                         imageSource = "iOS Photo Library"
@@ -167,13 +162,8 @@ struct SheetImagePicker: View {
                                     }
                                     .padding(.leading, geometry.size.width / 6)
                                     .sheet(isPresented: $imagePickerIsPresented, content: {
-
-                                        //if #available(iOS 14, *) {
+                                        
                                         ImagePicker_iOS14(imageToImport: $imageToClassify, isPresented: $imagePickerIsPresented, imageWasImported: $imageWasImported, presentAlert: $showAlert, activeAlert: $activeAlert, date: $imageDate, location: $imageLocation, imageHeight: $imageHeight, imageWidth: $imageWidth)
-                                        //}
-        //                                else {
-        //                                    ImagePickeriOS13(isPresented: self.$imagePickerIsPresented, selectedImage: self.$imageToClassify, imageWasImported: self.$imageWasImported, date: self.$imageDate, location: self.$imageLocation, imageHeight: self.$imageHeight, imageWidth: self.$imageWidth, sourceType: "Photos") //FIXME: Change the way the source type is handled.
-        //                                }
                                     })
 
                                     Spacer()
@@ -274,11 +264,6 @@ struct SheetImagePicker: View {
                                     .padding(.trailing, geometry.size.width / 6)
                                 }
                                 .padding(.top, geometry.size.height / 3)
-//                                .onDisappear() {
-//                                    withAnimation(.linear(duration: 0.8)) {
-//                                        buttonsFirstRowAreVisible.toggle()
-//                                    }
-//                                }
 
                                 HStack {
 
@@ -311,8 +296,6 @@ struct SheetImagePicker: View {
                             }
                             else {
 
-                                //Spacer()
-
                                 ImageToClassifyPlaceholder(image: imageToClassify)
                                     .opacity(imagePlaceholderIsVisible ? 1 : 0)
                                     .scaleEffect(imagePlaceholderIsVisible ? 1 : 0)
@@ -341,7 +324,6 @@ struct SheetImagePicker: View {
                                         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
                                             //TODO: What happens if the this is sync. Do I need the semaphore?
 
-                                            //                                let newInference = ModelInference()
                                             let butterflyWasDetected = newInference.detectButterfly(receivedImage: imageToClassify)
 
                                             if butterflyWasDetected {
@@ -389,9 +371,6 @@ struct SheetImagePicker: View {
                             }
                             .padding(.bottom, 15)
                         }
-                        //.zIndex(0)
-                        //.opacity(classificationWasSuccessful ? 0 : 1)
-                        //.transition(AnyTransition.opacity.animation(.linear(duration: 0.5)))
                         .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
                         .navigationBarTitle(Text("New Observation"))
                         .navigationBarItems(trailing:
@@ -400,15 +379,10 @@ struct SheetImagePicker: View {
                             }
                         )
                         .opacity(classificationWasSuccessful ? 0 : 1)
-                        //.transition(AnyTransition.opacity.animation(.easeInOut(duration: 2)))
-//                        .onDisappear() {
-//                            withAnimation(.easeOut(duration: 2)) {
-//                                buttonsFirstRowAreVisible.toggle()
-//                            }
-//                        }
                     }
                     .zIndex(0)
                     .opacity(classificationWasSuccessful ? 0 : 1)
+                    
                     //TODO: Change to show alert if the classification failed.
                     .alert(isPresented: $showAlert) {
                         switch activeAlert {
@@ -461,16 +435,12 @@ struct SheetImagePicker: View {
 
     func runInference() {
 
-        //newInference.coreMLModelInference(receivedImage: self.imageToClassify)
         newInference.runInference(image: imageToClassify)
 
         DispatchQueue.main.async {
 
             if let topFiveResults = newInference.getResults() {
 
-                //Label comes in the format eg. Vanessa_atalanta.
-                //let labelComponents = topFiveResults[0].label.components(separatedBy: "_")
-                //let finalLabel = labelComponents[0] + " " + labelComponents[1]
                 let finalLabel = topFiveResults[0].label
 
                 if UserDefaults.standard.value(forKey: "confidence_threshold_index") as? Int == nil {
@@ -506,8 +476,8 @@ struct SheetImagePicker: View {
                         newObservation.latitude = latitude
                         newObservation.longitude = longitude
                         
-                        print(latitude)
-                        print(longitude)
+                        //print(latitude)
+                        //print(longitude)
                     }
                     else {
                         newObservation.latitude = -999
@@ -517,12 +487,10 @@ struct SheetImagePicker: View {
                     do {
                         try managedObjectContext.save()
                         observation = newObservation
-                        //presentationMode.wrappedValue.dismiss()
+                        
                         withAnimation(.easeIn(duration: 0.15)) {
                             classificationWasSuccessful = true
                         }
-                        //viewTitle = ""
-                        //self.presentationMode.wrappedValue.dismiss()
                     } catch {
                         activeAlert = .canNotSaveCoreData
                         showAlert.toggle()
