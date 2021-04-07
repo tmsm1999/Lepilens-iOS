@@ -12,7 +12,7 @@ import MapKit
 ///Map view containing the observation location.
 struct MapView: UIViewRepresentable {
     
-    private let CLLOcationDegrees = 0.10
+    private let CLLocationDegrees = 0.10
     
     let latitude: Double
     let longitude: Double
@@ -23,7 +23,7 @@ struct MapView: UIViewRepresentable {
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         if latitude != -999, longitude != -999 {
-            let span = MKCoordinateSpan(latitudeDelta: CLLOcationDegrees, longitudeDelta: CLLOcationDegrees)
+            let span = MKCoordinateSpan(latitudeDelta: CLLocationDegrees, longitudeDelta: CLLocationDegrees)
             let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
             
             let annotation =  MKPointAnnotation()
